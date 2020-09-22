@@ -1,7 +1,7 @@
 .App {
   display: flex;
   width: 100%;
-  /* align-items: stretch; */
+  align-items: stretch;
 }
 
 *{
@@ -107,7 +107,7 @@ li a.dropdown-toggle::after {
 .content {
   padding: 20px;
   margin-left: 0;
-  height: 100vh;
+  width:100%
 }
 
 @media only screen and (max-width: 500px) {
