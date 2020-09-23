@@ -44,16 +44,6 @@ a:hover {
   transition: 0.5s;
 }
 
-.sidebar-header {
-  background: #98999e;
-}
-
-/* .sidebar-header h3 {
-  color: #fff;
-  padding: 1em;
-} */
-
-
 .menu-open {
   background: #ffffff;
 }
@@ -68,12 +58,12 @@ a:hover {
   background:  #ffffff;
 }
 
-li a.dropdown-toggle::after {
+/* li a.dropdown-toggle::after {
   display: inline-flex;
   position: relative;
   left: 60%;
   top: 10%;
-}
+} */
 
 .sidebar-header > span {
   position: relative;
