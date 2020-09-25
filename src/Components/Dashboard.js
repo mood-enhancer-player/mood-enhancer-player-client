@@ -20,6 +20,7 @@ import { withRouter } from "react-router-dom";
 import About from "./About";
 import Home from "./Home";
 import Browse from "./Browse";
+import Profile from "./Profile";
 
 const drawerWidth = 240;
 
@@ -84,7 +85,7 @@ function ResponsiveDrawer(props) {
         history.push("/browse");
       },
     },
-    {
+    { 
       text: "About",
       icon: <MailIcon />,
       onClick: () => {
@@ -95,7 +96,7 @@ function ResponsiveDrawer(props) {
   ];
   const drawer = (
     <div>
-      <div className={classes.toolbar} />
+      <Profile />
       <Divider />
       <List>
         {itemList.map((item, index) => {
