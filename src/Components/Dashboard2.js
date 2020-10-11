@@ -1,39 +1,32 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {
-  AppBar,
-  CssBaseline,
-  Divider,
-  Drawer,
-  Hidden,
-  IconButton,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Toolbar,
-  InputBase,
-  MenuItem,
-  Menu,
-} from "@material-ui/core";
-import {
-  HomeOutlined as HomeIcon,
-  SearchOutlined as SearchIcon,
-  InfoOutlined as InfoIcon,
-  MenuOutlined as MenuIcon,
-  MailOutline as MailIcon,
-  AlarmOutlined as AlarmIcon,
-  AccountCircleOutlined as AccountCircle,
-  FavoriteBorderOutlined as FavoriteBorderIcon,
-} from "@material-ui/icons";
-import { makeStyles, useTheme, fade } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Divider from "@material-ui/core/Divider";
+import Drawer from "@material-ui/core/Drawer";
+import Hidden from "@material-ui/core/Hidden";
+import IconButton from "@material-ui/core/IconButton";
+import InboxIcon from "@material-ui/icons/MoveToInbox";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import MailIcon from "@material-ui/icons/Mail";
+import MenuIcon from "@material-ui/icons/Menu";
+
+import SearchIcon from "@material-ui/icons/Search";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import { fade, makeStyles, useTheme } from "@material-ui/core/styles";
 import { withRouter } from "react-router-dom";
 import About from "./About";
 import Home from "./Home";
 import Browse from "./Browse";
 import Profile from "./Profile";
+import { Button, InputBase, Menu, MenuItem } from "@material-ui/core";
 
 const drawerWidth = 240;
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -57,25 +50,6 @@ const useStyles = makeStyles((theme) => ({
       display: "none",
     },
   },
-  // necessary for content to be below app bar
-  toolbar: theme.mixins.toolbar,
-  drawerPaper: {
-    width: drawerWidth,
-    background: "black",
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-  },
-  grow: {
-    flexGrow: 1,
-  },
-  title: {
-    display: "none",
-    [theme.breakpoints.up("sm")]: {
-      display: "block",
-    },
-  },
   search: {
     position: "relative",
     borderRadius: theme.shape.borderRadius,
@@ -85,10 +59,10 @@ const useStyles = makeStyles((theme) => ({
     },
     marginRight: theme.spacing(2),
     marginLeft: 0,
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      width: "auto",
-      marginRight: 0,
+    width: "auto",
+    [theme.breakpoints.down("sm")]: {
+      marginLeft: theme.spacing(3),
+      width: `calc(100% - ${drawerWidth}px)`,
     },
   },
   searchIcon: {
@@ -109,34 +83,47 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create("width"),
     width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "20ch",
-    },
+    // [theme.breakpoints.down("sm")]: {
+    //   width: "20ch",
+    // },
   },
-  sectionDesktop: {
-    display: "none",
-    [theme.breakpoints.up("md")]: {
-      display: "flex",
-    },
+  // necessary for content to be below app bar
+  // toolbar: {
+  //   [theme.breakpoints.down("sm")]: {
+  //     marginLeft: theme.spacing(3),
+  //     width: "100%",
+  //   },
+  // },
+  drawerPaper: {
+    width: drawerWidth,
+    background: "black",
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
+  },
+  menuButzton1: {
+    // [theme.breakpoints.down("sm")]: {
+    //   marginLeft: theme.spacing(3),
+    //   width: "auto",
+    // },
   },
 }));
 
-function Dashboard(props) {
-  console.log(props.history);
+function Dashboard2(props) {
   const { window, history } = props;
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
-
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  const isMenuOpen = Boolean(anchorEl);
+  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -149,6 +136,10 @@ function Dashboard(props) {
   const handleMenuClose = () => {
     setAnchorEl(null);
     handleMobileMenuClose();
+  };
+
+  const handleMobileMenuOpen = (event) => {
+    setMobileMoreAnchorEl(event.currentTarget);
   };
 
   const menuId = "primary-search-account-menu";
@@ -166,38 +157,12 @@ function Dashboard(props) {
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
   );
-
-  const mobileMenuId = "primary-search-account-menu-mobile";
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: "top", horizontal: "right" }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{ vertical: "top", horizontal: "right" }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
-    </Menu>
-  );
-
   const [state, setState] = React.useState("Home");
 
   const itemList = [
     {
       text: "Home",
-      icon: <HomeIcon />,
+      icon: <MailIcon />,
       onClick: () => {
         setState("Home");
         history.push("/home");
@@ -205,7 +170,7 @@ function Dashboard(props) {
     },
     {
       text: "Browse",
-      icon: <SearchIcon />,
+      icon: <MailIcon />,
       onClick: () => {
         setState("Browse");
         history.push("/browse");
@@ -213,14 +178,13 @@ function Dashboard(props) {
     },
     {
       text: "About",
-      icon: <InfoIcon />,
+      icon: <MailIcon />,
       onClick: () => {
         setState("About");
         history.push("/about");
       },
     },
   ];
-
   const drawer = (
     <div>
       <Profile />
@@ -238,10 +202,10 @@ function Dashboard(props) {
       </List>
       <Divider />
       <List>
-        {["Recent Played", "Likes Songs"].map((text, index) => (
+        {["All mail", "Trash", "Spam"].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
-              {index % 2 === 0 ? <AlarmIcon /> : <FavoriteBorderIcon />}
+              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
             </ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
@@ -252,6 +216,7 @@ function Dashboard(props) {
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -266,22 +231,33 @@ function Dashboard(props) {
           >
             <MenuIcon />
           </IconButton>
-          <div className={classes.search}>
+          <div
+            className={classes.search}
+            style={{ borderRadius: "25px", marginLeft: "-5px" }}
+          >
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
             <InputBase
               placeholder="Search…"
+              inputProps={{ "aria-label": "search" }}
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
-              inputProps={{ "aria-label": "search" }}
             />
           </div>
-          <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
-            <IconButton
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              width: "100%",
+              padding: "0",
+            }}
+            class={classes.menuButton1}
+          >
+            {/* <Button color="inherit">Login</Button> */}
+            <Button
               edge="end"
               aria-label="account of current user"
               aria-controls={menuId}
@@ -289,12 +265,11 @@ function Dashboard(props) {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <AccountCircle />
-            </IconButton>
+              <Typography>Shubham Khunt</Typography>
+            </Button>
           </div>
         </Toolbar>
       </AppBar>
-      {renderMobileMenu}
       {renderMenu}
       <nav className={classes.drawer} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
@@ -337,7 +312,7 @@ function Dashboard(props) {
   );
 }
 
-Dashboard.propTypes = {
+Dashboard2.propTypes = {
   /**
    * Injected by the documentation to work in an iframe.
    * You won't need it on your project.
@@ -345,4 +320,4 @@ Dashboard.propTypes = {
   window: PropTypes.func,
 };
 
-export default withRouter(Dashboard);
+export default withRouter(Dashboard2);

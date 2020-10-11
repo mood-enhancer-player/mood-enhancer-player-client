@@ -1,22 +1,12 @@
 import React from "react";
-import "./App.css";
+import { BrowserRouter as Router } from "react-router-dom";
 import Dashboard from "./Components/Dashboard";
-
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import "./App.css";
 const App = () => {
   return (
     <>
       <Router>
         <Dashboard />
-        {/* <Switch>
-          <Route exact from="/" render={(props) => <Home {...props} />} />
-          <Route
-            exact
-            path="/browse"
-            render={(props) => <Browse {...props} />}
-          />
-          <Route exact path="/about" render={(props) => <About {...props} />} />
-        </Switch> */}
       </Router>
     </>
   );

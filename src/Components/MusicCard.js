@@ -1,9 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
 import PlayCircleFilledWhiteIcon from "@material-ui/icons/PlayCircleFilledWhite";
 import { CardMedia, Grid, IconButton, Typography } from "@material-ui/core";
 
@@ -29,9 +27,8 @@ const MusicCard = () => {
         className={classes.card}
         style={{
           borderRadius: "10px",
-          borderRadius: "10px",
-          background: "#212121",
-          boxShadow: "27px 27px 67px #131313,-27px -27px 67px #2f2f2f",
+          background: "#0e1111",
+          boxShadow: "-11px 11px 31px #191919, 11px -11px 31px #292929",
         }}
       >
         <CardMedia

@@ -32,7 +32,7 @@ function Home() {
         Shows to try
       </Typography>
       <div className={classes.root}>
-        <Grid container spacing={2}>
+        <Grid container spacing={1}>
           <MusicCard />
           <MusicCard />
           <MusicCard />
@@ -40,17 +40,29 @@ function Home() {
           <MusicCard />
           <MusicCard />
           <MusicCard />
-        </Grid>
-      </div>
-      <div style={{ marginTop: "15px" }}>
-        MostPopular
-        <Grid container style={{ display: "flex" }} spacing={7}>
-          <Grid item>
-            <SongList />
-          </Grid>
-          <Grid item>
-            <Player />
-          </Grid>
+          <MusicCard />
+          <MusicCard />
+          <MusicCard />
+          <MusicCard />
+          <MusicCard />
+          <MusicCard />
+          <MusicCard />
+          <MusicCard />
+          <MusicCard />
+          <MusicCard />
+          <MusicCard />
+          <MusicCard />
+          <MusicCard />
+          <MusicCard />
+          <MusicCard />
+          <MusicCard />
+          <MusicCard />
+          <MusicCard />
+          <MusicCard />
+          <MusicCard />
+          <MusicCard />
+          <MusicCard />
+          <MusicCard />
         </Grid>
       </div>
     </div>
@@ -58,8 +70,3 @@ function Home() {
 }
 
 export default Home;
-// Home.protoTypes = {
-//     width: ProtoTypes.oneOf(['smUp']).isRequired
-// }
-
-// export default withWidth()(Home);
