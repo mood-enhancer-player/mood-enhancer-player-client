@@ -125,7 +125,7 @@ function Home() {
           Shows to try
         </Typography>
         <div className={classes.root}>
-          <Grid container spacing={1}>
+          <Grid container spacing={3}>
             {audioLists.map((musicData) => {
               return <MusicCard musicData={musicData} key={musicData.id} />;
             })}

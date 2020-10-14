@@ -50,6 +50,7 @@ const useStyles = makeStyles((theme) => ({
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
+    zIndex: "1",
     background: "black",
   },
   menuButton: {
@@ -63,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
   drawerPaper: {
     width: drawerWidth,
     background: "black",
-    zIndex: "-1",
+    zIndex: "1",
   },
   content: {
     flexGrow: 1,
@@ -331,9 +332,9 @@ function Dashboard(props) {
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        {state == "Home" ? <Home /> : null}
-        {state == "About" ? <About /> : null}
-        {state == "Browse" ? <Browse /> : null}
+        {state === "Home" ? <Home /> : null}
+        {state === "About" ? <About /> : null}
+        {state === "Browse" ? <Browse /> : null}
       </main>
     </div>
   );

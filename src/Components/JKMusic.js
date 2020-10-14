@@ -42,6 +42,7 @@ const JKMusic = () => {
         autoPlay={false}
         showPlayMode={false}
         mode="full"
+        showDestroy={true}
         onPlayIndexChange={(data) => console.log("Index changed", data)}
       />
     </div>
