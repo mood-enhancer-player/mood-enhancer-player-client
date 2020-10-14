@@ -19,7 +19,9 @@ const useStyles = makeStyles({
   },
 });
 
-const MusicCard = () => {
+const cardClickHandler = (data) => console.log("card click", data);
+
+const MusicCard = ({ musicData }) => {
   const classes = useStyles();
   return (
     <Grid item xs={6} sm={4} md={3} lg={2}>
@@ -30,6 +32,7 @@ const MusicCard = () => {
           background: "#0e1111",
           boxShadow: "-11px 11px 31px #191919, 11px -11px 31px #292929",
         }}
+        onClick={() => cardClickHandler(musicData)}
       >
         <CardMedia
           className={classes.media}
@@ -44,7 +47,7 @@ const MusicCard = () => {
             marginTop: "-25px",
           }}
         >
-          {/* <Typography textAlign="left">SongName</Typography> */}
+          <Typography align="left">{musicData.name}</Typography>
           <IconButton color="secondary">
             <PlayCircleFilledWhiteIcon />
           </IconButton>

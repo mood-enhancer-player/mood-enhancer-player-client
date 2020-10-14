@@ -12,13 +12,13 @@ const App = () => {
     <>
       {/* <FinalPlayer /> */}
       {/* <AudioPlay /> */}
-      <Song />
-      {/* <Router> */}
-      {/* <Dashboard /> */}
-      {/* <Grid container direction="row" justify="center" alignItems="flex-end">
-          <AudioPlay />
+      {/* <Song /> */}
+      <Router>
+        <Dashboard />
+        {/* <Grid container direction="row" justify="center" alignItems="flex-end">
+          // <AudioPlay />
         </Grid> */}
-      {/* </Router> */}
+      </Router>
     </>
   );
 };
