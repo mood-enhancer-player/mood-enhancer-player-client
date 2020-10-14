@@ -6,6 +6,9 @@ import { Grid } from "@material-ui/core";
 import MusicCard from "./MusicCard";
 import SongList from "./SongList";
 import Player from "./Player";
+import BottomAppBar from "./BottomAppBar";
+import AudioPlay from "./AudioPlay";
+import JKMusic from "./JKMusic";
 const useStyles = makeStyles({
   root: {
     display: "flex",
@@ -24,48 +27,51 @@ function Home() {
   const classes = useStyles();
 
   return (
-    <div>
-      <Typography
-        variant="h5"
-        style={{ marginBottom: "10px", textAlign: "left", fontStyle: "bold" }}
-      >
-        Shows to try
-      </Typography>
-      <div className={classes.root}>
-        <Grid container spacing={1}>
-          <MusicCard />
-          <MusicCard />
-          <MusicCard />
-          <MusicCard />
-          <MusicCard />
-          <MusicCard />
-          <MusicCard />
-          <MusicCard />
-          <MusicCard />
-          <MusicCard />
-          <MusicCard />
-          <MusicCard />
-          <MusicCard />
-          <MusicCard />
-          <MusicCard />
-          <MusicCard />
-          <MusicCard />
-          <MusicCard />
-          <MusicCard />
-          <MusicCard />
-          <MusicCard />
-          <MusicCard />
-          <MusicCard />
-          <MusicCard />
-          <MusicCard />
-          <MusicCard />
-          <MusicCard />
-          <MusicCard />
-          <MusicCard />
-          <MusicCard />
-        </Grid>
+    <>
+      <div>
+        <Typography
+          variant="h5"
+          // style={{ marginBottom: "10px", textAlign: "left", fontStyle: "bold" }}
+        >
+          Shows to try
+        </Typography>
+        <div className={classes.root}>
+          <Grid container spacing={1}>
+            <MusicCard />
+            <MusicCard />
+            <MusicCard />
+            <MusicCard />
+            <MusicCard />
+            <MusicCard />
+            <MusicCard />
+            <MusicCard />
+            <MusicCard />
+            <MusicCard />
+            <MusicCard />
+            <MusicCard />
+            <MusicCard />
+            <MusicCard />
+            <MusicCard />
+            <MusicCard />
+            <MusicCard />
+            <MusicCard />
+            <MusicCard />
+            <MusicCard />
+            <MusicCard />
+            <MusicCard />
+            <MusicCard />
+            <MusicCard />
+            <MusicCard />
+            <MusicCard />
+            <MusicCard />
+            <MusicCard />
+            <MusicCard />
+            <MusicCard />
+          </Grid>
+        </div>
       </div>
-    </div>
+      <BottomAppBar />
+    </>
   );
 }
 

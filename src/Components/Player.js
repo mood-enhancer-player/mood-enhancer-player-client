@@ -46,9 +46,9 @@ const Player = () => {
             marginTop: "20px",
           }}
         />
-        <Typography style={{ textAlign: "center", marginTop: "12px" }}>
+        {/* <Typography style={{ textAlign: "center", marginTop: "12px" }}>
           Shubham khunt
-        </Typography>
+        </Typography> */}
         <Slider
           value={value}
           onChange={handleChange}

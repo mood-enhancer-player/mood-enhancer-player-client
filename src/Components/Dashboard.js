@@ -32,6 +32,7 @@ import About from "./About";
 import Home from "./Home";
 import Browse from "./Browse";
 import Profile from "./Profile";
+import JKMusic from "./JKMusic";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -62,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
   drawerPaper: {
     width: drawerWidth,
     background: "black",
+    zIndex: "-1",
   },
   content: {
     flexGrow: 1,

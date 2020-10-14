@@ -44,7 +44,7 @@ const MusicCard = () => {
             marginTop: "-25px",
           }}
         >
-          <Typography textAlign="left">SongName</Typography>
+          {/* <Typography textAlign="left">SongName</Typography> */}
           <IconButton color="secondary">
             <PlayCircleFilledWhiteIcon />
           </IconButton>

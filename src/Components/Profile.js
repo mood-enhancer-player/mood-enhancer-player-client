@@ -21,7 +21,7 @@ const Profile = () => {
           marginBottom: "5px",
         }}
       />
-      <Typography style={{ textAlign: "center" }}>Shubham khunt</Typography>
+      {/* <Typography style={{ textAlign: "center" }}>Shubham khunt</Typography> */}
     </Box>
   );
 };
