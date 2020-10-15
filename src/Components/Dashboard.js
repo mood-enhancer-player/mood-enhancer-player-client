@@ -24,6 +24,7 @@ import {
   AlarmOutlined as AlarmIcon,
   AccountCircleOutlined as AccountCircle,
   FavoriteBorderOutlined as FavoriteBorderIcon,
+  CameraAltOutlined as CameraAltOutlinedIcon,
 } from "@material-ui/icons";
 
 import { makeStyles, useTheme, fade } from "@material-ui/core/styles";
@@ -119,6 +120,12 @@ const useStyles = makeStyles((theme) => ({
     display: "none",
     [theme.breakpoints.up("md")]: {
       display: "flex",
+    },
+  },
+  cameraPos: {
+    marginLeft: 20,
+    [theme.breakpoints.down("md")]: {
+      marginLeft: 0,
     },
   },
 }));
@@ -281,6 +288,14 @@ function Dashboard(props) {
               inputProps={{ "aria-label": "search" }}
             />
           </div>
+          <IconButton
+            edge="start"
+            aria-haspopup="true"
+            color="inherit"
+            className={classes.cameraPos}
+          >
+            <CameraAltOutlinedIcon />
+          </IconButton>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton
