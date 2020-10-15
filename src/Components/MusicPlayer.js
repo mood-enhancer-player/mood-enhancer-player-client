@@ -34,7 +34,7 @@ const audioLists = [
   },
 ];
 
-const JKMusic = () => {
+const MusicPlayer = () => {
   return (
     <div>
       <ReactJkMusicPlayer
@@ -49,4 +49,4 @@ const JKMusic = () => {
   );
 };
 
-export default JKMusic;
+export default MusicPlayer;

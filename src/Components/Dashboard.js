@@ -21,18 +21,17 @@ import {
   SearchOutlined as SearchIcon,
   InfoOutlined as InfoIcon,
   MenuOutlined as MenuIcon,
-  MailOutline as MailIcon,
   AlarmOutlined as AlarmIcon,
   AccountCircleOutlined as AccountCircle,
   FavoriteBorderOutlined as FavoriteBorderIcon,
 } from "@material-ui/icons";
+
 import { makeStyles, useTheme, fade } from "@material-ui/core/styles";
 import { withRouter } from "react-router-dom";
 import About from "./About";
 import Home from "./Home";
 import Browse from "./Browse";
 import Profile from "./Profile";
-import JKMusic from "./JKMusic";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -125,7 +124,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Dashboard(props) {
-  console.log(props.history);
   const { window, history } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -195,6 +193,7 @@ function Dashboard(props) {
     </Menu>
   );
 
+  // State For Menu Switching
   const [state, setState] = React.useState("Home");
 
   const itemList = [

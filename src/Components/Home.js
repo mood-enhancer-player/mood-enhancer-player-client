@@ -1,11 +1,7 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import { Grid } from "@material-ui/core";
+import { Grid, Typography, makeStyles } from "@material-ui/core";
 import MusicCard from "./MusicCard";
-
-import JKMusic from "./JKMusic";
-
+import MusicPlayer from "./MusicPlayer";
 import hasi from "../music/hasi.mp3";
 import kabir from "../music/kabir.mp3";
 import nayanne from "../music/nayanne.mp3";
@@ -14,6 +10,11 @@ import hasiImag from "../images/1.png";
 const useStyles = makeStyles({
   root: {
     display: "flex",
+  },
+  heading: {
+    marginBottom: "10px",
+    align: "left",
+    fontStyle: "bold",
   },
   card: {
     width: "150px",
@@ -24,7 +25,7 @@ const useStyles = makeStyles({
     height: "120px",
   },
 });
-
+// Static Data
 const audioLists = [
   {
     id: 1,
@@ -118,11 +119,8 @@ function Home() {
   return (
     <>
       <div>
-        <Typography
-          variant="h5"
-          style={{ marginBottom: "10px", align: "left", fontStyle: "bold" }}
-        >
-          Shows to try
+        <Typography variant="h5" className={classes.heading}>
+          Top Trends
         </Typography>
         <div className={classes.root}>
           <Grid container spacing={3}>
@@ -132,8 +130,7 @@ function Home() {
           </Grid>
         </div>
       </div>
-      {/* <BottomAppBar /> */}
-      <JKMusic />
+      <MusicPlayer />
     </>
   );
 }
