@@ -19,7 +19,7 @@ background: "linear-gradient(to right, #414345, #232526)",
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
-    width:"500px"
+    width:"280px"
   },
 
   cameraPos: {
@@ -106,8 +106,6 @@ const PhotoTaker = () => {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2 id="transition-modal-title">Transition modal</h2>
-            <p id="transition-modal-description">react-transition-group animates me.</p>
             <FaceCaptureModal/>
           </div>
         </Fade>

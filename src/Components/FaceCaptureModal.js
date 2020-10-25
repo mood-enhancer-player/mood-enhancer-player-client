@@ -1,5 +1,5 @@
 import React from "react";
-import Grid from '@material-ui/core/Grid';
+import { Grid, Divider } from "@material-ui/core";
 
 const FaceCaptureModal = () => {
   const tackPhotoHandler = (e) => {
@@ -15,63 +15,51 @@ const FaceCaptureModal = () => {
       });
       video.srcObject = videoStream;
       video.play();
-      img.src = canvas.toDataURL("image/png");
       const img64 = canvas.toDataURL("image/png");
 
-      const pic = document.getElementById("myPhoto");
-      pic.src = img64;
-      console.log("canvas", canvas);
-      console.log(videoStream);
+      // img.src = canvas.toDataURL("image/png");
+      // const pic = document.getElementById("myPhoto");
+      // pic.src = img64;
     };
     captureImage();
-    // context.fillStyle = '#FFF'
-    // Converting image to base64 formate
-    // const img64 = canvas.toDataURL("image/png");
-    context.drawImage(video, 0, 0, 230, 150);
-    // console.log(img64);
-    // const pic = document.getElementById('myPhoto');
-    // pic.src = img64
-    // console.log("canvas", canvas);
+    context.drawImage(video, 0, 0, 270, 200);
   };
   return (
     <div>
-      <Grid
-  container
-  direction="row"
-  justify="center"
-  alignItems="center"
->
-<div>
-        <video
-          id="captureVideo"
-          width="230"
-          height="150"
-          autoPlay
-          style={{ background: "red" }}
-        ></video>
-<div>
-<button id="snap" onClick={tackPhotoHandler}>
-          Take Photo
-        </button>
-</div>
-      </div>
-      <div></div>
+      <Grid container direction="row" justify="center" alignItems="center">
+        <div>
+          <Divider />
+          <h2 id="transition-modal-title">Take Image</h2>
+          <video
+            id="captureVideo"
+            width="270"
+            height="200"
+            autoPlay
+            style={{ background: "white", borderRadius: "7px" }}
+          ></video>
+          <div>
+            <button id="snap" onClick={tackPhotoHandler}>
+              Take Photo
+            </button>
+            <Divider />
+          </div>
+        </div>
+        <div></div>
 
-      <div>
-        <img src="" id="myPhoto" />
-      </div>
-      <div>
-        <h3>Preview</h3>
-        <canvas
-          id="photoCanvas"
-          width="230"
-          height="150"
-          style={{ background: "yellow" }}
-        ></canvas>
-      </div>
-</Grid>
+        {/* <div>
+          <img src="" id="myPhoto" />
+        </div> */}
+        <div>
+          <h3 id="transition-modal-title">Preview Image</h3>
+          <canvas
+            id="photoCanvas"
+            width="270"
+            height="200"
+            style={{ background: "black", borderRadius: "7px" }}
+          ></canvas>
+        </div>
+      </Grid>
     </div>
-
   );
 };
 
