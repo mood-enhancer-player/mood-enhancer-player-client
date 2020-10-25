@@ -1,6 +1,7 @@
 import React,{useState,useEffect,} from "react";
 import { makeStyles, IconButton,Modal,Backdrop,Fade } from "@material-ui/core";
 import { CameraAltOutlined as CameraAltOutlinedIcon } from "@material-ui/icons";
+import FaceCaptureModal from "./FaceCaptureModal";
 
 const useStyles = makeStyles((theme) => ({
 
@@ -10,11 +11,15 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
   },
   paper: {
-    backgroundColor: "black",
+    // backgroundColor: "black",
     // background:"linear-gradient(to bottom, Transparente 0%,Transparente 50%,red 50%,red 100%)",
+background: "linear-gradient(to right, #414345, #232526)",
+
+    // backgroundImage:"linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%)",
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+    width:"500px"
   },
 
   cameraPos: {
@@ -75,27 +80,6 @@ const PhotoTaker = () => {
   
 // }, [open])
 
-const tackPhotoHandler=async(e)=>{
-  let canvas = document.querySelector("#canvas");
-  let context = canvas.getContext("2d");
-  let video = document.querySelector("#video");
-
-  console.log(canvas,context,video)
-
-  const videoStream = await navigator.mediaDevices.getUserMedia({
-    video: true,
-  });
-  video.srcObject = videoStream;  
-  video.play();
-  // context.fillStyle = '#FFF'
-  // Converting image to base64 formate
-  const img64 = canvas.toDataURL("image/png");
-  context.drawImage(video, 0, 0, 230, 150);
-  console.log(img64)
-  // const pic = document.getElementById('myPhoto');
-  // pic.src = img64
-  console.log("canvas",canvas)
-}
 
   return (
     <div>
@@ -124,21 +108,7 @@ const tackPhotoHandler=async(e)=>{
           <div className={classes.paper}>
             <h2 id="transition-modal-title">Transition modal</h2>
             <p id="transition-modal-description">react-transition-group animates me.</p>
-            <div>
-                        <video id="video" width="230" height="150" autoPlay style={{background:"red"}}></video>
-                    </div>
-                    <div>
-                        <button id="snap" onClick={tackPhotoHandler}>Take Photo</button>
-                    </div>  
-                    <div>
-                    </div>
-                    {/* <div>
-                        <img src="" id="myPhoto"/> 
-                    </div> */}
-                    <div>
-                        <h3>Preview</h3>
-                        <canvas id="canvas" width="230" height="150" style={{background:"yellow"}}></canvas>
-                    </div>
+            <FaceCaptureModal/>
           </div>
         </Fade>
       </Modal>
