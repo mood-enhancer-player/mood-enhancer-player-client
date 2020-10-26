@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Divider } from "@material-ui/core";
+import { Grid, Divider, Typography } from "@material-ui/core";
 
 const FaceCaptureModal = () => {
   const tackPhotoHandler = (e) => {
@@ -28,14 +28,15 @@ const FaceCaptureModal = () => {
     <div>
       <Grid container direction="row" justify="center" alignItems="center">
         <div>
-          <Divider />
-          <h2 id="transition-modal-title">Take Image</h2>
+          {/* <h2 id="transition-modal-title">Take Image</h2> */}
+      <Typography component="h2" align="center">Take Image</Typography>
           <video
             id="captureVideo"
             width="270"
             height="200"
             autoPlay
-            style={{ background: "white", borderRadius: "7px" }}
+            style={{ borderRadius: "7px",backgroundImage: "linear-gradient(to right,#f5f7fa, #c3cfe2)"
+          }}
           ></video>
           <div>
             <button id="snap" onClick={tackPhotoHandler}>
@@ -50,13 +51,15 @@ const FaceCaptureModal = () => {
           <img src="" id="myPhoto" />
         </div> */}
         <div>
-          <h3 id="transition-modal-title">Preview Image</h3>
+          {/* <h3 id="transition-modal-title">Preview Image</h3> */}
+          <Typography component="h2" align="center">Preview Image</Typography>
+
           <canvas
             id="photoCanvas"
             width="270"
             height="200"
-            style={{ background: "black", borderRadius: "7px" }}
-          ></canvas>
+            style={{ borderRadius: "7px",background:"#0E1111"}}
+            ></canvas>
         </div>
       </Grid>
     </div>
