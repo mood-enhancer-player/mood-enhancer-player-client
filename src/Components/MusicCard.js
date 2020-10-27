@@ -1,35 +1,30 @@
 import React from "react";
-import PlayCircleFilledWhiteIcon from "@material-ui/icons/PlayCircleFilledWhite";
 import {
   makeStyles,
   CardMedia,
   Grid,
-  IconButton,
   Typography,
   Card,
   CardContent,
   Box,
 } from "@material-ui/core";
-import { DriveEta } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
   },
-  cardBlur: {
-
-  },
+  cardBlur: {},
   card: {
     width: "185px",
     height: "265px",
     borderRadius: "10px",
     background: "linear-gradient(to right, red , yellow)",
     boxShadow: "-11px 11px 31px #191919, 11px -11px 31px #292929",
-    '&:hover': {
+    "&:hover": {
       background: "black",
       transform: "translateY(-5px)",
       transition: "0.4s ease-out",
-    }
+    },
   },
   cardContent: {
     display: "row",
@@ -40,8 +35,6 @@ const useStyles = makeStyles((theme) => ({
   },
   box: {
     margin: "12px 12px",
-
-
   },
   media: {
     width: "155px",
@@ -53,11 +46,11 @@ const useStyles = makeStyles((theme) => ({
       width: "100%",
     },
   },
-  cardTitle:{
-    fontSize:"1rem",
-    marginLeft:"auto",
-    marginRight:"auto",
-  }
+  cardTitle: {
+    fontSize: "1rem",
+    marginLeft: "auto",
+    marginRight: "auto",
+  },
 }));
 
 const cardClickHandler = (data) => {
@@ -80,7 +73,6 @@ const MusicCard = ({ musicData }) => {
       alignItems="center"
     >
       <Card
-
         className={classes.card}
         onClick={() => cardClickHandler(musicData)}
       >
@@ -91,14 +83,15 @@ const MusicCard = ({ musicData }) => {
           title="Paella dish"
         />
         <CardContent className={classes.cardContent}>
-          
-          <Typography className={classes.cardTitle}>{musicData.name}</Typography>
+          <Typography className={classes.cardTitle}>
+            {musicData.name}
+          </Typography>
           {/* <IconButton color="secondary">
             <PlayCircleFilledWhiteIcon />
           </IconButton> */}
         </CardContent>
       </Card>
-    </Grid >
+    </Grid>
   );
 };
 
