@@ -15,7 +15,7 @@
     "react-gradient": "^1.0.2",
     "react-jinke-music-player": "^4.19.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^3.4.3",
+    "react-scripts": "^3.4.4",
     "react-time-range-slider": "^1.1.2"
   },
   "scripts": {

@@ -33,6 +33,7 @@ import About from "./About";
 import Home from "./Home";
 import Browse from "./Browse";
 import Profile from "./Profile";
+import PhotoTaker from "./PhotoTaker";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -288,14 +289,7 @@ function Dashboard(props) {
               inputProps={{ "aria-label": "search" }}
             />
           </div>
-          <IconButton
-            edge="start"
-            aria-haspopup="true"
-            color="inherit"
-            className={classes.cameraPos}
-          >
-            <CameraAltOutlinedIcon />
-          </IconButton>
+          <PhotoTaker />
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton
