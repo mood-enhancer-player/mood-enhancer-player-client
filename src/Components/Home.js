@@ -123,7 +123,7 @@ function Home() {
           Top Trends
         </Typography>
         <div className={classes.root}>
-          <Grid container spacing={3}>
+          <Grid container spacing={2}>
             {audioLists.map((musicData) => {
               return <MusicCard musicData={musicData} key={musicData.id} />;
             })}
