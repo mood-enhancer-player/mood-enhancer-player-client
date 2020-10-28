@@ -66,7 +66,7 @@ const SignUp = () => {
   };
 
   const history = useHistory();
-  const [addUser, { loading }] = useMutation(REGISTER_MUTATION, {
+  const [signUpUser, { loading }] = useMutation(REGISTER_MUTATION, {
     update(_, result) {
       if (result) {
         history.push("/");
@@ -134,7 +134,7 @@ const SignUp = () => {
   const onFormSubmit = (e) => {
     e.preventDefault();
     formValidation();
-    addUser();
+    signUpUser();
     console.log("form is submited");
   };
   return (

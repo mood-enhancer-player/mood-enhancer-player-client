@@ -59,7 +59,7 @@ const Login = () => {
   };
 
   const history = useHistory();
-  const [addUser, { loading }] = useMutation(LOGIN_MUTATION, {
+  const [loginUser, { loading }] = useMutation(LOGIN_MUTATION, {
     update(_, result) {
       if (result) {
         history.push("/");
@@ -106,7 +106,7 @@ const Login = () => {
   const onFormSubmit = (e) => {
     e.preventDefault();
     formValidation();
-    addUser();
+    loginUser();
     console.log("form is submited");
   };
 
