@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import {
   AppBar,
@@ -34,6 +34,7 @@ import Home from "./Home";
 import Browse from "./Browse";
 import Profile from "./Profile";
 import PhotoTaker from "./PhotoTaker";
+import { AuthContext } from "../context/auth";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -139,6 +140,9 @@ function Dashboard(props) {
   const { window, history } = props;
   const classes = useStyles();
   const theme = useTheme();
+
+  const { user, logout } = useContext(AuthContext);
+
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -188,30 +192,54 @@ function Dashboard(props) {
     </Menu>
   );
 
-  const mobileMenuId = "primary-search-account-menu-mobile";
-  const renderMobileMenu = (
+  const renderMenu2 = (
     <Menu
-      anchorEl={mobileMoreAnchorEl}
+      anchorEl={anchorEl}
       anchorOrigin={{ vertical: "top", horizontal: "right" }}
-      id={mobileMenuId}
+      id={menuId}
       keepMounted
       transformOrigin={{ vertical: "top", horizontal: "right" }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
+      open={isMenuOpen}
+      onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
+      <MenuItem onClick={handleMenuClose}>
+        <Link to="/signup" className={classes.menuItemLink}>
+          My Account
+          {/* {user} */}
+        </Link>
       </MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <Link to="/login" className={classes.menuItemLink} onClick={logout}>
+          Logout
+        </Link>
+      </MenuItem>{" "}
     </Menu>
   );
+
+  // const mobileMenuId = "primary-search-account-menu-mobile";
+  // const renderMobileMenu = (
+  //   <Menu
+  //     anchorEl={mobileMoreAnchorEl}
+  //     anchorOrigin={{ vertical: "top", horizontal: "right" }}
+  //     id={mobileMenuId}
+  //     keepMounted
+  //     transformOrigin={{ vertical: "top", horizontal: "right" }}
+  //     open={isMobileMenuOpen}
+  //     onClose={handleMobileMenuClose}
+  //   >
+  //     <MenuItem onClick={handleProfileMenuOpen}>
+  //       <IconButton
+  //         aria-label="account of current user"
+  //         aria-controls="primary-search-account-menu"
+  //         aria-haspopup="true"
+  //         color="inherit"
+  //       >
+  //         <AccountCircle />
+  //       </IconButton>
+  //       <p>Profile</p>
+  //     </MenuItem>
+  // </Menu>
+  // );
 
   // State For Menu Switching
   const [state, setState] = React.useState("Home");
@@ -222,7 +250,7 @@ function Dashboard(props) {
       icon: <HomeIcon />,
       onClick: () => {
         setState("Home");
-        history.push("/home");
+        // history.push("/home");
       },
     },
     {
@@ -230,7 +258,7 @@ function Dashboard(props) {
       icon: <SearchIcon />,
       onClick: () => {
         setState("Browse");
-        history.push("/browse");
+        // history.push("/browse");
       },
     },
     {
@@ -238,7 +266,7 @@ function Dashboard(props) {
       icon: <InfoIcon />,
       onClick: () => {
         setState("About");
-        history.push("/about");
+        // history.push("/about");
       },
     },
   ];
@@ -317,8 +345,9 @@ function Dashboard(props) {
           </div>
         </Toolbar>
       </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
+      {/* {renderMobileMenu} */}
+      {/* {renderMenu} */}
+      {user ? renderMenu2 : renderMenu}
       <nav className={classes.drawer} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">

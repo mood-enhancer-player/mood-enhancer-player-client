@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   makeStyles,
   TextField,
@@ -12,6 +12,7 @@ import {
 import Alert from "@material-ui/lab/Alert";
 import { gql, useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
+import { AuthContext } from "../context/auth";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Login = () => {
   document.getElementsByTagName("html")[0].style.background = "black";
+  const context = useContext(AuthContext);
 
   const classes = useStyles();
   const [_, setError] = useState(false);
@@ -62,6 +64,7 @@ const Login = () => {
   const [loginUser, { loading }] = useMutation(LOGIN_MUTATION, {
     update(_, result) {
       if (result) {
+        context.login(result.data.login);
         history.push("/");
       }
     },

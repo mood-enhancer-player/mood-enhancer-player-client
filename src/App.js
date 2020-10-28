@@ -5,17 +5,21 @@ import "./App.css";
 import SignUp from "./Components/SignUp";
 import Login from "./Components/Login";
 
+import { AuthProvider } from "./context/auth";
+import AuthRoute from "./util/AuthRoute";
+
 const App = () => {
   return (
     <>
-      <Router>
-        <Switch>
-          <Route exact path="/" component={Dashboard} />
-          <Route path="/signup" component={SignUp} />
-          <Route path="/login" component={Login} />
-        </Switch>
-        {/* <Register /> */}
-      </Router>
+      <AuthProvider>
+        <Router>
+          <Switch>
+            <Route exact path="/" component={Dashboard} />
+            <AuthRoute exact path="/signup" component={SignUp} />
+            <AuthRoute exact path="/login" component={Login} />
+          </Switch>
+        </Router>
+      </AuthProvider>
     </>
   );
 };
