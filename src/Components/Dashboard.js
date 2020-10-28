@@ -28,7 +28,7 @@ import {
 } from "@material-ui/icons";
 
 import { makeStyles, useTheme, fade } from "@material-ui/core/styles";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import About from "./About";
 import Home from "./Home";
 import Browse from "./Browse";
@@ -129,6 +129,10 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: 0,
     },
   },
+  menuItemLink: {
+    color: "white",
+    textDecoration: "none",
+  },
 }));
 
 function Dashboard(props) {
@@ -171,8 +175,16 @@ function Dashboard(props) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <Link to="/signup" className={classes.menuItemLink}>
+          Sign Up
+        </Link>
+      </MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <Link to="/login" className={classes.menuItemLink}>
+          Log In
+        </Link>
+      </MenuItem>{" "}
     </Menu>
   );
 
