@@ -6,8 +6,11 @@ import {
   CircularProgress,
   Typography,
   Divider,
+  Snackbar,
 } from "@material-ui/core";
 import { gql, useMutation } from "@apollo/client";
+import Alert from "@material-ui/lab/Alert";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     color: "#f0db72",
     textAlign: "center",
-    marginTop: "20px",
+    margin: "20px",
     fontFamily: "fangsong",
   },
   textField: {
@@ -36,7 +39,7 @@ const SignUp = () => {
   document.getElementsByTagName("html")[0].style.background = "black";
 
   const classes = useStyles();
-  const [_, setError] = useState(false);
+  const [error, setError] = useState(false);
   const [userHelperText, setUserHelperText] = useState("");
   const [emailHelperText, setEmailHelperText] = useState("");
   const [passwordHelperText, setPasswordHelperText] = useState("");
@@ -59,11 +62,15 @@ const SignUp = () => {
     setEmailHelperText("");
     setPasswordHelperText("");
     setConfirmPasswordHelperText("");
+    setErrors("");
   };
 
+  const history = useHistory();
   const [addUser, { loading }] = useMutation(REGISTER_MUTATION, {
     update(_, result) {
-      console.log("Rsult of maution", result);
+      if (result) {
+        history.push("/");
+      }
     },
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.exception.errors);
@@ -130,12 +137,23 @@ const SignUp = () => {
     addUser();
     console.log("form is submited");
   };
-
   return (
     <div>
       <h1 className={classes.title}>SIGN UP</h1>
       {/* <Divider variant="middle" style={{ margin: "15px" }} /> */}
+
       <form className={classes.root} noValidate autoComplete="off">
+        {errors.email ? (
+          <div>
+            <Alert
+              variant="outlined"
+              severity="error"
+              className={classes.textField}
+            >
+              {errors.email}
+            </Alert>
+          </div>
+        ) : null}
         {/* {loading ? (
           <CircularProgress color="secondary" />
         ) : (

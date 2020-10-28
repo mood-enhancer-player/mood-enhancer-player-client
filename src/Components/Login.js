@@ -7,9 +7,11 @@ import {
   Typography,
   Divider,
   FormHelperText,
+  Snackbar,
 } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 import { gql, useMutation } from "@apollo/client";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,10 +46,8 @@ const Login = () => {
   const [errors, setErrors] = useState({});
   const [alert, setAlert] = useState(false);
   const [values, setValues] = useState({
-    username: "",
     email: "",
     password: "",
-    confirmPassword: "",
   });
 
   const onChange = (e) => {
@@ -58,13 +58,12 @@ const Login = () => {
     setPasswordHelperText("");
   };
 
+  const history = useHistory();
   const [addUser, { loading }] = useMutation(LOGIN_MUTATION, {
     update(_, result) {
-      console.log("Rsult of maution", result);
-      setAlert(true);
-      setTimeout(() => {
-        setAlert(false);
-      }, 5000);
+      if (result) {
+        history.push("/");
+      }
     },
     onError(err) {
       //   setErrors(err.graphQLErrors[0].extensions.exception.errors);
@@ -114,8 +113,6 @@ const Login = () => {
   return (
     <div>
       <h1 className={classes.title}>SIGN IN</h1>
-      {/* <Divider variant="middle" style={{ margin: "15px" }} /> */}
-      <Alert severity="success">This is a success alert — check it out!</Alert>
       <form className={classes.root} noValidate autoComplete="off">
         {/* {loading ? (
           <CircularProgress color="secondary" />
