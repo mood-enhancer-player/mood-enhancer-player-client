@@ -24,7 +24,6 @@ import {
   AlarmOutlined as AlarmIcon,
   AccountCircleOutlined as AccountCircle,
   FavoriteBorderOutlined as FavoriteBorderIcon,
-  CameraAltOutlined as CameraAltOutlinedIcon,
 } from "@material-ui/icons";
 
 import { makeStyles, useTheme, fade } from "@material-ui/core/styles";
@@ -137,7 +136,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Dashboard(props) {
-  const { window, history } = props;
+  const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
 
@@ -147,9 +146,8 @@ function Dashboard(props) {
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
+  console.log(mobileMoreAnchorEl);
   const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -169,6 +167,7 @@ function Dashboard(props) {
   };
 
   const menuId = "primary-search-account-menu";
+  //Render menu for new users
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -192,6 +191,7 @@ function Dashboard(props) {
     </Menu>
   );
 
+  // Render menu for existing users
   const renderMenu2 = (
     <Menu
       anchorEl={anchorEl}

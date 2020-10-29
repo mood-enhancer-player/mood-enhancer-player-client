@@ -1,13 +1,5 @@
 import React, { useState, useContext } from "react";
-import {
-  makeStyles,
-  TextField,
-  Button,
-  CircularProgress,
-  Typography,
-  Divider,
-  Snackbar,
-} from "@material-ui/core";
+import { makeStyles, TextField, Button } from "@material-ui/core";
 import { gql, useMutation } from "@apollo/client";
 import Alert from "@material-ui/lab/Alert";
 import { useHistory } from "react-router-dom";
@@ -55,7 +47,7 @@ const SignUp = () => {
     password: "",
     confirmPassword: "",
   });
-
+  console.log(error);
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
     // onInput change all the erro messages are remove.
@@ -74,6 +66,7 @@ const SignUp = () => {
         history.push("/");
         context.login(result.data.register);
       }
+      console.log(loading);
     },
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.exception.errors);
@@ -124,7 +117,7 @@ const SignUp = () => {
     if (values.confirmPassword === "" || values.password === null) {
       setError(true);
       setConfirmPasswordHelperText("Confirm Password must not be empty");
-    } else if (values.password != values.confirmPassword) {
+    } else if (values.password !== values.confirmPassword) {
       setError(true);
       setConfirmPasswordHelperText(
         "Password and confirm password are not matched"

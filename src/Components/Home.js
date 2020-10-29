@@ -7,8 +7,6 @@ import kabir from "../music/kabir.mp3";
 import nayanne from "../music/nayanne.mp3";
 import sanamre from "../music/sanamre.mp3";
 import hasiImag from "../images/1.png";
-import UpdatedCard from "./UpdatedCard";
-import MUICard from "./MUICard";
 const useStyles = makeStyles({
   root: {
     display: "flex",
@@ -128,7 +126,6 @@ function Home() {
           <Grid container spacing={2}>
             {audioLists.map((musicData) => {
               return <MusicCard musicData={musicData} key={musicData.id} />;
-              // return <UpdatedCard/>
             })}
           </Grid>
         </div>

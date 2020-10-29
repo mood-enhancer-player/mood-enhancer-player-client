@@ -1,15 +1,5 @@
 import React, { useState, useContext } from "react";
-import {
-  makeStyles,
-  TextField,
-  Button,
-  CircularProgress,
-  Typography,
-  Divider,
-  FormHelperText,
-  Snackbar,
-} from "@material-ui/core";
-import Alert from "@material-ui/lab/Alert";
+import { makeStyles, TextField, Button } from "@material-ui/core";
 import { gql, useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../context/auth";
@@ -42,16 +32,14 @@ const Login = () => {
   const context = useContext(AuthContext);
 
   const classes = useStyles();
-  const [_, setError] = useState(false);
+  const [error, setError] = useState(false);
   const [emailHelperText, setEmailHelperText] = useState("");
   const [passwordHelperText, setPasswordHelperText] = useState("");
-  const [errors, setErrors] = useState({});
-  const [alert, setAlert] = useState(false);
   const [values, setValues] = useState({
     email: "",
     password: "",
   });
-
+  console.log(error);
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
     // onInput change all the erro messages are remove.
@@ -67,6 +55,7 @@ const Login = () => {
         context.login(result.data.login);
         history.push("/");
       }
+      console.log(loading);
     },
     onError(err) {
       //   setErrors(err.graphQLErrors[0].extensions.exception.errors);

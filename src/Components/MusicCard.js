@@ -6,14 +6,12 @@ import {
   Typography,
   Card,
   CardContent,
-  Box,
 } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
   },
-  cardBlur: {},
   card: {
     width: "185px",
     height: "265px",
