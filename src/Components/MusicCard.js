@@ -43,6 +43,16 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("md")]: {
       width: "100%",
     },
+
+    "&:hover": {
+      // background: "green",
+      // transform: "translateY(-5px)",
+      // transition: "0.4s ease-out",
+      opacity: 0.6,
+      // transform: "scale(1.2)",
+      // background: "yellow",
+      // zIndex: 100,
+    },
   },
   cardTitle: {
     fontSize: "1rem",
@@ -51,13 +61,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// const cardClickHandler = (data) => {
-//   console.log("card click");
-//   console.log(data);
-// };
-
 const MusicCard = ({ musicData, cardClickHandler }) => {
-  console.log(musicData.cover);
   const classes = useStyles();
   return (
     <Grid
@@ -79,7 +83,7 @@ const MusicCard = ({ musicData, cardClickHandler }) => {
           component="img"
           className={classes.media}
           image={musicData.cover}
-          title="Paella dish"
+          title={musicData.name}
         />
         <CardContent className={classes.cardContent}>
           <Typography className={classes.cardTitle}>
