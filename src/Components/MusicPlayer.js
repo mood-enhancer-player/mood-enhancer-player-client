@@ -9,8 +9,8 @@ import hasiImag from "../images/1.png";
 
 const audioLists = [
   {
-    cover: hasiImag,
-    musicSrc: hasi,
+    cover: "https://zxc21.s3.ap-south-1.amazonaws.com/a.jpeg",
+    musicSrc: "https://zxc21.s3.ap-south-1.amazonaws.com/1.mpeg",
     name: "shubham khunt",
     singer: "ankit",
   },
@@ -34,15 +34,29 @@ const audioLists = [
   },
 ];
 
-const MusicPlayer = () => {
+const MusicPlayer = ({
+  musicInfoQuery,
+  getSongByIdQuery,
+  defaultSongIndex,
+}) => {
+  const index = musicInfoQuery.getAllSongs.findIndex((oneSong, index) => {
+    console.log(oneSong, defaultSongIndex);
+    if (String(oneSong._id) === getSongByIdQuery.getSongById._id) {
+      return index;
+    }
+  });
+  console.log(musicInfoQuery.getAllSongs);
+
   return (
     <div>
       <ReactJkMusicPlayer
-        audioLists={audioLists}
-        autoPlay={false}
+        audioLists={musicInfoQuery.getAllSongs}
+        // audioLists={audioLists}
+        autoPlay={true}
         showPlayMode={false}
         mode="full"
         showDestroy={true}
+        playIndex={index}
         onPlayIndexChange={(data) => console.log("Index changed", data)}
       />
     </div>

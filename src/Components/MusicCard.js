@@ -51,12 +51,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const cardClickHandler = (data) => {
-  console.log("card click");
-  console.log(data);
-};
+// const cardClickHandler = (data) => {
+//   console.log("card click");
+//   console.log(data);
+// };
 
-const MusicCard = ({ musicData }) => {
+const MusicCard = ({ musicData, cardClickHandler }) => {
+  console.log(musicData.cover);
   const classes = useStyles();
   return (
     <Grid
@@ -72,17 +73,17 @@ const MusicCard = ({ musicData }) => {
     >
       <Card
         className={classes.card}
-        onClick={() => cardClickHandler(musicData)}
+        onClick={() => cardClickHandler(musicData._id)}
       >
         <CardMedia
           component="img"
           className={classes.media}
-          image={musicData.coverURL}
+          image={musicData.cover}
           title="Paella dish"
         />
         <CardContent className={classes.cardContent}>
           <Typography className={classes.cardTitle}>
-            {musicData.title}
+            {musicData.name}
           </Typography>
           {/* <IconButton color="secondary">
             <PlayCircleFilledWhiteIcon />

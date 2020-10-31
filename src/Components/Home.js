@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Grid,
   Typography,
@@ -121,49 +121,88 @@ const audioLists = [
 
 function Home() {
   const classes = useStyles();
-  const { data, loading, error } = useQuery(musicInfo);
-  console.log(data);
-  console.log(loading);
-  console.log(error);
+  const musicInfo = useQuery(MUSIC_INFO_QUERY);
+  // console.log(data.getAllSongs[0]._id);
+  // console.log(loading);
+  // console.log(error);
+  const [songIdState, setSongIdState] = useState("5f9d5f706591c1430cd74063");
+
+  const getSongById = useQuery(GET_SONG_BY_ID_QUERY, {
+    variables: {
+      songId: songIdState,
+    },
+  });
+  const cardClickHandler = (receiveSongId) => {
+    setSongIdState(receiveSongId);
+    console.log("card click");
+    console.log("cardhandlercliekd", receiveSongId);
+  };
+
   return (
     <>
       <div>
-        {loading ? (
+        {musicInfo.error && (
+          <h1>{`You Broken It ! ${musicInfo.error.message}`}</h1>
+        )}
+        {!musicInfo.data ||
+        musicInfo.loading ||
+        !getSongById.data ||
+        getSongById.loading ? (
           <CircularProgress />
         ) : (
           <>
-            <h1> {data.getAllSongs[0].title}</h1>
             <Typography variant="h5" className={classes.heading}>
               Top Trends
+              {songIdState}
             </Typography>
             <div className={classes.root}>
               <Grid container spacing={2}>
-                {data.getAllSongs.map((musicData) => {
-                  console.log(musicData);
+                {musicInfo.data.getAllSongs.map((musicData) => {
                   return (
-                    <MusicCard musicData={musicData} key={musicData._id} />
+                    <MusicCard
+                      musicData={musicData}
+                      key={musicData._id}
+                      cardClickHandler={cardClickHandler}
+                    />
                   );
                 })}
               </Grid>
             </div>
+            <MusicPlayer
+              musicInfoQuery={musicInfo.data}
+              getSongByIdQuery={getSongById.data}
+              defaultSongIndex={songIdState}
+            />
           </>
         )}
       </div>
-      <MusicPlayer />
     </>
   );
 }
 
-const musicInfo = gql`
+const MUSIC_INFO_QUERY = gql`
   query {
     getAllSongs {
       _id
-      title
+      name
       description
-      artist
+      singer
       playCount
-      coverURL
-      songURL
+      cover
+      musicSrc
+    }
+  }
+`;
+
+const GET_SONG_BY_ID_QUERY = gql`
+  query songById($songId: ID!) {
+    getSongById(songId: $songId) {
+      _id
+      name
+      description
+      singer
+      musicSrc
+      cover
     }
   }
 `;
