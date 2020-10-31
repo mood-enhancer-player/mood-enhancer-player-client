@@ -1,5 +1,10 @@
 import React from "react";
-import { Grid, Typography, makeStyles } from "@material-ui/core";
+import {
+  Grid,
+  Typography,
+  makeStyles,
+  CircularProgress,
+} from "@material-ui/core";
 import MusicCard from "./MusicCard";
 import MusicPlayer from "./MusicPlayer";
 import hasi from "../music/hasi.mp3";
@@ -7,6 +12,7 @@ import kabir from "../music/kabir.mp3";
 import nayanne from "../music/nayanne.mp3";
 import sanamre from "../music/sanamre.mp3";
 import hasiImag from "../images/1.png";
+import { useQuery, gql } from "@apollo/client";
 const useStyles = makeStyles({
   root: {
     display: "flex",
@@ -115,24 +121,51 @@ const audioLists = [
 
 function Home() {
   const classes = useStyles();
-
+  const { data, loading, error } = useQuery(musicInfo);
+  console.log(data);
+  console.log(loading);
+  console.log(error);
   return (
     <>
       <div>
-        <Typography variant="h5" className={classes.heading}>
-          Top Trends
-        </Typography>
-        <div className={classes.root}>
-          <Grid container spacing={2}>
-            {audioLists.map((musicData) => {
-              return <MusicCard musicData={musicData} key={musicData.id} />;
-            })}
-          </Grid>
-        </div>
+        {loading ? (
+          <CircularProgress />
+        ) : (
+          <>
+            <h1> {data.getAllSongs[0].title}</h1>
+            <Typography variant="h5" className={classes.heading}>
+              Top Trends
+            </Typography>
+            <div className={classes.root}>
+              <Grid container spacing={2}>
+                {data.getAllSongs.map((musicData) => {
+                  console.log(musicData);
+                  return (
+                    <MusicCard musicData={musicData} key={musicData._id} />
+                  );
+                })}
+              </Grid>
+            </div>
+          </>
+        )}
       </div>
       <MusicPlayer />
     </>
   );
 }
+
+const musicInfo = gql`
+  query {
+    getAllSongs {
+      _id
+      title
+      description
+      artist
+      playCount
+      coverURL
+      songURL
+    }
+  }
+`;
 
 export default Home;
