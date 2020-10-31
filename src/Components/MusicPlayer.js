@@ -39,25 +39,27 @@ const MusicPlayer = ({
   getSongByIdQuery,
   defaultSongIndex,
 }) => {
+  // const [autoPlay, setAutoPlay] = React.useState(false);
   const index = musicInfoQuery.getAllSongs.findIndex((oneSong, index) => {
-    console.log(oneSong, defaultSongIndex);
     if (String(oneSong._id) === getSongByIdQuery.getSongById._id) {
       return index;
     }
   });
   console.log(musicInfoQuery.getAllSongs);
-
+  console.log(document.getElementsByTagName("audio"));
+  // .setAttribute("muted", false);
   return (
     <div>
       <ReactJkMusicPlayer
         audioLists={musicInfoQuery.getAllSongs}
         // audioLists={audioLists}
-        autoPlay={true}
+        // autoPlay={false}
         showPlayMode={false}
         mode="full"
         showDestroy={true}
         playIndex={index}
-        onPlayIndexChange={(data) => console.log("Index changed", data)}
+        // onAudioEnded={(end) => console.log("audio ended", end)}
+        onPlayIndexChange={(data) => console.log("Index Changed", data)}
       />
     </div>
   );
