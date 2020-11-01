@@ -46,14 +46,20 @@ const MusicPlayer = ({
     }
   });
   console.log(musicInfoQuery.getAllSongs);
-  console.log(document.getElementsByTagName("audio"));
+  React.useEffect(() => {
+    console.log(document.getElementsByClassName("music-player-audio")[0]);
+    const musicPlayerAudio = document.getElementsByClassName(
+      "music-player-audio"
+    )[0];
+    musicPlayerAudio.setAttribute("muted", "muted");
+  }, []);
   // .setAttribute("muted", false);
   return (
     <div>
       <ReactJkMusicPlayer
         audioLists={musicInfoQuery.getAllSongs}
         // audioLists={audioLists}
-        // autoPlay={false}
+        autoPlay={true}
         showPlayMode={false}
         mode="full"
         showDestroy={true}
