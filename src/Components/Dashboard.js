@@ -28,7 +28,7 @@ import {
 
 import { makeStyles, useTheme, fade } from "@material-ui/core/styles";
 import { Link, withRouter } from "react-router-dom";
-import About from "./About";
+import About from "./YourLib";
 import Home from "./Home";
 import Browse from "./Browse";
 import Profile from "./Profile";
@@ -262,10 +262,10 @@ function Dashboard(props) {
       },
     },
     {
-      text: "About",
+      text: "Your Library",
       icon: <InfoIcon />,
       onClick: () => {
-        setState("About");
+        setState("YourLib");
         // history.push("/about");
       },
     },

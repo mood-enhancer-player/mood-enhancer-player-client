@@ -59,10 +59,11 @@ const MusicPlayer = ({
       <ReactJkMusicPlayer
         audioLists={musicInfoQuery.getAllSongs}
         // audioLists={audioLists}
-        autoPlay={true}
+        // autoPlay={true}
         showPlayMode={false}
         mode="full"
         showDestroy={true}
+        showDownload={false}
         playIndex={index}
         // onAudioEnded={(end) => console.log("audio ended", end)}
         onPlayIndexChange={(data) => console.log("Index Changed", data)}
