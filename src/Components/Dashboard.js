@@ -329,7 +329,7 @@ function Dashboard(props) {
                 <SearchIcon />
               </div>
               <InputBase
-                placeholder="Search…"
+                placeholder="Search Songs ..."
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput,

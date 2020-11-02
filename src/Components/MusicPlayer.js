@@ -37,7 +37,7 @@ const audioLists = [
 const MusicPlayer = ({
   musicInfoQuery,
   getSongByIdQuery = 0,
-  defaultSongIndex,
+  songIdForBrowseTab,
 }) => {
   // const [autoPlay, setAutoPlay] = React.useState(false);
   let index;
@@ -47,6 +47,10 @@ const MusicPlayer = ({
       if (String(oneSong._id) === getSongByIdQuery.getSongById._id) {
         return index;
       }
+    });
+  } else {
+    index = musicInfoQuery.getAllSongs.findIndex((oneSong, index) => {
+      if (String(oneSong._id) === songIdForBrowseTab) return index;
     });
   }
   console.log(musicInfoQuery.getAllSongs);

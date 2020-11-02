@@ -86,7 +86,10 @@ const Browse = ({ search }) => {
                 })}
               </Grid>
             </div>
-            <MusicPlayer musicInfoQuery={musicInfo.data} />
+            <MusicPlayer
+              musicInfoQuery={musicInfo.data}
+              songIdForBrowseTab={songIdState}
+            />
           </>
         )}
       </div>
