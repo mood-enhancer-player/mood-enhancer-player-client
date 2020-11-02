@@ -7,6 +7,8 @@ import Login from "./Components/Login";
 
 import { AuthProvider } from "./context/auth";
 import AuthRoute from "./util/AuthRoute";
+import SearchResult from "./Components/SearchResult";
+import MusicPlayer from "./Components/MusicPlayer";
 
 const App = () => {
   return (

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import PropTypes from "prop-types";
 import {
   AppBar,
@@ -12,9 +12,9 @@ import {
   ListItemIcon,
   ListItemText,
   Toolbar,
-  InputBase,
   MenuItem,
   Menu,
+  InputBase,
 } from "@material-ui/core";
 import {
   HomeOutlined as HomeIcon,
@@ -34,6 +34,7 @@ import Browse from "./Browse";
 import Profile from "./Profile";
 import PhotoTaker from "./PhotoTaker";
 import { AuthContext } from "../context/auth";
+import SearchBox from "./SearchBox";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -146,7 +147,6 @@ function Dashboard(props) {
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-  console.log(mobileMoreAnchorEl);
   const isMenuOpen = Boolean(anchorEl);
 
   const handleDrawerToggle = () => {
@@ -187,7 +187,7 @@ function Dashboard(props) {
         <Link to="/login" className={classes.menuItemLink}>
           Log In
         </Link>
-      </MenuItem>{" "}
+      </MenuItem>
     </Menu>
   );
 
@@ -300,6 +300,12 @@ function Dashboard(props) {
     </div>
   );
 
+  const [search, setSearch] = useState("");
+  const handleSearch = (e) => {
+    console.log(e.target.value);
+    setSearch(e.target.value);
+  };
+
   const container =
     window !== undefined ? () => window().document.body : undefined;
   return (
@@ -316,19 +322,24 @@ function Dashboard(props) {
           >
             <MenuIcon />
           </IconButton>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
+          {/* search start */}
+          {state === "Browse" ? (
+            <div className={classes.search}>
+              <div className={classes.searchIcon}>
+                <SearchIcon />
+              </div>
+              <InputBase
+                placeholder="Search…"
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
+                }}
+                inputProps={{ "aria-label": "search" }}
+                onChange={handleSearch}
+              />
             </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ "aria-label": "search" }}
-            />
-          </div>
+          ) : null}
+          {/* search end */}
           <PhotoTaker />
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
@@ -383,7 +394,7 @@ function Dashboard(props) {
         <div className={classes.toolbar} />
         {state === "Home" ? <Home /> : null}
         {state === "About" ? <About /> : null}
-        {state === "Browse" ? <Browse /> : null}
+        {state === "Browse" ? <Browse search={search} /> : null}
       </main>
     </div>
   );
