@@ -6,6 +6,7 @@ import {
   Typography,
   Card,
   CardContent,
+  Box,
 } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -23,6 +24,12 @@ const useStyles = makeStyles((theme) => ({
       transform: "translateY(-5px)",
       transition: "0.4s ease-out",
     },
+
+    [theme.breakpoints.down("md")]: {
+      width: "150px",
+      height:"180px"
+      
+    },
   },
   cardContent: {
     display: "row",
@@ -32,7 +39,13 @@ const useStyles = makeStyles((theme) => ({
     // fontSize: "20px"
   },
   box: {
-    margin: "12px 12px",
+    marginLeft:"10px",
+    marginRight:"10px",
+    [theme.breakpoints.down("md")]: {
+        // width: "100%",
+        marginLeft:"auto",
+        marginRight:"auto"
+      },
   },
   media: {
     width: "155px",
@@ -41,7 +54,9 @@ const useStyles = makeStyles((theme) => ({
     // padding:"17px",
     borderRadius: "10px",
     [theme.breakpoints.down("md")]: {
-      width: "100%",
+      width: "100px",
+      height:"100px"
+      
     },
 
     "&:hover": {
@@ -58,6 +73,14 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1rem",
     marginLeft: "auto",
     marginRight: "auto",
+    [theme.breakpoints.down("md")]: {
+      width:"100%"
+      
+    },
+    [theme.breakpoints.down("sm")]: {
+      fontSize:"12px"
+      
+    },
   },
 }));
 
@@ -79,6 +102,7 @@ const MusicCard = ({ musicData, cardClickHandler }) => {
         className={classes.card}
         onClick={() => cardClickHandler(musicData._id)}
       >
+        <Box className={classes.box}>
         <CardMedia
           component="img"
           className={classes.media}
@@ -93,6 +117,7 @@ const MusicCard = ({ musicData, cardClickHandler }) => {
             <PlayCircleFilledWhiteIcon />
           </IconButton> */}
         </CardContent>
+        </Box>
       </Card>
     </Grid>
   );

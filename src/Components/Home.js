@@ -13,6 +13,7 @@ import nayanne from "../music/nayanne.mp3";
 import sanamre from "../music/sanamre.mp3";
 import hasiImag from "../images/1.png";
 import { useQuery, gql } from "@apollo/client";
+import Loader from "./Loader";
 const useStyles = makeStyles({
   root: {
     display: "flex",
@@ -148,7 +149,7 @@ function Home() {
         musicInfo.loading ||
         !getSongById.data ||
         getSongById.loading ? (
-          <CircularProgress />
+          <Loader />
         ) : (
           <>
             <Typography variant="h5" className={classes.heading}>
