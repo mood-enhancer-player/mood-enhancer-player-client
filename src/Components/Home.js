@@ -123,10 +123,7 @@ const audioLists = [
 function Home() {
   const classes = useStyles();
   const musicInfo = useQuery(MUSIC_INFO_QUERY);
-  // console.log(data.getAllSongs[0]._id);
-  // console.log(loading);
-  // console.log(error);
-  const [songIdState, setSongIdState] = useState("5f9d5f706591c1430cd74063");
+  const [songIdState, setSongIdState] = useState("5f9e3c550a3f4933c4b0183f");
 
   const getSongById = useQuery(GET_SONG_BY_ID_QUERY, {
     variables: {
@@ -154,7 +151,7 @@ function Home() {
           <>
             <Typography variant="h5" className={classes.heading}>
               Top Trends
-              {songIdState}
+              {/* {songIdState} */}
             </Typography>
             <div className={classes.root}>
               <Grid container spacing={2}>

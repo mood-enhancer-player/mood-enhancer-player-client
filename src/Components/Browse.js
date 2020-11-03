@@ -1,40 +1,114 @@
-import React from "react";
-import { Typography } from "@material-ui/core";
+import React, { useState } from "react";
+import {
+  Grid,
+  Typography,
+  makeStyles,
+  CircularProgress,
+} from "@material-ui/core";
+import MusicCard from "./MusicCard";
+import MusicPlayer from "./MusicPlayer";
+import { useQuery, gql } from "@apollo/client";
+const useStyles = makeStyles({
+  root: {
+    display: "flex",
+  },
+  heading: {
+    marginBottom: "10px",
+    align: "left",
+    fontStyle: "bold",
+  },
+  card: {
+    width: "150px",
+    height: "190px",
+  },
+  media: {
+    width: "120px",
+    height: "120px",
+  },
+});
 
-const Browse = () => {
+const Browse = ({ search }) => {
+  const classes = useStyles();
+  const musicInfo = useQuery(MUSIC_INFO_QUERY);
+
+  const [songIdState, setSongIdState] = useState("5f9e3c550a3f4933c4b0183f");
+  const cardClickHandler = (receiveSongId) => {
+    setSongIdState(receiveSongId);
+    console.log("card click");
+    console.log("cardhandlercliekd", receiveSongId);
+  };
+
+  let musicData = [];
+  let capitalizeSearch = search.trim().replace(/\b\w/g, (c) => c.toUpperCase());
+  const searchResult = () => {
+    if (musicInfo.data) {
+      musicInfo.data.getAllSongs.map((songData) => {
+        console.log(songData.name);
+        console.log(capitalizeSearch);
+        if (
+          songData.name.includes(capitalizeSearch) ||
+          songData.singer.includes(capitalizeSearch)
+        ) {
+          musicData.push(songData);
+        }
+      });
+    }
+  };
+
+  searchResult();
+
+  console.log(search);
+  console.log(musicData);
   return (
-    <div>
-      <h1>Browse</h1>
-      <Typography paragraph>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus
-        non enim praesent elementum facilisis leo vel. Risus at ultrices mi
-        tempus imperdiet. Semper risus in hendrerit gravida rutrum quisque non
-        tellus. Convallis convallis tellus id interdum velit laoreet id donec
-        ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl
-        suscipit adipiscing bibendum est ultricies integer quis. Cursus euismod
-        quis viverra nibh cras. Metus vulputate eu scelerisque felis imperdiet
-        proin fermentum leo. Mauris commodo quis imperdiet massa tincidunt. Cras
-        tincidunt lobortis feugiat vivamus at augue. At augue eget arcu dictum
-        varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt.
-        Lorem donec massa sapien faucibus et molestie ac.
-      </Typography>
-      <Typography paragraph>
-        Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
-        ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar elementum
-        integer enim neque volutpat ac tincidunt. Ornare suspendisse sed nisi
-        lacus sed viverra tellus. Purus sit amet volutpat consequat mauris.
-        Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus sed
-        vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra
-        accumsan in. In hendrerit gravida rutrum quisque non tellus orci ac.
-        Pellentesque nec nam aliquam sem et tortor. Habitant morbi tristique
-        senectus et. Adipiscing elit duis tristique sollicitudin nibh sit.
-        Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra
-        maecenas accumsan lacus vel facilisis. Nulla posuere sollicitudin
-        aliquam ultrices sagittis orci a.
-      </Typography>
-    </div>
+    <>
+      <div>
+        {musicInfo.error && (
+          <h1>{`You Broken It ! ${musicInfo.error.message}`}</h1>
+        )}
+        {!musicInfo.data || musicInfo.loading ? (
+          <CircularProgress />
+        ) : (
+          <>
+            <Typography variant="h5" className={classes.heading}>
+              Top Trends
+              {/* {songIdState} */}
+            </Typography>
+            <div className={classes.root}>
+              <Grid container spacing={2}>
+                {musicData.map((song) => {
+                  return (
+                    <MusicCard
+                      musicData={song}
+                      key={song._id}
+                      cardClickHandler={cardClickHandler}
+                    />
+                  );
+                })}
+              </Grid>
+            </div>
+            <MusicPlayer
+              musicInfoQuery={musicInfo.data}
+              songIdForBrowseTab={songIdState}
+            />
+          </>
+        )}
+      </div>
+    </>
   );
 };
+
+const MUSIC_INFO_QUERY = gql`
+  query {
+    getAllSongs {
+      _id
+      name
+      description
+      singer
+      playCount
+      cover
+      musicSrc
+    }
+  }
+`;
 
 export default Browse;

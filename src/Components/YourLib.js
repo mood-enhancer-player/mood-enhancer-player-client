@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography } from "@material-ui/core";
 
-const About = () => {
+const YourLib = () => {
   return (
     <div>
       <Typography paragraph>
@@ -36,4 +36,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default YourLib;
