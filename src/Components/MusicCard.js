@@ -14,10 +14,12 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
   },
   card: {
-    width: "185px",
+    width: "180px",
     height: "265px",
+    padding:"15px",
     borderRadius: "10px",
-    background: "linear-gradient(to right, red , yellow)",
+    backgroundColor: "#414345",
+    // background: "linear-gradient(to right, red , yellow)",
     boxShadow: "-11px 11px 31px #191919, 11px -11px 31px #292929",
     "&:hover": {
       background: "black",
@@ -27,36 +29,35 @@ const useStyles = makeStyles((theme) => ({
 
     [theme.breakpoints.down("md")]: {
       width: "150px",
-      height:"180px"
-      
+      height:"210px"
     },
   },
   cardContent: {
     display: "row",
     alignItems: "left",
-    marginTop: "-12px",
+    marginTop: "-7px",
     marginLeft: "-15px",
     // fontSize: "20px"
   },
   box: {
-    marginLeft:"10px",
-    marginRight:"10px",
+    // marginLeft:"10px",
+    // marginRight:"10px",
     [theme.breakpoints.down("md")]: {
-        // width: "100%",
-        marginLeft:"auto",
-        marginRight:"auto"
+      width: "125px",
+      height:"120px",
       },
   },
   media: {
-    width: "155px",
+    width: "150px",
     height: "155px",
-    margin: "17px auto 17px",
+    // marginTop:"15px",
+    // marginLeft:"15px",
+    // margin: "17px auto 17px",
     // padding:"17px",
     borderRadius: "10px",
     [theme.breakpoints.down("md")]: {
-      width: "100px",
-      height:"100px"
-      
+      width: "120px",
+      height:"125px"
     },
 
     "&:hover": {
@@ -73,8 +74,8 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1rem",
     marginLeft: "auto",
     marginRight: "auto",
-    [theme.breakpoints.down("md")]: {
-      width:"100%"
+    [theme.breakpoints.between("sm","md")]: {
+      fontSize:"13px"
       
     },
     [theme.breakpoints.down("sm")]: {
@@ -100,7 +101,7 @@ const MusicCard = ({ musicData, cardClickHandler }) => {
     >
       <Card
         className={classes.card}
-        onClick={() => cardClickHandler(musicData._id)}
+        // onClick={() => cardClickHandler(musicData._id)}
       >
         <Box className={classes.box}>
         <CardMedia
