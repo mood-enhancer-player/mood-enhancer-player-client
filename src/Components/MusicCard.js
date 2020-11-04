@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   card: {
     width: "180px",
     height: "265px",
-    padding:"15px",
+    padding: "15px",
     borderRadius: "10px",
     backgroundColor: "#414345",
     // background: "linear-gradient(to right, red , yellow)",
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 
     [theme.breakpoints.down("md")]: {
       width: "150px",
-      height:"210px"
+      height: "210px",
     },
   },
   cardContent: {
@@ -44,8 +44,8 @@ const useStyles = makeStyles((theme) => ({
     // marginRight:"10px",
     [theme.breakpoints.down("md")]: {
       width: "125px",
-      height:"120px",
-      },
+      height: "120px",
+    },
   },
   media: {
     width: "150px",
@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "10px",
     [theme.breakpoints.down("md")]: {
       width: "120px",
-      height:"125px"
+      height: "125px",
     },
 
     "&:hover": {
@@ -74,9 +74,8 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1rem",
     marginLeft: "auto",
     marginRight: "auto",
-    [theme.breakpoints.between("sm","md")]: {
-      fontSize:"13px"
-      
+    [theme.breakpoints.between("sm", "md")]: {
+      fontSize: "13px",
     },
     [theme.breakpoints.down("sm")]: {
       fontSize: "12px",
@@ -100,7 +99,7 @@ const MusicCard = ({ musicData, cardClickHandler }) => {
     >
       <Card
         className={classes.card}
-        // onClick={() => cardClickHandler(musicData._id)}
+        onClick={() => cardClickHandler(musicData._id)}
       >
         <Box className={classes.box}>
           <CardMedia
