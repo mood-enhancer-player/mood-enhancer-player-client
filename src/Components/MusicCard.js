@@ -27,8 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
     [theme.breakpoints.down("md")]: {
       width: "150px",
-      height:"180px"
-      
+      height: "180px",
     },
   },
   cardContent: {
@@ -39,13 +38,13 @@ const useStyles = makeStyles((theme) => ({
     // fontSize: "20px"
   },
   box: {
-    marginLeft:"10px",
-    marginRight:"10px",
+    marginLeft: "10px",
+    marginRight: "10px",
     [theme.breakpoints.down("md")]: {
-        // width: "100%",
-        marginLeft:"auto",
-        marginRight:"auto"
-      },
+      // width: "100%",
+      marginLeft: "auto",
+      marginRight: "auto",
+    },
   },
   media: {
     width: "155px",
@@ -55,8 +54,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "10px",
     [theme.breakpoints.down("md")]: {
       width: "100px",
-      height:"100px"
-      
+      height: "100px",
     },
 
     "&:hover": {
@@ -74,12 +72,10 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "auto",
     marginRight: "auto",
     [theme.breakpoints.down("md")]: {
-      width:"100%"
-      
+      width: "100%",
     },
     [theme.breakpoints.down("sm")]: {
-      fontSize:"12px"
-      
+      fontSize: "12px",
     },
   },
 }));
@@ -103,20 +99,20 @@ const MusicCard = ({ musicData, cardClickHandler }) => {
         onClick={() => cardClickHandler(musicData._id)}
       >
         <Box className={classes.box}>
-        <CardMedia
-          component="img"
-          className={classes.media}
-          image={musicData.cover}
-          title={musicData.name}
-        />
-        <CardContent className={classes.cardContent}>
-          <Typography className={classes.cardTitle}>
-            {musicData.name}
-          </Typography>
-          {/* <IconButton color="secondary">
+          <CardMedia
+            component="img"
+            className={classes.media}
+            image={musicData.cover}
+            title={musicData.name}
+          />
+          <CardContent className={classes.cardContent}>
+            <Typography className={classes.cardTitle}>
+              {musicData.name}
+            </Typography>
+            {/* <IconButton color="secondary">
             <PlayCircleFilledWhiteIcon />
           </IconButton> */}
-        </CardContent>
+          </CardContent>
         </Box>
       </Card>
     </Grid>
