@@ -59,10 +59,6 @@ const ArtistTab = () => {
   const classes = useStyles();
   const { loading, data, error } = useQuery(GET_ARTIST_QUERY);
 
-  if (data) {
-    console.log(data);
-  }
-
   return (
     <>
       {loading || !data ? (
