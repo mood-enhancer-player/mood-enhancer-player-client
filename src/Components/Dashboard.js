@@ -35,6 +35,7 @@ import Profile from "./Profile";
 import PhotoTaker from "./PhotoTaker";
 import { AuthContext } from "../context/auth";
 import SearchBox from "./SearchBox";
+import YourLib from "./YourLib";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -265,8 +266,8 @@ function Dashboard(props) {
       text: "Your Library",
       icon: <InfoIcon />,
       onClick: () => {
-        setState("YourLib");
-        // history.push("/about");
+        setState("YourLibrary");
+        // history.push("/YourLibrary");
       },
     },
   ];
@@ -395,6 +396,7 @@ function Dashboard(props) {
         {state === "Home" ? <Home /> : null}
         {state === "About" ? <About /> : null}
         {state === "Browse" ? <Browse search={search} /> : null}
+        {state === "YourLibrary" ? <YourLib /> : null}
       </main>
     </div>
   );
