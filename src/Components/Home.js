@@ -123,7 +123,7 @@ const audioLists = [
 function Home() {
   const classes = useStyles();
   const musicInfo = useQuery(MUSIC_INFO_QUERY);
-  const [songIdState, setSongIdState] = useState("5f9e3c550a3f4933c4b0183f");
+  const [songIdState, setSongIdState] = useState("5fa18028c7ac3a4ff4436c38");
 
   const getSongById = useQuery(GET_SONG_BY_ID_QUERY, {
     variables: {
@@ -138,7 +138,7 @@ function Home() {
 
   return (
     <>
-      {/* <div>
+      <div>
         {musicInfo.error && (
           <h1>{`You Broken It ! ${musicInfo.error.message}`}</h1>
         )}
@@ -147,7 +147,7 @@ function Home() {
         !getSongById.data ||
         getSongById.loading ? (
           <Loader />
-        ) : ( */}
+        ) : (
           <>
             <Typography variant="h5" className={classes.heading}>
               Top Trends
@@ -159,21 +159,21 @@ function Home() {
                   return (
                     <MusicCard
                       musicData={musicData}
-                      // key={musicData._id}
-                      // cardClickHandler={cardClickHandler}
+                      key={musicData._id}
+                      cardClickHandler={cardClickHandler}
                     />
                   );
                 })}
               </Grid>
             </div>
-            {/* <MusicPlayer
+            <MusicPlayer
               musicInfoQuery={musicInfo.data}
               getSongByIdQuery={getSongById.data}
               defaultSongIndex={songIdState}
-            /> */}
+            />
           </>
-        {/* )}
-      </div> */}
+        )}
+      </div>
     </>
   );
 }

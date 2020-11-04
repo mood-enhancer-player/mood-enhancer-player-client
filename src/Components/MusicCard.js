@@ -79,8 +79,7 @@ const useStyles = makeStyles((theme) => ({
       
     },
     [theme.breakpoints.down("sm")]: {
-      fontSize:"12px"
-      
+      fontSize: "12px",
     },
   },
 }));
@@ -104,20 +103,20 @@ const MusicCard = ({ musicData, cardClickHandler }) => {
         // onClick={() => cardClickHandler(musicData._id)}
       >
         <Box className={classes.box}>
-        <CardMedia
-          component="img"
-          className={classes.media}
-          image={musicData.cover}
-          title={musicData.name}
-        />
-        <CardContent className={classes.cardContent}>
-          <Typography className={classes.cardTitle}>
-            {musicData.name}
-          </Typography>
-          {/* <IconButton color="secondary">
+          <CardMedia
+            component="img"
+            className={classes.media}
+            image={musicData.cover}
+            title={musicData.name}
+          />
+          <CardContent className={classes.cardContent}>
+            <Typography className={classes.cardTitle}>
+              {musicData.name}
+            </Typography>
+            {/* <IconButton color="secondary">
             <PlayCircleFilledWhiteIcon />
           </IconButton> */}
-        </CardContent>
+          </CardContent>
         </Box>
       </Card>
     </Grid>
