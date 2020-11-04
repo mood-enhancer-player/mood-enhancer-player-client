@@ -8,6 +8,7 @@ import {
 import MusicCard from "./MusicCard";
 import MusicPlayer from "./MusicPlayer";
 import { useQuery, gql } from "@apollo/client";
+import Loader from "./Loader";
 const useStyles = makeStyles({
   root: {
     display: "flex",
@@ -66,7 +67,7 @@ const Browse = ({ search }) => {
           <h1>{`You Broken It ! ${musicInfo.error.message}`}</h1>
         )}
         {!musicInfo.data || musicInfo.loading ? (
-          <CircularProgress />
+          <Loader />
         ) : (
           <>
             <Typography variant="h5" className={classes.heading}>
