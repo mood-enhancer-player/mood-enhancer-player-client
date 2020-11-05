@@ -5,11 +5,11 @@ const initialState = {
   user: null,
 };
 
-if (localStorage.getItem("token")) {
+if (localStorage.getItem("auth_token")) {
   // If page refresh then also get all info of user
-  const decodedToken = jwtDecode(localStorage.getItem("token"));
+  const decodedToken = jwtDecode(localStorage.getItem("auth_token"));
   if (decodedToken.exp * 1000 < Date.now()) {
-    localStorage.removeItem("token");
+    localStorage.removeItem("auth_token");
   } else {
     console.log(decodedToken);
     initialState.user = decodedToken;
@@ -43,7 +43,7 @@ const AuthProvider = (props) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   const login = (userData) => {
-    localStorage.setItem("token", userData.token);
+    localStorage.setItem("auth_token", userData.token);
     dispatch({
       type: "LOGIN",
       payload: userData,
@@ -52,7 +52,7 @@ const AuthProvider = (props) => {
 
   const logout = () => {
     console.log("logout caalled");
-    localStorage.removeItem("token");
+    localStorage.removeItem("auth_token");
     dispatch({
       type: "LOGOUT",
     });
