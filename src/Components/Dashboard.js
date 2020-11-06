@@ -36,6 +36,7 @@ import PhotoTaker from "./PhotoTaker";
 import { AuthContext } from "../context/auth";
 import SearchBox from "./SearchBox";
 import YourLib from "./YourLib";
+import RecentlyPlay from "./RecentlyPlay";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -270,6 +271,20 @@ function Dashboard(props) {
         // history.push("/YourLibrary");
       },
     },
+    {
+      text: "Recently Played Songs",
+      icon: <AlarmIcon />,
+      onClick: () => {
+        setState("RecentlyPlay");
+      },
+    },
+    {
+      text: "Liked Songs",
+      icon: <FavoriteBorderIcon />,
+      onClick: () => {
+        setState("RecentlyPlay");
+      },
+    }
   ];
 
   const drawer = (
@@ -288,7 +303,7 @@ function Dashboard(props) {
         })}
       </List>
       <Divider />
-      <List>
+      {/* <List>
         {["Recent Played", "Likes Songs"].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
@@ -297,7 +312,7 @@ function Dashboard(props) {
             <ListItemText primary={text} />
           </ListItem>
         ))}
-      </List>
+      </List> */}
     </div>
   );
 
@@ -397,6 +412,7 @@ function Dashboard(props) {
         {state === "About" ? <About /> : null}
         {state === "Browse" ? <Browse search={search} /> : null}
         {state === "YourLibrary" ? <YourLib /> : null}
+        {state === "RecentlyPlay" ? <RecentlyPlay /> : null}
       </main>
     </div>
   );
