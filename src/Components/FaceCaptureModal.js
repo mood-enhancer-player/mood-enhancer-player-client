@@ -1,7 +1,28 @@
 import React from "react";
-import { Grid, Divider, Typography } from "@material-ui/core";
+import {
+  makeStyles,
+  Grid,
+  Divider,
+  Typography,
+  Button,
+  IconButton,
+} from "@material-ui/core";
+import CameraIcon from "@material-ui/icons/Camera";
 
-const FaceCaptureModal = () => {
+const useStyles = makeStyles({
+  title: {
+    textAlign: "center",
+    fontSize: "20px",
+    margin: "10px",
+  },
+  divider: {
+    margin: "10px",
+  },
+});
+
+const FaceCaptureModal = ({ handleClose }) => {
+  const classes = useStyles();
+
   const tackPhotoHandler = (e) => {
     let canvas = document.querySelector("#photoCanvas");
     let context = canvas.getContext("2d");
@@ -20,6 +41,21 @@ const FaceCaptureModal = () => {
       // img.src = canvas.toDataURL("image/png");
       // const pic = document.getElementById("myPhoto");
       // pic.src = img64;
+
+      document.getElementById("uploadBtn").addEventListener("click", () => {
+        console.log("upload btn cl icked");
+        videoStream.getTracks().forEach(function (track) {
+          track.stop();
+          handleClose();
+        });
+      });
+      document.getElementById("closeBtn").addEventListener("click", () => {
+        console.log("close btn clicked");
+        videoStream.getTracks().forEach(function (track) {
+          track.stop();
+          handleClose();
+        });
+      });
     };
     captureImage();
     context.drawImage(video, 0, 0, 270, 200);
@@ -29,9 +65,7 @@ const FaceCaptureModal = () => {
       <Grid container direction="row" justify="center" alignItems="center">
         <div>
           {/* <h2 id="transition-modal-title">Take Image</h2> */}
-          <Typography component="h2" align="center">
-            Take Image
-          </Typography>
+          <p className={classes.title}>Take Image</p>
           <video
             id="captureVideo"
             width="270"
@@ -43,22 +77,40 @@ const FaceCaptureModal = () => {
             }}
           ></video>
           <div>
-            <button id="snap" onClick={tackPhotoHandler}>
+            {/* <button id="snap" onClick={tackPhotoHandler}>
               Take Photo
-            </button>
-            <Divider />
+            </button> */}
+            <center>
+              {/* <Button
+                variant="outlined"
+                color="secondary"
+                id="snap"
+                onClick={tackPhotoHandler}
+              >
+                Take Photo
+              </Button> */}
+              {/* <IconButton onClick={tackPhotoHandler} color="secondary">
+                <CameraIcon />
+              </IconButton> */}
+              <Button
+                variant="outlined"
+                color="secondary"
+                startIcon={<CameraIcon />}
+                size="small"
+                onClick={tackPhotoHandler}
+              >
+                Take Photo
+              </Button>
+            </center>
+            {/* <Divider className={classes.divider} /> */}
           </div>
         </div>
-        <div></div>
 
         {/* <div>
           <img src="" id="myPhoto" />
         </div> */}
         <div>
-          {/* <h3 id="transition-modal-title">Preview Image</h3> */}
-          <Typography component="h2" align="center">
-            Preview Image
-          </Typography>
+          <p className={classes.title}>Preview Image</p>
 
           <canvas
             id="photoCanvas"
@@ -66,6 +118,25 @@ const FaceCaptureModal = () => {
             height="200"
             style={{ borderRadius: "7px", background: "#0E1111" }}
           ></canvas>
+          <center>
+            <Button
+              variant="outlined"
+              color="secondary"
+              size="small"
+              id="uploadBtn"
+            >
+              Upload
+            </Button>
+            <Button
+              variant="outlined"
+              color="secondary"
+              size="small"
+              id="closeBtn"
+              onClick={handleClose}
+            >
+              Close
+            </Button>
+          </center>
         </div>
       </Grid>
     </div>

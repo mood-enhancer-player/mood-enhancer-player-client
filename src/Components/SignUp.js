@@ -139,7 +139,12 @@ const SignUp = () => {
       <h1 className={classes.title}>SIGN UP</h1>
       {/* <Divider variant="middle" style={{ margin: "15px" }} /> */}
 
-      <form className={classes.root} noValidate autoComplete="off">
+      <form
+        className={classes.root}
+        noValidate
+        autoComplete="off"
+        onSubmit={onFormSubmit}
+      >
         {errors.email ? (
           <div>
             <Alert
@@ -220,7 +225,7 @@ const SignUp = () => {
           <Button
             variant="outlined"
             color="secondary"
-            onClick={onFormSubmit}
+            type="submit"
             className={classes.textField}
           >
             SIGN UP

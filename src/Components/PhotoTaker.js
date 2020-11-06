@@ -111,7 +111,7 @@ const PhotoTaker = () => {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <FaceCaptureModal />
+            <FaceCaptureModal handleClose={handleClose} />
           </div>
         </Fade>
       </Modal>

@@ -105,7 +105,12 @@ const Login = () => {
   return (
     <div>
       <h1 className={classes.title}>SIGN IN</h1>
-      <form className={classes.root} noValidate autoComplete="off">
+      <form
+        className={classes.root}
+        noValidate
+        autoComplete="off"
+        onSubmit={onFormSubmit}
+      >
         {/* {loading ? (
           <CircularProgress color="secondary" />
         ) : (
@@ -146,7 +151,7 @@ const Login = () => {
           <Button
             variant="outlined"
             color="secondary"
-            onClick={onFormSubmit}
+            type="submit"
             className={classes.textField}
           >
             Sign In
