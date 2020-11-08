@@ -40,10 +40,17 @@ const FaceCaptureModal = ({ handleClose }) => {
       video.srcObject = videoStream;
       video.play();
       const img64 = canvas.toDataURL("image/png");
-      let url = img64.replace(
-        /^data:image\/png/,
-        "data:application/octet-stream"
-      );
+      // let url = img64.replace(
+      //   /^data:image\/png/,
+      //   "data:application/octet-stream"
+      // );
+      // fs.writeFile("pic1", img64, { encoding: "base64" }, (err) => {
+      //   if (err) {
+      //     console.log(err);
+      //   } else {
+      //     console.log("file created");
+      //   }
+      // });
       // console.log(url);
       setBase64Img(img64);
       uploadImageHandler(img64);
