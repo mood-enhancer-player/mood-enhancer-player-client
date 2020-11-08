@@ -63,9 +63,9 @@ const SignUp = () => {
   const [signUpUser, { loading }] = useMutation(REGISTER_MUTATION, {
     update(_, result) {
       if (result) {
-        console.log(result);
-        history.push("/");
         context.login(result.data.register);
+        history.push("/");
+        // window.location.reload("/");
       }
       console.log(loading);
     },

@@ -129,7 +129,7 @@ const audioLists = [
 function Home() {
   const classes = useStyles();
   const musicInfo = useQuery(MUSIC_INFO_QUERY);
-  const [songIdState, setSongIdState] = useState("5fa51f55f729ff4c5816c477");
+  const [songIdState, setSongIdState] = useState("5fa783c0c0c41d2974bc4620");
 
   const getSongById = useQuery(GET_SONG_BY_ID_QUERY, {
     variables: {

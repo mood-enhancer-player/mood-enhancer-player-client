@@ -28,12 +28,12 @@ import {
 
 import { makeStyles, useTheme, fade } from "@material-ui/core/styles";
 import { Link, withRouter } from "react-router-dom";
+import { AuthContext } from "../context/auth";
 import About from "./YourLib";
 import Home from "./Home";
 import Browse from "./Browse";
 import Profile from "./Profile";
 import PhotoTaker from "./PhotoTaker";
-import { AuthContext } from "../context/auth";
 import SearchBox from "./SearchBox";
 import YourLib from "./YourLib";
 
