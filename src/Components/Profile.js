@@ -5,8 +5,10 @@ import {
   Box,
   Typography,
   IconButton,
+  CircularProgress,
 } from "@material-ui/core";
-import { gql, useMutation } from "@apollo/client";
+import { gql, useQuery, useMutation } from "@apollo/client";
+import Loader from "./Loader";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
   name: {
     // marginLeft: "40px",
     // marginRight: "40px",
+    textAlign: "center",
   },
 }));
 
@@ -49,6 +52,13 @@ const Profile = () => {
   const [profileImgFileState, setprofileImgFileState] = useState(
     "https://www.w3schools.com/howto/img_avatar.png"
   );
+
+  const { data, loading, error } = useQuery(USER_PROFILE_QUERY, {
+    onCompleted: (data) => {
+      console.log("me", data.me.profileSrc);
+      setprofileImgFileState(data.me.profileSrc);
+    },
+  });
 
   const [UploadProfileImg] = useMutation(UPLOAD_PROFILE_IMAGE_MUTATION, {
     onCompleted: (data) => {
@@ -79,28 +89,46 @@ const Profile = () => {
     //   </center>
     // </Box>
     <>
-      <div className={classes.root}>
-        <input
-          accept="image/*"
-          className={classes.input}
-          id="icon-button-file"
-          type="file"
-          onChange={handleFileChange}
-        />
-        <label htmlFor="icon-button-file">
-          <IconButton
-            color="primary"
-            aria-label="upload picture"
-            component="span"
-          >
-            <Avatar src={profileImgFileState} className={classes.large} />
-          </IconButton>
-        </label>
-      </div>
-      {/* <Typography className={classes.name}>Shubham khunt</Typography> */}
+      {error && <h1>{`Profile Picture Not Uploaded ! ${error.message}`}</h1>}
+      {!data || loading ? (
+        <CircularProgress />
+      ) : (
+        <>
+          <div className={classes.root}>
+            <input
+              accept="image/*"
+              className={classes.input}
+              id="icon-button-file"
+              type="file"
+              onChange={handleFileChange}
+            />
+            <label htmlFor="icon-button-file">
+              <IconButton
+                color="primary"
+                aria-label="upload picture"
+                component="span"
+              >
+                <Avatar src={profileImgFileState} className={classes.large} />
+              </IconButton>
+            </label>
+          </div>
+          <div className={classes.name}>
+            <Typography>{data.me.username}</Typography>
+          </div>
+        </>
+      )}
     </>
   );
 };
+
+const USER_PROFILE_QUERY = gql`
+  query {
+    me {
+      username
+      profileSrc
+    }
+  }
+`;
 
 const UPLOAD_PROFILE_IMAGE_MUTATION = gql`
   mutation uploadProfileImg($profileImgFile: Upload!) {
