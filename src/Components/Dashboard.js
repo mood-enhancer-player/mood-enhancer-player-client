@@ -36,6 +36,7 @@ import Profile from "./Profile";
 import PhotoTaker from "./PhotoTaker";
 import SearchBox from "./SearchBox";
 import YourLib from "./YourLib";
+import RecentPlayed from "./RecentPlayed";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -270,6 +271,22 @@ function Dashboard(props) {
         // history.push("/YourLibrary");
       },
     },
+    {
+      text: "Recent Played",
+      icon: <AlarmIcon />,
+      onClick: () => {
+        setState("RecentPlayed");
+        // history.push("/YourLibrary");
+      },
+    },
+    {
+      text: "Likes Songs",
+      icon: <FavoriteBorderIcon />,
+      onClick: () => {
+        setState("LikesSongs");
+        // history.push("/YourLibrary");
+      },
+    },
   ];
 
   const drawer = (
@@ -287,7 +304,7 @@ function Dashboard(props) {
           );
         })}
       </List>
-      <Divider />
+      {/* <Divider />
       <List>
         {["Recent Played", "Likes Songs"].map((text, index) => (
           <ListItem button key={text}>
@@ -297,7 +314,7 @@ function Dashboard(props) {
             <ListItemText primary={text} />
           </ListItem>
         ))}
-      </List>
+      </List> */}
     </div>
   );
 
@@ -394,9 +411,9 @@ function Dashboard(props) {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         {state === "Home" ? <Home /> : null}
-        {state === "About" ? <About /> : null}
         {state === "Browse" ? <Browse search={search} /> : null}
         {state === "YourLibrary" ? <YourLib /> : null}
+        {state === "RecentPlayed" ? <RecentPlayed /> : null}
       </main>
     </div>
   );

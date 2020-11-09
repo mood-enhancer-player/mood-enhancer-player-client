@@ -35,25 +35,55 @@ const audioLists = [
 ];
 
 const MusicPlayer = ({
-  musicInfoQuery,
+  musicInfoQuery = 0,
+  getRecentPlayQuery = 0,
   getSongByIdQuery = 0,
-  songIdForBrowseTab,
+  songIdForBrowseTab = 0,
+  songIdForRecentPlayedTab = 0,
+  as,
 }) => {
   // const [autoPlay, setAutoPlay] = React.useState(false);
   let index;
-  if (getSongByIdQuery !== 0) {
-    // For browse tab getSongByQuery = 0
-    index = musicInfoQuery.getAllSongs.findIndex((oneSong, index) => {
-      if (String(oneSong._id) === getSongByIdQuery.getSongById._id) {
-        return index;
+  switch (as) {
+    case "Home":
+      {
+        index = musicInfoQuery.getAllSongs.findIndex((oneSong, index) => {
+          if (String(oneSong._id) === getSongByIdQuery.getSongById._id) {
+            return index;
+          }
+        });
       }
-    });
-  } else {
-    index = musicInfoQuery.getAllSongs.findIndex((oneSong, index) => {
-      if (String(oneSong._id) === songIdForBrowseTab) return index;
-    });
+      break;
+    case "Browse":
+      {
+        index = musicInfoQuery.getAllSongs.findIndex((oneSong, index) => {
+          if (String(oneSong._id) === songIdForBrowseTab) return index;
+        });
+      }
+      break;
+    case "RecentPlayed":
+      {
+        index = getRecentPlayQuery.getRecentPlay.findIndex((oneSong, index) => {
+          if (String(oneSong._id) === songIdForRecentPlayedTab) return index;
+        });
+      }
+      break;
+    default:
+      index = 0;
   }
-  console.log(musicInfoQuery.getAllSongs);
+
+  // if (getSongByIdQuery !== 0) {
+  //   // For browse tab getSongByQuery = 0
+  //   index = musicInfoQuery.getAllSongs.findIndex((oneSong, index) => {
+  //     if (String(oneSong._id) === getSongByIdQuery.getSongById._id) {
+  //       return index;
+  //     }
+  //   });
+  // } else {
+  //   index = musicInfoQuery.getAllSongs.findIndex((oneSong, index) => {
+  //     if (String(oneSong._id) === songIdForBrowseTab) return index;
+  //   });
+  // }
   React.useEffect(() => {
     console.log(document.getElementsByClassName("music-player-audio")[0]);
     const musicPlayerAudio = document.getElementsByClassName(
@@ -65,7 +95,11 @@ const MusicPlayer = ({
   return (
     <div>
       <ReactJkMusicPlayer
-        audioLists={musicInfoQuery.getAllSongs}
+        audioLists={
+          getRecentPlayQuery === 0
+            ? musicInfoQuery.getAllSongs
+            : getRecentPlayQuery.getRecentPlay
+        }
         // audioLists={audioLists}
         autoPlay={false}
         showPlayMode={false}
