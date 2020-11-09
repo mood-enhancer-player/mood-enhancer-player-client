@@ -9,13 +9,14 @@ const useStyles = makeStyles({
     alignItems: "center",
   },
   avtar: {
-    width: "150px",
-    height: "150px",
+    width: "120px",
+    height: "120px",
     marginLeft: "45px",
-    marginBottom: "5px",
+    marginBottom: "2  5px",
   },
   name: {
-    textAlign: "center",
+    marginLeft:"50px",
+    marginRight:"40px",
   },
 });
 
