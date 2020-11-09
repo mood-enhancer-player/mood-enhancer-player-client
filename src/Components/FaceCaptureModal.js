@@ -151,6 +151,7 @@ const FaceCaptureModal = ({ handleClose }) => {
               size="small"
               id="uploadBtn"
               // onClick={uploadImageHandler}
+              style={{ marginRight: "10px" }}
             >
               Upload
             </Button>
