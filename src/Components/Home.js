@@ -126,7 +126,7 @@ const audioLists = [
   // },
 ];
 
-function Home() {
+const Home = () => {
   const classes = useStyles();
   const musicInfo = useQuery(MUSIC_INFO_QUERY);
   const [songIdState, setSongIdState] = useState("5fa7fdbdee74902f6c763bda");
@@ -175,14 +175,15 @@ function Home() {
             <MusicPlayer
               musicInfoQuery={musicInfo.data}
               getSongByIdQuery={getSongById.data}
-              defaultSongIndex={songIdState}
+              // defaultSongIndex={songIdState}
+              as="Home"
             />
           </>
         )}
       </div>
     </>
   );
-}
+};
 
 const MUSIC_INFO_QUERY = gql`
   query {
