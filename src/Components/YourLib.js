@@ -68,6 +68,7 @@ const YourLib = () => {
     setValue(index);
   };
 
+  const [artistIdState, setArtistIdState] = useState("");
   const [songListAccordingToArtist, setSongListAccordingToArtist] = useState(
     false
   );
@@ -75,6 +76,7 @@ const YourLib = () => {
     console.log("card click");
     console.log(data);
     setSongListAccordingToArtist(true);
+    setArtistIdState(data);
   };
 
   return !songListAccordingToArtist ? (
@@ -105,7 +107,7 @@ const YourLib = () => {
       </TabPanel>
     </div>
   ) : (
-    <ArtistWithSongList />
+    <ArtistWithSongList artistId={artistIdState} />
   );
 };
 
