@@ -25,9 +25,9 @@ import {
   MenuOutlined as MenuIcon,
   AlarmOutlined as AlarmIcon,
   AccountCircleOutlined as AccountCircle,
-  FavoriteBorderOutlined as FavoriteBorderIcon, 
+  FavoriteBorderOutlined as FavoriteBorderIcon,
 } from "@material-ui/icons";
-import PolicyIcon from '@material-ui/icons/Policy';
+import PolicyIcon from "@material-ui/icons/Policy";
 
 import { makeStyles, useTheme, fade } from "@material-ui/core/styles";
 import { Link, withRouter } from "react-router-dom";
@@ -39,8 +39,8 @@ import Profile from "./Profile";
 import PhotoTaker from "./PhotoTaker";
 import SearchBox from "./SearchBox";
 import YourLib from "./YourLib";
-import RecentlyPlay from "./RecentlyPlay";
 import Privacy from "./Privacy";
+import RecentPlayed from "./RecentPlayed";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -114,12 +114,12 @@ const useStyles = makeStyles((theme) => ({
   inputRoot: {
     color: "inherit",
   },
-  privacy:{
-    marginTop:"150px",
-    fontSize:"13px",
-    cursor:"pointer",
+  privacy: {
+    marginTop: "150px",
+    fontSize: "13px",
+    cursor: "pointer",
     [theme.breakpoints.down("sm")]: {
-      marginTop:"92px"
+      marginTop: "92px",
     },
   },
   inputInput: {
@@ -230,7 +230,6 @@ function Dashboard(props) {
     </Menu>
   );
 
-
   // State For Menu Switching
   const [state, setState] = React.useState("Home");
 
@@ -293,11 +292,16 @@ function Dashboard(props) {
         })}
       </List>
       <a>
-      <center>
-        <Typography onClick={() => {setState("Privacy & Policy")}} className={classes.privacy}>
-          Privacy & Policy
-        </Typography>
-      </center>
+        <center>
+          <Typography
+            onClick={() => {
+              setState("Privacy & Policy");
+            }}
+            className={classes.privacy}
+          >
+            Privacy & Policy
+          </Typography>
+        </center>
       </a>
       {/* <Box className={classes.privacy}> */}
       {/* <List>
@@ -411,7 +415,7 @@ function Dashboard(props) {
         {state === "Home" ? <Home /> : null}
         {state === "Browse" ? <Browse search={search} /> : null}
         {state === "YourLibrary" ? <YourLib /> : null}
-        {state === "RecentlyPlay" ? <RecentlyPlay /> : null}
+        {state === "RecentPlayed" ? <RecentPlayed /> : null}
         {state === "Privacy & Policy" ? <Privacy /> : null}
       </main>
     </div>
