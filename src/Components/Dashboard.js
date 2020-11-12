@@ -15,6 +15,8 @@ import {
   MenuItem,
   Menu,
   InputBase,
+  Box,
+  Typography,
 } from "@material-ui/core";
 import {
   HomeOutlined as HomeIcon,
@@ -23,8 +25,9 @@ import {
   MenuOutlined as MenuIcon,
   AlarmOutlined as AlarmIcon,
   AccountCircleOutlined as AccountCircle,
-  FavoriteBorderOutlined as FavoriteBorderIcon,
+  FavoriteBorderOutlined as FavoriteBorderIcon, 
 } from "@material-ui/icons";
+import PolicyIcon from '@material-ui/icons/Policy';
 
 import { makeStyles, useTheme, fade } from "@material-ui/core/styles";
 import { Link, withRouter } from "react-router-dom";
@@ -36,7 +39,8 @@ import Profile from "./Profile";
 import PhotoTaker from "./PhotoTaker";
 import SearchBox from "./SearchBox";
 import YourLib from "./YourLib";
-import RecentPlayed from "./RecentPlayed";
+import RecentlyPlay from "./RecentlyPlay";
+import Privacy from "./Privacy";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -109,6 +113,14 @@ const useStyles = makeStyles((theme) => ({
   },
   inputRoot: {
     color: "inherit",
+  },
+  privacy:{
+    marginTop:"150px",
+    fontSize:"13px",
+    cursor:"pointer",
+    [theme.breakpoints.down("sm")]: {
+      marginTop:"92px"
+    },
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
@@ -218,30 +230,6 @@ function Dashboard(props) {
     </Menu>
   );
 
-  // const mobileMenuId = "primary-search-account-menu-mobile";
-  // const renderMobileMenu = (
-  //   <Menu
-  //     anchorEl={mobileMoreAnchorEl}
-  //     anchorOrigin={{ vertical: "top", horizontal: "right" }}
-  //     id={mobileMenuId}
-  //     keepMounted
-  //     transformOrigin={{ vertical: "top", horizontal: "right" }}
-  //     open={isMobileMenuOpen}
-  //     onClose={handleMobileMenuClose}
-  //   >
-  //     <MenuItem onClick={handleProfileMenuOpen}>
-  //       <IconButton
-  //         aria-label="account of current user"
-  //         aria-controls="primary-search-account-menu"
-  //         aria-haspopup="true"
-  //         color="inherit"
-  //       >
-  //         <AccountCircle />
-  //       </IconButton>
-  //       <p>Profile</p>
-  //     </MenuItem>
-  // </Menu>
-  // );
 
   // State For Menu Switching
   const [state, setState] = React.useState("Home");
@@ -304,17 +292,27 @@ function Dashboard(props) {
           );
         })}
       </List>
-      {/* <Divider />
-      <List>
-        {["Recent Played", "Likes Songs"].map((text, index) => (
-          <ListItem button key={text}>
+      <a>
+      <center>
+        <Typography onClick={() => {setState("Privacy & Policy")}} className={classes.privacy}>
+          Privacy & Policy
+        </Typography>
+      </center>
+      </a>
+      {/* <Box className={classes.privacy}> */}
+      {/* <List>
+        {["Privacy", "Policy"].map((text,index) => (
+          <ListItem button key={text} onClick={() => {setState(text)}}>
             <ListItemIcon>
-              {index % 2 === 0 ? <AlarmIcon /> : <FavoriteBorderIcon />}
+              {
+                index % 2 == 0 ? <InfoIcon /> : <PolicyIcon />
+              }
             </ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
         ))}
-      </List> */}
+      </List>
+      </Box> */}
     </div>
   );
 
@@ -413,7 +411,8 @@ function Dashboard(props) {
         {state === "Home" ? <Home /> : null}
         {state === "Browse" ? <Browse search={search} /> : null}
         {state === "YourLibrary" ? <YourLib /> : null}
-        {state === "RecentPlayed" ? <RecentPlayed /> : null}
+        {state === "RecentlyPlay" ? <RecentlyPlay /> : null}
+        {state === "Privacy & Policy" ? <Privacy /> : null}
       </main>
     </div>
   );
