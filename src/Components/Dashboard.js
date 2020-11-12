@@ -31,12 +31,12 @@ import PolicyIcon from '@material-ui/icons/Policy';
 
 import { makeStyles, useTheme, fade } from "@material-ui/core/styles";
 import { Link, withRouter } from "react-router-dom";
+import { AuthContext } from "../context/auth";
 import About from "./YourLib";
 import Home from "./Home";
 import Browse from "./Browse";
 import Profile from "./Profile";
 import PhotoTaker from "./PhotoTaker";
-import { AuthContext } from "../context/auth";
 import SearchBox from "./SearchBox";
 import YourLib from "./YourLib";
 import RecentlyPlay from "./RecentlyPlay";
@@ -260,19 +260,21 @@ function Dashboard(props) {
       },
     },
     {
-      text: "Recently Played Songs",
+      text: "Recent Played",
       icon: <AlarmIcon />,
       onClick: () => {
-        setState("RecentlyPlay");
+        setState("RecentPlayed");
+        // history.push("/YourLibrary");
       },
     },
     {
-      text: "Liked Songs",
+      text: "Likes Songs",
       icon: <FavoriteBorderIcon />,
       onClick: () => {
-        setState("RecentlyPlay");
+        setState("LikesSongs");
+        // history.push("/YourLibrary");
       },
-    }
+    },
   ];
 
   const drawer = (
@@ -407,7 +409,6 @@ function Dashboard(props) {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         {state === "Home" ? <Home /> : null}
-        {state === "About" ? <About /> : null}
         {state === "Browse" ? <Browse search={search} /> : null}
         {state === "YourLibrary" ? <YourLib /> : null}
         {state === "RecentlyPlay" ? <RecentlyPlay /> : null}

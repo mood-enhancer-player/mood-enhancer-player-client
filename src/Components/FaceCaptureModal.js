@@ -7,7 +7,9 @@ import {
   Button,
   IconButton,
 } from "@material-ui/core";
+import { gql, useMutation } from "@apollo/client";
 import CameraIcon from "@material-ui/icons/Camera";
+const fs = require("fs");
 
 const useStyles = makeStyles({
   title: {
@@ -22,13 +24,14 @@ const useStyles = makeStyles({
 
 const FaceCaptureModal = ({ handleClose }) => {
   const classes = useStyles();
+  const [base64Img, setBase64Img] = React.useState("");
+  // const [proccessImage, { loading }] = useMutation(PROCESS_IMAGE_MUTATION);
 
   const tackPhotoHandler = (e) => {
     let canvas = document.querySelector("#photoCanvas");
     let context = canvas.getContext("2d");
     let video = document.querySelector("#captureVideo");
     // let img = document.getElementById("myPhoto");
-
     // Async task(captureImage)
     const captureImage = async () => {
       const videoStream = await navigator.mediaDevices.getUserMedia({
@@ -37,7 +40,20 @@ const FaceCaptureModal = ({ handleClose }) => {
       video.srcObject = videoStream;
       video.play();
       const img64 = canvas.toDataURL("image/png");
-      console.log(img64);
+      // let url = img64.replace(
+      //   /^data:image\/png/,
+      //   "data:application/octet-stream"
+      // );
+      // fs.writeFile("pic1", img64, { encoding: "base64" }, (err) => {
+      //   if (err) {
+      //     console.log(err);
+      //   } else {
+      //     console.log("file created");
+      //   }
+      // });
+      // console.log(url);
+      setBase64Img(img64);
+      uploadImageHandler(img64);
       // img.src = canvas.toDataURL("image/png");
       // const pic = document.getElementById("myPhoto");
       // pic.src = img64;
@@ -46,20 +62,30 @@ const FaceCaptureModal = ({ handleClose }) => {
         console.log("upload btn cl icked");
         videoStream.getTracks().forEach(function (track) {
           track.stop();
-          handleClose();
         });
+        handleClose();
       });
       document.getElementById("closeBtn").addEventListener("click", () => {
         console.log("close btn clicked");
         videoStream.getTracks().forEach(function (track) {
           track.stop();
-          handleClose();
         });
+        handleClose();
       });
     };
     captureImage();
     context.drawImage(video, 0, 0, 270, 200);
   };
+
+  const uploadImageHandler = (base64) => {
+    // console.log("state", base64Img);
+    // proccessImage({
+    //   variables: {
+    //     base64Image: base64,
+    //   },
+    // });
+  };
+
   return (
     <div>
       <Grid container direction="row" justify="center" alignItems="center">
@@ -124,7 +150,8 @@ const FaceCaptureModal = ({ handleClose }) => {
               color="secondary"
               size="small"
               id="uploadBtn"
-              style={{marginRight:"10px"}}
+              // onClick={uploadImageHandler}
+              style={{ marginRight: "10px" }}
             >
               Upload
             </Button>
@@ -143,5 +170,11 @@ const FaceCaptureModal = ({ handleClose }) => {
     </div>
   );
 };
+
+// const PROCESS_IMAGE_MUTATION = gql`
+//   mutation processImage($base64Image: String!) {
+//     processImage(base64Image: $base64Image)
+//   }
+// `;
 
 export default FaceCaptureModal;
