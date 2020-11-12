@@ -73,12 +73,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const cardClickHandler = (data) => {
-  console.log("card click");
-  console.log(data);
-};
-
-const TabCard = ({ name, picture, id }) => {
+const TabCard = ({ name, picture, id, yourLibCardClickHandler }) => {
   const classes = useStyles();
   return (
     <Grid
@@ -92,7 +87,10 @@ const TabCard = ({ name, picture, id }) => {
       justify="center"
       alignItems="center"
     >
-      <Card className={classes.card} onClick={() => cardClickHandler(id)}>
+      <Card
+        className={classes.card}
+        onClick={() => yourLibCardClickHandler(id)}
+      >
         <Box className={classes.box}>
           <CardMedia
             component="img"

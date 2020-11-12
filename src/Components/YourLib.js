@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -9,6 +9,7 @@ import Box from "@material-ui/core/Box";
 import PlaylistTab from "./PlaylistTab";
 import ArtistTab from "./ArtistTab";
 import AlbumTab from "./AlbumTab";
+import ArtistWithSongList from "./ArtistWithSongList";
 
 const TabPanel = (props) => {
   const { children, value, index, ...other } = props;
@@ -57,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
 const YourLib = () => {
   const classes = useStyles();
   const theme = useTheme();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -66,7 +67,17 @@ const YourLib = () => {
   const handleChangeIndex = (index) => {
     setValue(index);
   };
-  return (
+
+  const [songListAccordingToArtist, setSongListAccordingToArtist] = useState(
+    false
+  );
+  const yourLibCardClickHandler = (data) => {
+    console.log("card click");
+    console.log(data);
+    setSongListAccordingToArtist(true);
+  };
+
+  return !songListAccordingToArtist ? (
     <div className={classes.root}>
       <AppBar position="static" color="default">
         <Tabs
@@ -87,12 +98,14 @@ const YourLib = () => {
         <PlaylistTab />
       </TabPanel>
       <TabPanel value={value} index={1} className={classes.tabview}>
-        <ArtistTab />
+        <ArtistTab yourLibCardClickHandler={yourLibCardClickHandler} />
       </TabPanel>
       <TabPanel value={value} index={2} className={classes.tabview}>
         <AlbumTab />
       </TabPanel>
     </div>
+  ) : (
+    <ArtistWithSongList />
   );
 };
 

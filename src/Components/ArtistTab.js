@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   CardContent,
   CardMedia,
@@ -11,6 +11,7 @@ import {
 import { useQuery, gql } from "@apollo/client";
 
 import TabCard from "./TabCard";
+import ArtistWithSongList from "./ArtistWithSongList";
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: "black",
@@ -55,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
 //   },
 // ];
 
-const ArtistTab = () => {
+const ArtistTab = ({ yourLibCardClickHandler }) => {
   const classes = useStyles();
   const { loading, data, error } = useQuery(GET_ARTIST_QUERY);
 
@@ -73,6 +74,7 @@ const ArtistTab = () => {
                   picture={singerProfileFile}
                   id={_id}
                   key={_id}
+                  yourLibCardClickHandler={yourLibCardClickHandler}
                 />
               );
             })}
