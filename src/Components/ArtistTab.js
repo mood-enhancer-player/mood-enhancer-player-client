@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ArtistTab = ({ yourLibCardClickHandler }) => {
   const classes = useStyles();
-  const { loading, data, error } = useQuery(GET_ARTIST_QUERY);
+  const { loading, data, error } = useQuery(GET_ARTISTS_QUERY);
 
   return (
     <>
@@ -85,7 +85,7 @@ const ArtistTab = ({ yourLibCardClickHandler }) => {
   );
 };
 
-const GET_ARTIST_QUERY = gql`
+const GET_ARTISTS_QUERY = gql`
   query {
     getArtists {
       _id
