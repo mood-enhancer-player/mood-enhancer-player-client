@@ -6,16 +6,18 @@ const useStyles = makeStyles({
     width: "100%",
     height: "190px",
     marginTop: "20px",
-    alignItems: "center",
+    paddingRight:"25px",
+    paddingLeft:"25px"
+    // alignItems: "center",
   },
   avtar: {
     width: "120px",
     height: "120px",
-    marginLeft: "45px",
-    marginBottom: "2  5px",
+    marginLeft: "30px",
+    marginBottom: "15px",
   },
   name: {
-    marginLeft:"50px",
+    marginLeft:"35px",
     marginRight:"40px",
   },
 });
