@@ -10,6 +10,8 @@ import { gql, useQuery } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import Loader from "./Loader";
 import PlayArrowRoundedIcon from "@material-ui/icons/PlayArrowRounded";
+import PauseCircleFilledOutlinedIcon from "@material-ui/icons/PauseCircleFilledOutlined";
+import MusicPlayer from "./MusicPlayer";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -61,13 +63,23 @@ const ArtistWithSongListTableRow = ({
   playCount,
   cover,
   index,
+  songId,
+  musicSrc,
+  playButtonHandler,
 }) => {
   const classes = useStyles();
+  const [playIcon, setPlayIcon] = useState(true);
   // const { data, loading, error } = useQuery(GET_SONGS_BY_ARTISTS, {
   //   variables: {
   //     artistId,
   //   },
   // });
+
+  const iconHandler = (songId) => {
+    console.log("icon handle called", songId);
+    setPlayIcon(!playIcon);
+    console.log(document.getElementById(songId));
+  };
 
   return (
     <>
@@ -82,29 +94,28 @@ const ArtistWithSongListTableRow = ({
           <img src={cover} alt="img" className={classes.coverImg} />
         </TableCell>
         <TableCell className={classes.textAlign}>{name}</TableCell>
-        <TableCell className={classes.textAlign}>{singer}</TableCell>
+        {/* <TableCell className={classes.textAlign}>{singer}</TableCell> */}
         <TableCell className={classes.textAlign}>{playCount}</TableCell>
-        <TableCell className={classes.textAlign}>
-          <IconButton aria-label="delete">
-            <PlayArrowRoundedIcon />
+        <TableCell
+          className={classes.textAlign}
+          onClick={() => iconHandler(songId)}
+        >
+          <IconButton
+            aria-label="Play"
+            onClick={() => playButtonHandler(songId)}
+          >
+            {playIcon ? (
+              <PlayArrowRoundedIcon />
+            ) : (
+              <PauseCircleFilledOutlinedIcon />
+            )}
+            {/* <audio src={musicSrc} id={songId} /> */}
           </IconButton>
-          {/* <Button className={classes.deleteBtn}>Delete</Button> */}
         </TableCell>
       </TableRow>
       {/* )} */}
     </>
   );
 };
-
-// const GET_SONGS_BY_ARTISTS = gql`
-//   query songsByArtist($artistId: ID!) {
-//     getSongsByArtist(artistId: $artistId) {
-//       _id
-//       name
-//       description
-//       singer
-//     }
-//   }
-// `;
 
 export default ArtistWithSongListTableRow;

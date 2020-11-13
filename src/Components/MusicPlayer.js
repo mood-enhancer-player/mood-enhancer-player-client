@@ -40,10 +40,13 @@ const MusicPlayer = ({
   getSongByIdQuery = 0,
   songIdForBrowseTab = 0,
   songIdForRecentPlayedTab = 0,
+  songIdForYourLibArtistTab = 0,
+  songInfoForYourLibArtist = 0,
   as,
 }) => {
   // const [autoPlay, setAutoPlay] = React.useState(false);
-  let index;
+  console.log(songIdForYourLibArtistTab, songInfoForYourLibArtist);
+  let index, audioList;
   switch (as) {
     case "Home":
       {
@@ -52,6 +55,7 @@ const MusicPlayer = ({
             return index;
           }
         });
+        audioList = musicInfoQuery.getAllSongs;
       }
       break;
     case "Browse":
@@ -59,6 +63,7 @@ const MusicPlayer = ({
         index = musicInfoQuery.getAllSongs.findIndex((oneSong, index) => {
           if (String(oneSong._id) === songIdForBrowseTab) return index;
         });
+        audioList = musicInfoQuery.getAllSongs;
       }
       break;
     case "RecentPlayed":
@@ -66,6 +71,17 @@ const MusicPlayer = ({
         index = getRecentPlayQuery.getRecentPlay.findIndex((oneSong, index) => {
           if (String(oneSong._id) === songIdForRecentPlayedTab) return index;
         });
+        audioList = getRecentPlayQuery.getRecentPlay;
+      }
+      break;
+    case "YourLibArtist":
+      {
+        index = songInfoForYourLibArtist.getSongsByArtist.findIndex(
+          (oneSong, index) => {
+            if (String(oneSong._id) === songIdForYourLibArtistTab) return index;
+          }
+        );
+        audioList = songInfoForYourLibArtist.getSongsByArtist;
       }
       break;
     default:
@@ -93,24 +109,20 @@ const MusicPlayer = ({
   }, []);
   // .setAttribute("muted", false);
   return (
-    <div>
+    <>
       <ReactJkMusicPlayer
-        audioLists={
-          getRecentPlayQuery === 0
-            ? musicInfoQuery.getAllSongs
-            : getRecentPlayQuery.getRecentPlay
-        }
+        audioLists={audioList}
         // audioLists={audioLists}
         autoPlay={false}
         showPlayMode={false}
         mode="full"
-        showDestroy={true}
+        showDestroy={false}
         showDownload={false}
         playIndex={index}
         // onAudioEnded={(end) => console.log("audio ended", end)}
         onPlayIndexChange={(data) => console.log("Index Changed", data)}
       />
-    </div>
+    </>
   );
 };
 

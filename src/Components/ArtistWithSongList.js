@@ -17,6 +17,7 @@ import {
 import { useQuery, gql } from "@apollo/client";
 import Loader from "./Loader";
 import ArtistWithSongListTableRow from "./ArtistWithSongListTableRow";
+import MusicPlayer from "./MusicPlayer";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -72,7 +73,6 @@ const ArtistWithSongList = ({ artistId }) => {
   const classes = useStyles();
   const columTitleRow = ["Id", "Cover Image", "Title", "Artists", "Album Name"];
 
-  console.log(artistId);
   const { data, loading, error } = useQuery(GET_ARTIST_BY_ID_QUERY, {
     variables: {
       artistId,
@@ -83,61 +83,79 @@ const ArtistWithSongList = ({ artistId }) => {
       artistId,
     },
   });
+  const [songIdForArtist, setSongIdForArtist] = useState("");
+  const playButtonHandler = (songId) => {
+    setSongIdForArtist(songId);
+  };
+
   return (
     <div>
       {error && <h1>{`Something wents wrong ! ${error.message}`}</h1>}
       {!data || loading ? (
         <Loader />
       ) : (
-        <TableContainer className={classes.container}>
-          {/* <Paper elevation={3} className={classes.paper}> */}
-          <CardMedia
-            component="img"
-            alt="Contemplative Reptile"
-            height="400px"
-            width="auto"
-            image={data.getArtistById.singerProfileFile}
-            title="Contemplative Reptile"
-            className={classes.card}
-          />
-          <h1>{data.getArtistById.name}</h1>
-          {/* </Paper> */}
-          <Table className={classes.table}>
-            {/* <TableHead>
-      <TableRow>
-        {columTitleRow.map((title) => (
-          <TableCell
-            key={title}
-            className={`${classes.textAlign} ${classes.columTitleRow}`}
-          >
-            {title}
-          </TableCell>
-        ))}
-      </TableRow>
-    </TableHead> */}
-            <TableBody>
-              {getSongsByArtist.error && (
-                <h1>{`Songs Not Found ! ${getSongsByArtist.error.message}`}</h1>
-              )}
+        <>
+          <TableContainer className={classes.container}>
+            {/* <Paper elevation={3} className={classes.paper}> */}
+            <CardMedia
+              component="img"
+              alt="Contemplative Reptile"
+              height="400px"
+              width="auto"
+              image={data.getArtistById.singerProfileFile}
+              title="Contemplative Reptile"
+              className={classes.card}
+            />
+            <h1>{data.getArtistById.name}</h1>
+            {/* </Paper> */}
+            <Table className={classes.table}>
+              <TableHead>
+                <TableRow>
+                  {columTitleRow.map((title) => (
+                    <TableCell
+                      key={title}
+                      className={`${classes.textAlign} ${classes.columTitleRow}`}
+                    >
+                      {title}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {getSongsByArtist.error && (
+                  <h1>{`Songs Not Found ! ${getSongsByArtist.error.message}`}</h1>
+                )}
 
-              {!getSongsByArtist.data || getSongsByArtist.loading ? (
-                <Loader />
-              ) : (
-                getSongsByArtist.data.getSongsByArtist.map((song, index) => {
-                  return (
-                    <ArtistWithSongListTableRow
-                      name={song.name}
-                      singer={song.singer}
-                      playCount={song.playCount}
-                      cover={song.cover}
-                      index={index}
-                    />
-                  );
-                })
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
+                {!getSongsByArtist.data || getSongsByArtist.loading ? (
+                  <Loader />
+                ) : (
+                  getSongsByArtist.data.getSongsByArtist.map((song, index) => {
+                    return (
+                      <ArtistWithSongListTableRow
+                        name={song.name}
+                        singer={song.singer}
+                        playCount={song.playCount}
+                        cover={song.cover}
+                        index={index}
+                        key={song._id}
+                        songId={song._id}
+                        musicSrc={song.musicSrc}
+                        playButtonHandler={playButtonHandler}
+                      />
+                    );
+                  })
+                )}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          {getSongsByArtist.data && (
+            <MusicPlayer
+              songIdForYourLibArtistTab={songIdForArtist}
+              songInfoForYourLibArtist={getSongsByArtist.data}
+              as="YourLibArtist"
+            />
+          )}
+        </>
       )}
     </div>
   );
