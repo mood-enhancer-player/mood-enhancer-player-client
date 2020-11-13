@@ -59,12 +59,10 @@ const useStyles = makeStyles((theme) => ({
 
 const ArtistWithSongListTableRow = ({
   name,
-  singer,
   playCount,
   cover,
   index,
   songId,
-  musicSrc,
   playButtonHandler,
   album,
 }) => {
@@ -76,10 +74,10 @@ const ArtistWithSongListTableRow = ({
   //   },
   // });
 
-  const iconHandler = (songId) => {
-    console.log("icon handle called", songId);
-    setPlayIcon(!playIcon);
-  };
+  // const iconHandler = (songId) => {
+  //   console.log("icon handle called", songId);
+  //   setPlayIcon(!playIcon);
+  // };
   const iconHandlerOnHover = (songId) => {
     console.log("MouseOver callde", songId);
     const indexCell = document.getElementById(index);

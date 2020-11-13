@@ -133,13 +133,11 @@ const ArtistWithSongList = ({ artistId }) => {
                     return (
                       <ArtistWithSongListTableRow
                         name={song.name}
-                        singer={song.singer}
                         playCount={song.playCount}
                         cover={song.cover}
                         index={index}
                         key={song._id}
                         songId={song._id}
-                        musicSrc={song.musicSrc}
                         album={song.album}
                         playButtonHandler={playButtonHandler}
                       />
