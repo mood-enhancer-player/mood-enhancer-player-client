@@ -66,6 +66,7 @@ const ArtistWithSongListTableRow = ({
   songId,
   musicSrc,
   playButtonHandler,
+  album,
 }) => {
   const classes = useStyles();
   const [playIcon, setPlayIcon] = useState(true);
@@ -78,44 +79,57 @@ const ArtistWithSongListTableRow = ({
   const iconHandler = (songId) => {
     console.log("icon handle called", songId);
     setPlayIcon(!playIcon);
-    console.log(document.getElementById(songId));
+  };
+  const iconHandlerOnHover = (songId) => {
+    console.log("MouseOver callde", songId);
+    const indexCell = document.getElementById(index);
+    indexCell.textContent = "|>";
+    indexCell.style.fontSize = "20px";
+  };
+  const iconHandlerOnLeave = (songId) => {
+    console.log("MouseOver callde", songId);
+    const indexCell = document.getElementById(index);
+    indexCell.textContent = index + 1;
+    indexCell.style.fontSize = "14px";
   };
 
   return (
     <>
-      {/* {error && <h1>{`Songs Not Found ! ${error.message}`}</h1>} */}
-
-      {/* {!data || loading ? (
-        <Loader />
-      ) : ( */}
-      <TableRow hover>
-        <TableCell className={classes.textAlign}>{index + 1}</TableCell>
+      <TableRow
+        hover
+        onMouseOver={() => iconHandlerOnHover(songId)}
+        onMouseLeave={() => iconHandlerOnLeave(songId)}
+        onClick={() => playButtonHandler(songId)}
+      >
+        <TableCell className={classes.textAlign} id={index}>
+          {index + 1}
+        </TableCell>
         <TableCell className={classes.textAlign}>
           <img src={cover} alt="img" className={classes.coverImg} />
         </TableCell>
         <TableCell className={classes.textAlign}>{name}</TableCell>
-        {/* <TableCell className={classes.textAlign}>{singer}</TableCell> */}
         <TableCell className={classes.textAlign}>{playCount}</TableCell>
-        <TableCell
-          className={classes.textAlign}
-          onClick={() => iconHandler(songId)}
-        >
-          <IconButton
-            aria-label="Play"
-            onClick={() => playButtonHandler(songId)}
-          >
-            {playIcon ? (
-              <PlayArrowRoundedIcon />
-            ) : (
-              <PauseCircleFilledOutlinedIcon />
-            )}
-            {/* <audio src={musicSrc} id={songId} /> */}
-          </IconButton>
-        </TableCell>
+        <TableCell className={classes.textAlign}>{album}</TableCell>
       </TableRow>
-      {/* )} */}
     </>
   );
 };
 
 export default ArtistWithSongListTableRow;
+
+// {/* <TableCell
+// className={classes.textAlign}
+// onClick={() => iconHandler(songId)}
+// >
+// <IconButton
+//   aria-label="Play"
+//   onClick={() => playButtonHandler(songId)}
+// >
+//   {playIcon ? (
+//     <PlayArrowRoundedIcon />
+//   ) : (
+//     <PauseCircleFilledOutlinedIcon />
+//   )}
+//   {/* <audio src={musicSrc} id={songId} /> */}
+// </IconButton>
+// </TableCell> */}

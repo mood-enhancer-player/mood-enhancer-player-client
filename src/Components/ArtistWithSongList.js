@@ -140,6 +140,7 @@ const ArtistWithSongList = ({ artistId }) => {
                         key={song._id}
                         songId={song._id}
                         musicSrc={song.musicSrc}
+                        album={song.album}
                         playButtonHandler={playButtonHandler}
                       />
                     );
