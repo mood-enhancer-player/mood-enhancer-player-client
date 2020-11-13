@@ -67,11 +67,38 @@ const useStyles = makeStyles((theme) => ({
     margin: "10px",
     background: "green",
   },
+  bottomLeft: {
+    position: "absolute",
+    bottom: "8px",
+    left: "16px",
+  },
+  container: {
+    position: "relative",
+    textAlign: "center",
+    color: "white",
+  },
+  artistImg: {
+    width: "100%",
+    height: "auto",
+    opacity: "0.7",
+  },
+  textPos: {
+    position: "absolute",
+    top: 360,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    margin: "16px",
+    textAlign: "left",
+    fontFamily: "Montserrat",
+    fontSize: "45px",
+    fontWeight: "600px",
+  },
 }));
 
 const ArtistWithSongList = ({ artistId }) => {
   const classes = useStyles();
-  const columTitleRow = ["Id", "Cover Image", "Title", "Artists", "Album Name"];
+  const columTitleRow = ["Index", "Cover", "Title", "Hits", "Album"];
 
   const { data, loading, error } = useQuery(GET_ARTIST_BY_ID_QUERY, {
     variables: {
@@ -107,6 +134,18 @@ const ArtistWithSongList = ({ artistId }) => {
               className={classes.card}
             />
             <h1>{data.getArtistById.name}</h1>
+            {/* 
+            <div>
+              <img
+                src={data.getArtistById.singerProfileFile}
+                className={classes.artistImg}
+              />
+              <div className={classes.textPos}>
+                <p>{data.getArtistById.name}</p>
+              </div>
+            </div> */}
+            {/* </img> */}
+
             {/* </Paper> */}
             <Table className={classes.table}>
               <TableHead>
