@@ -25,6 +25,13 @@ const useStyles = makeStyles((theme) => ({
     margin: "10px",
     width: "500px",
   },
+  signUpLink: {
+    color: "lightblue",
+    width: "500px",
+    margin: "10px",
+    cursor: "pointer",
+    marginLeft: "20px",
+  },
 }));
 
 const Login = () => {
@@ -146,6 +153,14 @@ const Login = () => {
             size="small"
             className={classes.textField}
           />
+        </div>
+        <div>
+          <p
+            className={classes.signUpLink}
+            onClick={() => history.push("/signUp")}
+          >
+            New to Mood Enhancer ? <u>Create an account</u>
+          </p>
         </div>
         <div>
           <Button

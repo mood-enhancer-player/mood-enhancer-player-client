@@ -1,8 +1,14 @@
 import React, { useState, useContext } from "react";
-import { makeStyles, TextField, Button } from "@material-ui/core";
+import {
+  makeStyles,
+  TextField,
+  Button,
+  Typography,
+  Link,
+} from "@material-ui/core";
 import { gql, useMutation } from "@apollo/client";
 import Alert from "@material-ui/lab/Alert";
-import { useHistory } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { AuthContext } from "../context/auth";
 
 const useStyles = makeStyles((theme) => ({
@@ -25,6 +31,13 @@ const useStyles = makeStyles((theme) => ({
   textField: {
     margin: "10px",
     width: "500px",
+  },
+  loginLink: {
+    color: "lightblue",
+    width: "500px",
+    margin: "10px",
+    cursor: "pointer",
+    marginLeft: "20px",
   },
 }));
 
@@ -220,6 +233,14 @@ const SignUp = () => {
             size="small"
             className={classes.textField}
           />
+        </div>
+        <div>
+          <p
+            className={classes.loginLink}
+            onClick={() => history.push("/login")}
+          >
+            Already have an account ? <u>Login</u>
+          </p>
         </div>
         <div>
           <Button
