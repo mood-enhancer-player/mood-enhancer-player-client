@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { CssBaseline } from "@material-ui/core";
-import { makeStyles, fade } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { AuthContext } from "../../context/auth";
 import { useQuery, gql } from "@apollo/client";
 import Home from "../Home/Home";
@@ -15,7 +15,6 @@ import AppNavBar from "./AppBar/AppNavBar";
 import MusicPlayer from "../Common/MusicPlayer/MusicPlayer";
 import Loader from "../Common/Loader";
 
-const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -28,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Dashboard(props) {
+const Dashboard = () => {
   const classes = useStyles();
 
   const { user, logout } = useContext(AuthContext);
@@ -71,6 +70,10 @@ function Dashboard(props) {
   const [state, setState] = React.useState("Home");
   const selectedMenuItem = (selectedTab) => {
     setState(selectedTab);
+  };
+
+  const privacy = (privacy) => {
+    setState(privacy);
   };
 
   // Song Card Click Handler
@@ -119,6 +122,7 @@ function Dashboard(props) {
         mobileOpen={mobileOpen}
         handleDrawerToggle={handleDrawerToggle}
         selectedMenuItem={selectedMenuItem}
+        privacy={privacy}
       />
 
       <main className={classes.content}>
@@ -172,7 +176,7 @@ function Dashboard(props) {
       </main>
     </div>
   );
-}
+};
 
 const MUSIC_INFO_QUERY = gql`
   query {

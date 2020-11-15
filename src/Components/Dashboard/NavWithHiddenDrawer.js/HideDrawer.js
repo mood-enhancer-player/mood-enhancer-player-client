@@ -46,7 +46,10 @@ const HideDrawer = (props) => {
             keepMounted: true, // Better open performance on mobile.
           }}
         >
-          <SideDrawer selectedMenuItem={props.selectedMenuItem} />
+          <SideDrawer
+            selectedMenuItem={props.selectedMenuItem}
+            privacy={props.privacy}
+          />
         </Drawer>
       </Hidden>
       <Hidden xsDown implementation="css">
@@ -57,7 +60,10 @@ const HideDrawer = (props) => {
           variant="permanent"
           open
         >
-          <SideDrawer selectedMenuItem={props.selectedMenuItem} />
+          <SideDrawer
+            selectedMenuItem={props.selectedMenuItem}
+            privacy={props.privacy}
+          />
         </Drawer>
       </Hidden>
     </nav>

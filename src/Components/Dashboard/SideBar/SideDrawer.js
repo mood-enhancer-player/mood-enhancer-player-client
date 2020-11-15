@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SideDrawer = ({ selectedMenuItem }) => {
+const SideDrawer = ({ selectedMenuItem, privacy }) => {
   const classes = useStyles();
   const theme = useTheme();
 
@@ -77,9 +77,9 @@ const SideDrawer = ({ selectedMenuItem }) => {
       <a>
         <center>
           <Typography
-            // onClick={() => {
-            //   setState("Privacy & Policy");
-            // }}
+            onClick={() => {
+              privacy("Privacy & Policy");
+            }}
             className={classes.privacy}
           >
             Privacy & Policy
