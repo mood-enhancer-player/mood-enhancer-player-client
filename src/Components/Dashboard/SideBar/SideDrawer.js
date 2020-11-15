@@ -1,7 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import {
   Divider,
-  Drawer,
   List,
   ListItem,
   ListItemIcon,
@@ -18,13 +17,10 @@ import {
   FavoriteBorderOutlined as FavoriteBorderIcon,
 } from "@material-ui/icons";
 
-import { makeStyles, useTheme, fade } from "@material-ui/core/styles";
-import { Link, withRouter } from "react-router-dom";
-import { AuthContext } from "../../../context/auth";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 import Profile from "../../Common/Profile/Profile";
 
-const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   privacy: {
     marginTop: "150px",
@@ -90,20 +86,6 @@ const SideDrawer = ({ selectedMenuItem }) => {
           </Typography>
         </center>
       </a>
-      {/* <Box className={classes.privacy}> */}
-      {/* <List>
-        {["Privacy", "Policy"].map((text,index) => (
-          <ListItem button key={text} onClick={() => {setState(text)}}>
-            <ListItemIcon>
-              {
-                index % 2 == 0 ? <InfoIcon /> : <PolicyIcon />
-              }
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      </Box> */}
     </div>
   );
 };

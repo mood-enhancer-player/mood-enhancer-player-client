@@ -2,8 +2,7 @@ import React, { useContext, useState } from "react";
 import { Drawer, Hidden } from "@material-ui/core";
 
 import { makeStyles, useTheme, fade } from "@material-ui/core/styles";
-import { Link, withRouter } from "react-router-dom";
-import { AuthContext } from "../../../context/auth";
+import { withRouter } from "react-router-dom";
 import SideDrawer from "../SideBar/SideDrawer";
 
 const drawerWidth = 240;
@@ -47,7 +46,6 @@ const HideDrawer = (props) => {
             keepMounted: true, // Better open performance on mobile.
           }}
         >
-          {/* {drawer} */}
           <SideDrawer selectedMenuItem={props.selectedMenuItem} />
         </Drawer>
       </Hidden>
@@ -59,7 +57,6 @@ const HideDrawer = (props) => {
           variant="permanent"
           open
         >
-          {/* {drawer} */}
           <SideDrawer selectedMenuItem={props.selectedMenuItem} />
         </Drawer>
       </Hidden>

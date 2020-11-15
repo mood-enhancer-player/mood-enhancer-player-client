@@ -1,13 +1,6 @@
 import React, { useState } from "react";
-import {
-  Grid,
-  Typography,
-  makeStyles,
-  CircularProgress,
-} from "@material-ui/core";
+import { Grid, Typography, makeStyles } from "@material-ui/core";
 import MusicCard from "../Common/Card/MusicCard";
-import MusicPlayer from "../Common/MusicPlayer/MusicPlayer";
-import { useQuery, gql } from "@apollo/client";
 import Loader from "../Common/Loader";
 const useStyles = makeStyles({
   root: {
@@ -30,15 +23,6 @@ const useStyles = makeStyles({
 
 const Browse = ({ search, cardClickHandler, musicInfo }) => {
   const classes = useStyles();
-  // const musicInfo = useQuery(MUSIC_INFO_QUERY);
-
-  // const [songIdState, setSongIdState] = useState("5f9e3c550a3f4933c4b0183f");
-  // const cardClickHandler = (receiveSongId) => {
-  //   setSongIdState(receiveSongId);
-  //   console.log("card click");
-  //   console.log("cardhandlercliekd", receiveSongId);
-  // };
-
   let musicData = [];
   let capitalizeSearch = search.trim().replace(/\b\w/g, (c) => c.toUpperCase());
   const searchResult = () => {
@@ -68,7 +52,6 @@ const Browse = ({ search, cardClickHandler, musicInfo }) => {
           <>
             <Typography variant="h5" className={classes.heading}>
               Top Trends
-              {/* {songIdState} */}
             </Typography>
             <div className={classes.root}>
               <Grid container spacing={2}>
@@ -83,30 +66,11 @@ const Browse = ({ search, cardClickHandler, musicInfo }) => {
                 })}
               </Grid>
             </div>
-            {/* <MusicPlayer
-              musicInfoQuery={musicInfo.data}
-              songIdForBrowseTab={songIdState}
-              as="Browse"
-            /> */}
           </>
         )}
       </div>
     </>
   );
 };
-
-// const MUSIC_INFO_QUERY = gql`
-//   query {
-//     getAllSongs {
-//       _id
-//       name
-//       description
-//       singer
-//       playCount
-//       cover
-//       musicSrc
-//     }
-//   }
-// `;
 
 export default Browse;

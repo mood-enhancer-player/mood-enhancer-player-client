@@ -3,9 +3,7 @@ import { MenuItem, Menu, InputBase, Box, Typography } from "@material-ui/core";
 
 import { makeStyles, fade } from "@material-ui/core/styles";
 import { Link, withRouter } from "react-router-dom";
-import { AuthContext } from "../../../context/auth";
 
-const drawerWidth = 240;
 const useStyles = makeStyles(() => ({
   menuItemLink: {
     color: "white",
