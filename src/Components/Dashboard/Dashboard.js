@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import PropTypes from "prop-types";
 import {
-  AppBar,
   CssBaseline,
   Divider,
   Drawer,
@@ -27,8 +26,6 @@ import {
   AccountCircleOutlined as AccountCircle,
   FavoriteBorderOutlined as FavoriteBorderIcon,
 } from "@material-ui/icons";
-import PolicyIcon from "@material-ui/icons/Policy";
-
 import { makeStyles, useTheme, fade } from "@material-ui/core/styles";
 import { Link, withRouter } from "react-router-dom";
 import { AuthContext } from "../../context/auth";
@@ -39,6 +36,10 @@ import PhotoTaker from "../Common/FaceCapture/PhotoTaker";
 import YourLib from "../YourLib/YourLib";
 import Privacy from "../Common/Privacy";
 import RecentPlayed from "../RecentPlayed/RecentPlayed";
+import MenuForNewUser from "./ProfileMenu/MenuForNewUser";
+import MenuForExistingUser from "./ProfileMenu/MenuForExistingUser";
+import HideDrawer from "./NavWithHiddenDrawer.js/HideDrawer";
+import AppNavBar from "./AppBar/AppNavBar";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -151,7 +152,7 @@ const useStyles = makeStyles((theme) => ({
 function Dashboard(props) {
   const { window } = props;
   const classes = useStyles();
-  const theme = useTheme();
+  // const theme = useTheme();
 
   const { user, logout } = useContext(AuthContext);
 
@@ -178,145 +179,148 @@ function Dashboard(props) {
     handleMobileMenuClose();
   };
 
-  const menuId = "primary-search-account-menu";
+  // const menuId = "primary-search-account-menu";
   //Render menu for new users
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{ vertical: "top", horizontal: "right" }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{ vertical: "top", horizontal: "right" }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>
-        <Link to="/signup" className={classes.menuItemLink}>
-          Sign Up
-        </Link>
-      </MenuItem>
-      <MenuItem onClick={handleMenuClose}>
-        <Link to="/login" className={classes.menuItemLink}>
-          Log In
-        </Link>
-      </MenuItem>
-    </Menu>
-  );
+  // const renderMenu = (
+  //   <Menu
+  //     anchorEl={anchorEl}
+  //     anchorOrigin={{ vertical: "top", horizontal: "right" }}
+  //     id={menuId}
+  //     keepMounted
+  //     transformOrigin={{ vertical: "top", horizontal: "right" }}
+  //     open={isMenuOpen}
+  //     onClose={handleMenuClose}
+  //   >
+  //     ={handleMenuClose}>
+  //       <Link to="/signup" className={classes.menuItemLink}>
+  //         Sign Up
+  //       </Link>
+  //     </MenuItem>
+  //     ={handleMenuClose}>
+  //       <Link to="/login" className={classes.menuItemLink}>
+  //         Log In
+  //       </Link>
+  //     </MenuItem>
+  //   </Menu>
+  // );
 
   // Render menu for existing users
-  const renderMenu2 = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{ vertical: "top", horizontal: "right" }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{ vertical: "top", horizontal: "right" }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>
-        <Link to="/signup" className={classes.menuItemLink}>
-          My Account
-          {/* {user} */}
-        </Link>
-      </MenuItem>
-      <MenuItem onClick={handleMenuClose}>
-        <Link to="/login" className={classes.menuItemLink} onClick={logout}>
-          Logout
-        </Link>
-      </MenuItem>{" "}
-    </Menu>
-  );
+  // const renderMenu2 = (
+  //   <Menu
+  //     anchorEl={anchorEl}
+  //     anchorOrigin={{ vertical: "top", horizontal: "right" }}
+  //     id={menuId}
+  //     keepMounted
+  //     transformOrigin={{ vertical: "top", horizontal: "right" }}
+  //     open={isMenuOpen}
+  //     onClose={handleMenuClose}
+  //   >
+  //     <MenuItem onClick={handleMenuClose}>
+  //       <Link to="/signup" className={classes.menuItemLink}>
+  //         My Account
+  //         {/* {user} */}
+  //       </Link>
+  //     </MenuItem>
+  //     <MenuItem onClick={handleMenuClose}>
+  //       <Link to="/login" className={classes.menuItemLink} onClick={logout}>
+  //         Logout
+  //       </Link>
+  //     </MenuItem>{" "}
+  //   </Menu>
+  // );
 
   // State For Menu Switching
   const [state, setState] = React.useState("Home");
+  const selectedMenuItem = (selectedTab) => {
+    setState(selectedTab);
+  };
 
-  const itemList = [
-    {
-      text: "Home",
-      icon: <HomeIcon />,
-      onClick: () => {
-        setState("Home");
-        // history.push("/home");
-      },
-    },
-    {
-      text: "Browse",
-      icon: <SearchIcon />,
-      onClick: () => {
-        setState("Browse");
-        // history.push("/browse");
-      },
-    },
-    {
-      text: "Your Library",
-      icon: <InfoIcon />,
-      onClick: () => {
-        setState("YourLibrary");
-        // history.push("/YourLibrary");
-      },
-    },
-    {
-      text: "Recent Played",
-      icon: <AlarmIcon />,
-      onClick: () => {
-        setState("RecentPlayed");
-        // history.push("/YourLibrary");
-      },
-    },
-    {
-      text: "Likes Songs",
-      icon: <FavoriteBorderIcon />,
-      onClick: () => {
-        setState("LikesSongs");
-        // history.push("/YourLibrary");
-      },
-    },
-  ];
+  // const itemList = [
+  //   {
+  //     text: "Home",
+  //     icon: <HomeIcon />,
+  //     onClick: () => {
+  //       setState("Home");
+  //       // history.push("/home");
+  //     },
+  //   },
+  //   {
+  //     text: "Browse",
+  //     icon: <SearchIcon />,
+  //     onClick: () => {
+  //       setState("Browse");
+  //       // history.push("/browse");
+  //     },
+  //   },
+  //   {
+  //     text: "Your Library",
+  //     icon: <InfoIcon />,
+  //     onClick: () => {
+  //       setState("YourLibrary");
+  //       // history.push("/YourLibrary");
+  //     },
+  //   },
+  //   {
+  //     text: "Recent Played",
+  //     icon: <AlarmIcon />,
+  //     onClick: () => {
+  //       setState("RecentPlayed");
+  //       // history.push("/YourLibrary");
+  //     },
+  //   },
+  //   {
+  //     text: "Likes Songs",
+  //     icon: <FavoriteBorderIcon />,
+  //     onClick: () => {
+  //       setState("LikesSongs");
+  //       // history.push("/YourLibrary");
+  //     },
+  //   },
+  // ];
 
-  const drawer = (
-    <div>
-      <Profile />
-      <Divider />
-      <List>
-        {itemList.map((item, index) => {
-          const { text, icon, onClick } = item;
-          return (
-            <ListItem button key={text} onClick={onClick}>
-              {icon && <ListItemIcon>{icon}</ListItemIcon>}
-              <ListItemText primary={text} />
-            </ListItem>
-          );
-        })}
-      </List>
-      <a>
-        <center>
-          <Typography
-            onClick={() => {
-              setState("Privacy & Policy");
-            }}
-            className={classes.privacy}
-          >
-            Privacy & Policy
-          </Typography>
-        </center>
-      </a>
-      {/* <Box className={classes.privacy}> */}
-      {/* <List>
-        {["Privacy", "Policy"].map((text,index) => (
-          <ListItem button key={text} onClick={() => {setState(text)}}>
-            <ListItemIcon>
-              {
-                index % 2 == 0 ? <InfoIcon /> : <PolicyIcon />
-              }
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      </Box> */}
-    </div>
-  );
+  // const drawer = (
+  //   <div>
+  //     <Profile />
+  //     <Divider />
+  //     <List>
+  //       {itemList.map((item, index) => {
+  //         const { text, icon, onClick } = item;
+  //         return (
+  //           <ListItem button key={text} onClick={onClick}>
+  //             {icon && <ListItemIcon>{icon}</ListItemIcon>}
+  //             <ListItemText primary={text} />
+  //           </ListItem>
+  //         );
+  //       })}
+  //     </List>
+  //     <a>
+  //       <center>
+  //         <Typography
+  //           onClick={() => {
+  //             setState("Privacy & Policy");
+  //           }}
+  //           className={classes.privacy}
+  //         >
+  //           Privacy & Policy
+  //         </Typography>
+  //       </center>
+  //     </a>
+  //     {/* <Box className={classes.privacy}> */}
+  //     {/* <List>
+  //       {["Privacy", "Policy"].map((text,index) => (
+  //         <ListItem button key={text} onClick={() => {setState(text)}}>
+  //           <ListItemIcon>
+  //             {
+  //               index % 2 == 0 ? <InfoIcon /> : <PolicyIcon />
+  //             }
+  //           </ListItemIcon>
+  //           <ListItemText primary={text} />
+  //         </ListItem>
+  //       ))}
+  //     </List>
+  //     </Box> */}
+  //   </div>
+  // );
 
   const [search, setSearch] = useState("");
   const handleSearch = (e) => {
@@ -324,12 +328,21 @@ function Dashboard(props) {
     setSearch(e.target.value);
   };
 
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
+  const menuId = "primary-search-account-menu";
+
+  // const container =
+  //   window !== undefined ? () => window().document.body : undefined;
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
+      <AppNavBar
+        menuId={menuId}
+        state={state}
+        handleDrawerToggle={handleDrawerToggle}
+        handleSearch={handleSearch}
+        handleProfileMenuOpen={handleProfileMenuOpen}
+      />
+      {/* <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -340,7 +353,7 @@ function Dashboard(props) {
           >
             <MenuIcon />
           </IconButton>
-          {/* search start */}
+          search start
           {state === "Browse" ? (
             <div className={classes.search}>
               <div className={classes.searchIcon}>
@@ -357,7 +370,7 @@ function Dashboard(props) {
               />
             </div>
           ) : null}
-          {/* search end */}
+          search end
           <PhotoTaker />
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
@@ -373,12 +386,33 @@ function Dashboard(props) {
             </IconButton>
           </div>
         </Toolbar>
-      </AppBar>
+      </AppBar> */}
       {/* {renderMobileMenu} */}
       {/* {renderMenu} */}
-      {user ? renderMenu2 : renderMenu}
-      <nav className={classes.drawer} aria-label="mailbox folders">
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+
+      {user ? (
+        <MenuForExistingUser
+          menuId={menuId}
+          anchorEl={anchorEl}
+          isMenuOpen={isMenuOpen}
+          handleMenuClose={handleMenuClose}
+        />
+      ) : (
+        <MenuForNewUser
+          menuId={menuId}
+          anchorEl={anchorEl}
+          isMenuOpen={isMenuOpen}
+          handleMenuClose={handleMenuClose}
+        />
+      )}
+
+      <HideDrawer
+        mobileOpen={mobileOpen}
+        handleDrawerToggle={handleDrawerToggle}
+        // itemList={itemList}
+        selectedMenuItem={selectedMenuItem}
+      />
+      {/* <nav className={classes.drawer} aria-label="mailbox folders"> 
         <Hidden smUp implementation="css">
           <Drawer
             container={container}
@@ -407,14 +441,14 @@ function Dashboard(props) {
             {drawer}
           </Drawer>
         </Hidden>
-      </nav>
+      </nav> */}
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        {state === "Home" ? <Home /> : null}
-        {state === "Browse" ? <Browse search={search} /> : null}
-        {state === "YourLibrary" ? <YourLib /> : null}
-        {state === "RecentPlayed" ? <RecentPlayed /> : null}
-        {state === "Privacy & Policy" ? <Privacy /> : null}
+        {state === "Home" && <Home />}
+        {state === "Browse" && <Browse search={search} />}
+        {state === "Your Library" && <YourLib />}
+        {state === "Recent Played" && <RecentPlayed />}
+        {state === "Privacy & Policy" && <Privacy />}
       </main>
     </div>
   );
