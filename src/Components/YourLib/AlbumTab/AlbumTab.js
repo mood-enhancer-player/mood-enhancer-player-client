@@ -51,10 +51,6 @@ const AlbumTab = () => {
   const classes = useStyles();
   const { loading, data, error } = useQuery(GET_ALBUM_QUERY);
 
-  if (data) {
-    console.log(data);
-  }
-
   return (
     <>
       {loading || !data ? (

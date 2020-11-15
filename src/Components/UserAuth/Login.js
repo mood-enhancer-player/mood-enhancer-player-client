@@ -62,7 +62,6 @@ const Login = () => {
         context.login(result.data.login);
         history.push("/");
       }
-      console.log(loading);
     },
     onError(err) {
       //   setErrors(err.graphQLErrors[0].extensions.exception.errors);

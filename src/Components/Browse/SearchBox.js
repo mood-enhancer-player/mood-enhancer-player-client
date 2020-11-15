@@ -66,7 +66,6 @@ const SearchBox = ({}) => {
       singerName: searchKey,
     },
   });
-  console.log(data);
 
   const handleSearch = (e) => {
     e.target.value.length ? setButtonVisibility(1) : setButtonVisibility(0);
@@ -74,7 +73,6 @@ const SearchBox = ({}) => {
   };
 
   const sendQuery = () => {
-    console.log("div run");
     setSearchKey(search);
   };
 

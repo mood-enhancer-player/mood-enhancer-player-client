@@ -80,7 +80,6 @@ const SignUp = () => {
         history.push("/");
         // window.location.reload("/");
       }
-      console.log(loading);
     },
     onError(err) {
       // setErrors(err.graphQLErrors[0].extensions.exception.errors);
@@ -96,7 +95,6 @@ const SignUp = () => {
   const formValidation = () => {
     // Username validation
     if (values.username === "" || values.username === null) {
-      console.log(values.username);
       setError(true);
       setUserHelperText("Username must not be empty");
     } else {

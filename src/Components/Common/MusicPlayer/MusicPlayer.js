@@ -45,7 +45,6 @@ const MusicPlayer = ({
   as,
 }) => {
   // const [autoPlay, setAutoPlay] = React.useState(false);
-  console.log(songIdForYourLibArtistTab, songInfoForYourLibArtist);
   let index, audioList;
   switch (as) {
     case "Home":
@@ -101,7 +100,6 @@ const MusicPlayer = ({
   //   });
   // }
   React.useEffect(() => {
-    console.log(document.getElementsByClassName("music-player-audio")[0]);
     const musicPlayerAudio = document.getElementsByClassName(
       "music-player-audio"
     )[0];

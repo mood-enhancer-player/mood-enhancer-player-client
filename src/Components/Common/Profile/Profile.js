@@ -55,7 +55,6 @@ const Profile = () => {
 
   const { data, loading, error } = useQuery(USER_PROFILE_QUERY, {
     onCompleted: (data) => {
-      console.log("me", data.me.profileSrc);
       setprofileImgFileState(data.me.profileSrc);
     },
   });
@@ -72,7 +71,6 @@ const Profile = () => {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    console.log(file);
     if (!file) return;
     UploadProfileImg({ variables: { profileImgFile: file } });
   };

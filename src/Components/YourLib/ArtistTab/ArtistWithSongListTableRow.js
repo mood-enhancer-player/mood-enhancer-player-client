@@ -6,12 +6,6 @@ import {
   Button,
   IconButton,
 } from "@material-ui/core";
-import { gql, useQuery } from "@apollo/client";
-import { useHistory } from "react-router-dom";
-import Loader from "../../Common/Loader";
-import PlayArrowRoundedIcon from "@material-ui/icons/PlayArrowRounded";
-import PauseCircleFilledOutlinedIcon from "@material-ui/icons/PauseCircleFilledOutlined";
-import MusicPlayer from "../../Common/MusicPlayer/MusicPlayer";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -79,13 +73,11 @@ const ArtistWithSongListTableRow = ({
   //   setPlayIcon(!playIcon);
   // };
   const iconHandlerOnHover = (songId) => {
-    console.log("MouseOver callde", songId);
     const indexCell = document.getElementById(index);
     indexCell.textContent = "|>";
     indexCell.style.fontSize = "20px";
   };
   const iconHandlerOnLeave = (songId) => {
-    console.log("MouseOver callde", songId);
     const indexCell = document.getElementById(index);
     indexCell.textContent = index + 1;
     indexCell.style.fontSize = "14px";

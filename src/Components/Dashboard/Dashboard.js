@@ -76,7 +76,6 @@ function Dashboard(props) {
   // Song Card Click Handler
   const cardClickHandler = (receiveSongId) => {
     setSongIdState(receiveSongId);
-    console.log("card click");
     console.log("cardhandlercliekd", receiveSongId);
   };
 
@@ -169,7 +168,7 @@ function Dashboard(props) {
               />
             )}
           </>
-        )}{" "}
+        )}
       </main>
     </div>
   );
