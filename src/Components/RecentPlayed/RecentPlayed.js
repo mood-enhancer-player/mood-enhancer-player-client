@@ -28,16 +28,16 @@ const useStyles = makeStyles({
   },
 });
 
-const RecentPlayed = () => {
+const RecentPlayed = ({ cardClickHandler, getRecentPlay }) => {
   const classes = useStyles();
-  const getRecentPlay = useQuery(RECENT_PLAYED_QUERY);
+  // const getRecentPlay = useQuery(RECENT_PLAYED_QUERY);
 
-  const [songIdState, setSongIdState] = useState("5f9e3c550a3f4933c4b0183f");
-  const cardClickHandler = (receiveSongId) => {
-    setSongIdState(receiveSongId);
-    console.log("card click");
-    console.log("cardhandlercliekd", receiveSongId);
-  };
+  // const [songIdState, setSongIdState] = useState("5f9e3c550a3f4933c4b0183f");
+  // const cardClickHandler = (receiveSongId) => {
+  //   setSongIdState(receiveSongId);
+  //   console.log("card click");
+  //   console.log("cardhandlercliekd", receiveSongId);
+  // };
 
   return (
     <>
@@ -56,7 +56,6 @@ const RecentPlayed = () => {
             <div className={classes.root}>
               <Grid container spacing={2}>
                 {getRecentPlay.data.getRecentPlay.map((song) => {
-                  console.log(song);
                   return (
                     <MusicCard
                       musicData={song}
@@ -67,11 +66,11 @@ const RecentPlayed = () => {
                 })}
               </Grid>
             </div>
-            <MusicPlayer
+            {/* <MusicPlayer
               getRecentPlayQuery={getRecentPlay.data}
               songIdForRecentPlayedTab={songIdState}
               as="RecentPlayed"
-            />
+            /> */}
           </>
         )}
       </div>
@@ -79,16 +78,16 @@ const RecentPlayed = () => {
   );
 };
 
-const RECENT_PLAYED_QUERY = gql`
-  query {
-    getRecentPlay {
-      _id
-      name
-      singer
-      musicSrc
-      cover
-    }
-  }
-`;
+// const RECENT_PLAYED_QUERY = gql`
+//   query {
+//     getRecentPlay {
+//       _id
+//       name
+//       singer
+//       musicSrc
+//       cover
+//     }
+//   }
+// `;
 
 export default RecentPlayed;

@@ -90,19 +90,19 @@ const YourLib = () => {
           variant="fullWidth"
           aria-label="full width tabs example"
         >
-          <Tab label="Playlists" {...a11yProps(0)} />
-          <Tab label="Artists" {...a11yProps(1)} />
-          <Tab label="Albums" {...a11yProps(2)} />
+          {/* <Tab label="Playlists" {...a11yProps(0)} /> */}
+          <Tab label="Artists" {...a11yProps(0)} />
+          <Tab label="Albums" {...a11yProps(1)} />
         </Tabs>
       </AppBar>
 
-      <TabPanel value={value} index={0} className={classes.tabview}>
+      {/* <TabPanel value={value} index={0} className={classes.tabview}>
         <PlaylistTab />
-      </TabPanel>
-      <TabPanel value={value} index={1} className={classes.tabview}>
+      </TabPanel> */}
+      <TabPanel value={value} index={0} className={classes.tabview}>
         <ArtistTab yourLibCardClickHandler={yourLibCardClickHandler} />
       </TabPanel>
-      <TabPanel value={value} index={2} className={classes.tabview}>
+      <TabPanel value={value} index={1} className={classes.tabview}>
         <AlbumTab />
       </TabPanel>
     </div>

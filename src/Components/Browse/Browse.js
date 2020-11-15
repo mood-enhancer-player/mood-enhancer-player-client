@@ -28,24 +28,22 @@ const useStyles = makeStyles({
   },
 });
 
-const Browse = ({ search }) => {
+const Browse = ({ search, cardClickHandler, musicInfo }) => {
   const classes = useStyles();
-  const musicInfo = useQuery(MUSIC_INFO_QUERY);
+  // const musicInfo = useQuery(MUSIC_INFO_QUERY);
 
-  const [songIdState, setSongIdState] = useState("5f9e3c550a3f4933c4b0183f");
-  const cardClickHandler = (receiveSongId) => {
-    setSongIdState(receiveSongId);
-    console.log("card click");
-    console.log("cardhandlercliekd", receiveSongId);
-  };
+  // const [songIdState, setSongIdState] = useState("5f9e3c550a3f4933c4b0183f");
+  // const cardClickHandler = (receiveSongId) => {
+  //   setSongIdState(receiveSongId);
+  //   console.log("card click");
+  //   console.log("cardhandlercliekd", receiveSongId);
+  // };
 
   let musicData = [];
   let capitalizeSearch = search.trim().replace(/\b\w/g, (c) => c.toUpperCase());
   const searchResult = () => {
     if (musicInfo.data) {
       musicInfo.data.getAllSongs.map((songData) => {
-        console.log(songData.name);
-        console.log(capitalizeSearch);
         if (
           songData.name.includes(capitalizeSearch) ||
           songData.singer.includes(capitalizeSearch)
@@ -58,8 +56,6 @@ const Browse = ({ search }) => {
 
   searchResult();
 
-  console.log(search);
-  console.log(musicData);
   return (
     <>
       <div>
@@ -87,11 +83,11 @@ const Browse = ({ search }) => {
                 })}
               </Grid>
             </div>
-            <MusicPlayer
+            {/* <MusicPlayer
               musicInfoQuery={musicInfo.data}
               songIdForBrowseTab={songIdState}
               as="Browse"
-            />
+            /> */}
           </>
         )}
       </div>
@@ -99,18 +95,18 @@ const Browse = ({ search }) => {
   );
 };
 
-const MUSIC_INFO_QUERY = gql`
-  query {
-    getAllSongs {
-      _id
-      name
-      description
-      singer
-      playCount
-      cover
-      musicSrc
-    }
-  }
-`;
+// const MUSIC_INFO_QUERY = gql`
+//   query {
+//     getAllSongs {
+//       _id
+//       name
+//       description
+//       singer
+//       playCount
+//       cover
+//       musicSrc
+//     }
+//   }
+// `;
 
 export default Browse;

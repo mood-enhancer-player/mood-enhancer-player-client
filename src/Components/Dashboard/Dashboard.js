@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import {
   CssBaseline,
   Divider,
@@ -29,6 +29,7 @@ import {
 import { makeStyles, useTheme, fade } from "@material-ui/core/styles";
 import { Link, withRouter } from "react-router-dom";
 import { AuthContext } from "../../context/auth";
+import { useQuery, gql } from "@apollo/client";
 import Home from "../Home/Home";
 import Browse from "../Browse/Browse";
 import Profile from "../Common/Profile/Profile";
@@ -40,6 +41,8 @@ import MenuForNewUser from "./ProfileMenu/MenuForNewUser";
 import MenuForExistingUser from "./ProfileMenu/MenuForExistingUser";
 import HideDrawer from "./NavWithHiddenDrawer.js/HideDrawer";
 import AppNavBar from "./AppBar/AppNavBar";
+import MusicPlayer from "../Common/MusicPlayer/MusicPlayer";
+import Loader from "../Common/Loader";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -155,6 +158,17 @@ function Dashboard(props) {
   // const theme = useTheme();
 
   const { user, logout } = useContext(AuthContext);
+
+  const musicInfo = useQuery(MUSIC_INFO_QUERY);
+  const [songIdState, setSongIdState] = useState("5facdb3c754e8e12fc5a2568");
+
+  const getSongById = useQuery(GET_SONG_BY_ID_QUERY, {
+    variables: {
+      songId: songIdState,
+    },
+  });
+
+  const getRecentPlay = useQuery(RECENT_PLAYED_QUERY);
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -322,6 +336,13 @@ function Dashboard(props) {
   //   </div>
   // );
 
+  // Song Card Click Handler
+  const cardClickHandler = (receiveSongId) => {
+    setSongIdState(receiveSongId);
+    console.log("card click");
+    console.log("cardhandlercliekd", receiveSongId);
+  };
+
   const [search, setSearch] = useState("");
   const handleSearch = (e) => {
     console.log(e.target.value);
@@ -444,22 +465,102 @@ function Dashboard(props) {
       </nav> */}
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        {state === "Home" && <Home />}
-        {state === "Browse" && <Browse search={search} />}
-        {state === "Your Library" && <YourLib />}
-        {state === "Recent Played" && <RecentPlayed />}
-        {state === "Privacy & Policy" && <Privacy />}
+        {musicInfo.error && getRecentPlay.error && (
+          <h1>{`You Broken It ! ${musicInfo.error.message}`}</h1>
+        )}
+        {!musicInfo.data ||
+        musicInfo.loading ||
+        !getSongById.data ||
+        getSongById.loading ||
+        !getRecentPlay.data ||
+        getRecentPlay.loading ? (
+          <Loader />
+        ) : (
+          <>
+            {state === "Home" && (
+              <Home cardClickHandler={cardClickHandler} musicInfo={musicInfo} />
+            )}
+            {state === "Browse" && (
+              <Browse
+                search={search}
+                cardClickHandler={cardClickHandler}
+                musicInfo={musicInfo}
+              />
+            )}
+            {state === "Your Library" && <YourLib />}
+            {state === "Recent Played" && (
+              <RecentPlayed
+                cardClickHandler={cardClickHandler}
+                getRecentPlay={getRecentPlay}
+              />
+            )}
+            {state === "Privacy & Policy" && <Privacy />}
+            {state !== "Your Library" && (
+              <MusicPlayer
+                // For Home tab
+                musicInfoQuery={musicInfo.data}
+                getSongByIdQuery={getSongById.data}
+                // For Browse Tab
+                songIdForBrowseTab={songIdState}
+                // For Recent Played
+                getRecentPlayQuery={getRecentPlay.data}
+                songIdForRecentPlayedTab={songIdState}
+                // as = {component}
+                as={state}
+              />
+            )}
+          </>
+        )}{" "}
       </main>
     </div>
   );
 }
 
-Dashboard.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  window: PropTypes.func,
-};
+// Dashboard.propTypes = {
+//   /**
+//    * Injected by the documentation to work in an iframe.
+//    * You won't need it on your project.
+//    */
+//   window: PropTypes.func,
+// };
 
-export default withRouter(Dashboard);
+const MUSIC_INFO_QUERY = gql`
+  query {
+    getAllSongs {
+      _id
+      name
+      description
+      singer
+      playCount
+      cover
+      musicSrc
+    }
+  }
+`;
+
+const GET_SONG_BY_ID_QUERY = gql`
+  query songById($songId: ID!) {
+    getSongById(songId: $songId) {
+      _id
+      name
+      description
+      singer
+      musicSrc
+      cover
+    }
+  }
+`;
+
+const RECENT_PLAYED_QUERY = gql`
+  query {
+    getRecentPlay {
+      _id
+      name
+      singer
+      musicSrc
+      cover
+    }
+  }
+`;
+
+export default Dashboard;

@@ -126,26 +126,26 @@ const audioLists = [
   // },
 ];
 
-const Home = () => {
+const Home = ({ cardClickHandler, musicInfo }) => {
   const classes = useStyles();
-  const musicInfo = useQuery(MUSIC_INFO_QUERY);
-  const [songIdState, setSongIdState] = useState("5facdb3c754e8e12fc5a2568");
+  // const musicInfo = useQuery(MUSIC_INFO_QUERY);
+  // const [songIdState, setSongIdState] = useState("5facdb3c754e8e12fc5a2568");
 
-  const getSongById = useQuery(GET_SONG_BY_ID_QUERY, {
-    variables: {
-      songId: songIdState,
-    },
-  });
-  const cardClickHandler = (receiveSongId) => {
-    setSongIdState(receiveSongId);
-    console.log("card click");
-    console.log("cardhandlercliekd", receiveSongId);
-  };
+  // const getSongById = useQuery(GET_SONG_BY_ID_QUERY, {
+  //   variables: {
+  //     songId: songIdState,
+  //   },
+  // });
+  // const cardClickHandler = (receiveSongId) => {
+  //   setSongIdState(receiveSongId);
+  //   console.log("card click");
+  //   console.log("cardhandlercliekd", receiveSongId);
+  // };
 
   return (
     <>
       <div>
-        {musicInfo.error && (
+        {/* {musicInfo.error && (
           <h1>{`You Broken It ! ${musicInfo.error.message}`}</h1>
         )}
         {!musicInfo.data ||
@@ -153,63 +153,63 @@ const Home = () => {
         !getSongById.data ||
         getSongById.loading ? (
           <Loader />
-        ) : (
-          <>
-            <Typography variant="h5" className={classes.heading}>
-              Top Trends
-              {/* {songIdState} */}
-            </Typography>
-            <div className={classes.root}>
-              <Grid container spacing={2}>
-                {musicInfo.data.getAllSongs.map((musicData) => {
-                  return (
-                    <MusicCard
-                      musicData={musicData}
-                      key={musicData._id}
-                      cardClickHandler={cardClickHandler}
-                    />
-                  );
-                })}
-              </Grid>
-            </div>
-            <MusicPlayer
+        ) : ( */}
+        <>
+          <Typography variant="h5" className={classes.heading}>
+            Top Trends
+            {/* {songIdState} */}
+          </Typography>
+          <div className={classes.root}>
+            <Grid container spacing={2}>
+              {musicInfo.data.getAllSongs.map((musicData) => {
+                return (
+                  <MusicCard
+                    musicData={musicData}
+                    key={musicData._id}
+                    cardClickHandler={cardClickHandler}
+                  />
+                );
+              })}
+            </Grid>
+          </div>
+          {/* <MusicPlayer
               musicInfoQuery={musicInfo.data}
               getSongByIdQuery={getSongById.data}
               // defaultSongIndex={songIdState}
               as="Home"
-            />
-          </>
-        )}
+            /> */}
+        </>
+        {/* )} */}
       </div>
     </>
   );
 };
 
-const MUSIC_INFO_QUERY = gql`
-  query {
-    getAllSongs {
-      _id
-      name
-      description
-      singer
-      playCount
-      cover
-      musicSrc
-    }
-  }
-`;
+// const MUSIC_INFO_QUERY = gql`
+//   query {
+//     getAllSongs {
+//       _id
+//       name
+//       description
+//       singer
+//       playCount
+//       cover
+//       musicSrc
+//     }
+//   }
+// `;
 
-const GET_SONG_BY_ID_QUERY = gql`
-  query songById($songId: ID!) {
-    getSongById(songId: $songId) {
-      _id
-      name
-      description
-      singer
-      musicSrc
-      cover
-    }
-  }
-`;
+// const GET_SONG_BY_ID_QUERY = gql`
+//   query songById($songId: ID!) {
+//     getSongById(songId: $songId) {
+//       _id
+//       name
+//       description
+//       singer
+//       musicSrc
+//       cover
+//     }
+//   }
+// `;
 
 export default Home;

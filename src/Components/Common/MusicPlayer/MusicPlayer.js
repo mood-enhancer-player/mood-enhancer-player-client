@@ -66,7 +66,7 @@ const MusicPlayer = ({
         audioList = musicInfoQuery.getAllSongs;
       }
       break;
-    case "RecentPlayed":
+    case "Recent Played":
       {
         index = getRecentPlayQuery.getRecentPlay.findIndex((oneSong, index) => {
           if (String(oneSong._id) === songIdForRecentPlayedTab) return index;
