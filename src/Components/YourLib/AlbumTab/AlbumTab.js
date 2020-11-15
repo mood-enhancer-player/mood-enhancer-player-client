@@ -8,7 +8,7 @@ import {
   Paper,
   Typography,
 } from "@material-ui/core";
-import TabCard from "./TabCard";
+import TabCard from "../../Common/Card/TabCard";
 import { useQuery, gql } from "@apollo/client";
 
 const useStyles = makeStyles((theme) => ({

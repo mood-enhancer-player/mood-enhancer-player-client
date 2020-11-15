@@ -5,15 +5,15 @@ import {
   makeStyles,
   CircularProgress,
 } from "@material-ui/core";
-import MusicCard from "./MusicCard";
-import MusicPlayer from "./MusicPlayer";
-import hasi from "../music/hasi.mp3";
-import kabir from "../music/kabir.mp3";
-import nayanne from "../music/nayanne.mp3";
-import sanamre from "../music/sanamre.mp3";
-import hasiImag from "../images/1.png";
+import MusicCard from "../Common/Card/MusicCard";
+import MusicPlayer from "../Common/MusicPlayer/MusicPlayer";
+import hasi from "../../music/hasi.mp3";
+import kabir from "../../music/kabir.mp3";
+import nayanne from "../../music/nayanne.mp3";
+import sanamre from "../../music/sanamre.mp3";
+import hasiImag from "../../images/1.png";
 import { useQuery, gql } from "@apollo/client";
-import Loader from "./Loader";
+import Loader from "../Common/Loader";
 const useStyles = makeStyles({
   root: {
     display: "flex",

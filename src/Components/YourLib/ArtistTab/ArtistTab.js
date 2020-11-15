@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 import { useQuery, gql } from "@apollo/client";
 
-import TabCard from "./TabCard";
+import TabCard from "../../Common/Card/TabCard";
 import ArtistWithSongList from "./ArtistWithSongList";
 const useStyles = makeStyles((theme) => ({
   root: {

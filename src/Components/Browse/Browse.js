@@ -5,10 +5,10 @@ import {
   makeStyles,
   CircularProgress,
 } from "@material-ui/core";
-import MusicCard from "./MusicCard";
-import MusicPlayer from "./MusicPlayer";
+import MusicCard from "../Common/Card/MusicCard";
+import MusicPlayer from "../Common/MusicPlayer/MusicPlayer";
 import { useQuery, gql } from "@apollo/client";
-import Loader from "./Loader";
+import Loader from "../Common/Loader";
 const useStyles = makeStyles({
   root: {
     display: "flex",
@@ -28,9 +28,9 @@ const useStyles = makeStyles({
   },
 });
 
-const RecentPlayed = () => {
+const Browse = ({ search }) => {
   const classes = useStyles();
-  const getRecentPlay = useQuery(RECENT_PLAYED_QUERY);
+  const musicInfo = useQuery(MUSIC_INFO_QUERY);
 
   const [songIdState, setSongIdState] = useState("5f9e3c550a3f4933c4b0183f");
   const cardClickHandler = (receiveSongId) => {
@@ -39,24 +39,44 @@ const RecentPlayed = () => {
     console.log("cardhandlercliekd", receiveSongId);
   };
 
+  let musicData = [];
+  let capitalizeSearch = search.trim().replace(/\b\w/g, (c) => c.toUpperCase());
+  const searchResult = () => {
+    if (musicInfo.data) {
+      musicInfo.data.getAllSongs.map((songData) => {
+        console.log(songData.name);
+        console.log(capitalizeSearch);
+        if (
+          songData.name.includes(capitalizeSearch) ||
+          songData.singer.includes(capitalizeSearch)
+        ) {
+          musicData.push(songData);
+        }
+      });
+    }
+  };
+
+  searchResult();
+
+  console.log(search);
+  console.log(musicData);
   return (
     <>
       <div>
-        {getRecentPlay.error && (
-          <h1>{`You Broken It ! ${getRecentPlay.error.message}`}</h1>
+        {musicInfo.error && (
+          <h1>{`You Broken It ! ${musicInfo.error.message}`}</h1>
         )}
-        {!getRecentPlay.data || getRecentPlay.loading ? (
+        {!musicInfo.data || musicInfo.loading ? (
           <Loader />
         ) : (
           <>
             <Typography variant="h5" className={classes.heading}>
-              Recent Played
+              Top Trends
               {/* {songIdState} */}
             </Typography>
             <div className={classes.root}>
               <Grid container spacing={2}>
-                {getRecentPlay.data.getRecentPlay.map((song) => {
-                  console.log(song);
+                {musicData.map((song) => {
                   return (
                     <MusicCard
                       musicData={song}
@@ -68,9 +88,9 @@ const RecentPlayed = () => {
               </Grid>
             </div>
             <MusicPlayer
-              getRecentPlayQuery={getRecentPlay.data}
-              songIdForRecentPlayedTab={songIdState}
-              as="RecentPlayed"
+              musicInfoQuery={musicInfo.data}
+              songIdForBrowseTab={songIdState}
+              as="Browse"
             />
           </>
         )}
@@ -79,16 +99,18 @@ const RecentPlayed = () => {
   );
 };
 
-const RECENT_PLAYED_QUERY = gql`
+const MUSIC_INFO_QUERY = gql`
   query {
-    getRecentPlay {
+    getAllSongs {
       _id
       name
+      description
       singer
-      musicSrc
+      playCount
       cover
+      musicSrc
     }
   }
 `;
 
-export default RecentPlayed;
+export default Browse;

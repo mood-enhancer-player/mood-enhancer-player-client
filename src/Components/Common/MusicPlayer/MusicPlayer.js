@@ -1,11 +1,11 @@
 import React from "react";
 import ReactJkMusicPlayer from "react-jinke-music-player";
 import "react-jinke-music-player/assets/index.css";
-import hasi from "../music/hasi.mp3";
-import kabir from "../music/kabir.mp3";
-import nayanne from "../music/nayanne.mp3";
-import sanamre from "../music/sanamre.mp3";
-import hasiImag from "../images/1.png";
+import hasi from "../../../music/hasi.mp3";
+import kabir from "../../../music/kabir.mp3";
+import nayanne from "../../../music/nayanne.mp3";
+import sanamre from "../../../music/sanamre.mp3";
+import hasiImag from "../../../images/1.png";
 
 const audioLists = [
   {

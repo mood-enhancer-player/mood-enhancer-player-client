@@ -8,10 +8,10 @@ import {
 } from "@material-ui/core";
 import { gql, useQuery } from "@apollo/client";
 import { useHistory } from "react-router-dom";
-import Loader from "./Loader";
+import Loader from "../../Common/Loader";
 import PlayArrowRoundedIcon from "@material-ui/icons/PlayArrowRounded";
 import PauseCircleFilledOutlinedIcon from "@material-ui/icons/PauseCircleFilledOutlined";
-import MusicPlayer from "./MusicPlayer";
+import MusicPlayer from "../../Common/MusicPlayer/MusicPlayer";
 
 const useStyles = makeStyles((theme) => ({
   root: {

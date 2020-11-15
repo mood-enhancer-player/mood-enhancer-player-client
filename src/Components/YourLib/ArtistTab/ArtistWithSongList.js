@@ -15,9 +15,9 @@ import {
   CardMedia,
 } from "@material-ui/core";
 import { useQuery, gql } from "@apollo/client";
-import Loader from "./Loader";
+import Loader from "../../Common/Loader";
 import ArtistWithSongListTableRow from "./ArtistWithSongListTableRow";
-import MusicPlayer from "./MusicPlayer";
+import MusicPlayer from "../../Common/MusicPlayer/MusicPlayer";
 
 const useStyles = makeStyles((theme) => ({
   root: {

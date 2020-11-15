@@ -1,14 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Dashboard from "./Components/Dashboard";
+import Dashboard from "./Components/Dashboard/Dashboard";
 import "./App.css";
-import SignUp from "./Components/SignUp";
-import Login from "./Components/Login";
+import SignUp from "./Components/UserAuth/SignUp";
+import Login from "./Components/UserAuth/Login";
 
 import { AuthProvider } from "./context/auth";
 import AuthRoute from "./util/AuthRoute";
-import SearchResult from "./Components/SearchResult";
-import MusicPlayer from "./Components/MusicPlayer";
 
 const App = () => {
   return (

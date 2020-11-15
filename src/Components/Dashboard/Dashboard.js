@@ -31,16 +31,14 @@ import PolicyIcon from "@material-ui/icons/Policy";
 
 import { makeStyles, useTheme, fade } from "@material-ui/core/styles";
 import { Link, withRouter } from "react-router-dom";
-import { AuthContext } from "../context/auth";
-import About from "./YourLib";
-import Home from "./Home";
-import Browse from "./Browse";
-import Profile from "./Profile";
-import PhotoTaker from "./PhotoTaker";
-import SearchBox from "./SearchBox";
-import YourLib from "./YourLib";
-import Privacy from "./Privacy";
-import RecentPlayed from "./RecentPlayed";
+import { AuthContext } from "../../context/auth";
+import Home from "../Home/Home";
+import Browse from "../Browse/Browse";
+import Profile from "../Common/Profile/Profile";
+import PhotoTaker from "../Common/FaceCapture/PhotoTaker";
+import YourLib from "../YourLib/YourLib";
+import Privacy from "../Common/Privacy";
+import RecentPlayed from "../RecentPlayed/RecentPlayed";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({

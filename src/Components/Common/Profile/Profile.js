@@ -8,7 +8,7 @@ import {
   CircularProgress,
 } from "@material-ui/core";
 import { gql, useQuery, useMutation } from "@apollo/client";
-import Loader from "./Loader";
+import Loader from "../Loader";
 
 const useStyles = makeStyles((theme) => ({
   root: {

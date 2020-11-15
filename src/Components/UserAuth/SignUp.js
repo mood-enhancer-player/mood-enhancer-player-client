@@ -9,7 +9,7 @@ import {
 import { gql, useMutation } from "@apollo/client";
 import Alert from "@material-ui/lab/Alert";
 import { Redirect, useHistory } from "react-router-dom";
-import { AuthContext } from "../context/auth";
+import { AuthContext } from "../../context/auth";
 
 const useStyles = makeStyles((theme) => ({
   root: {
