@@ -10,7 +10,7 @@ import Privacy from "../Common/Privacy";
 import RecentPlayed from "../RecentPlayed/RecentPlayed";
 import MenuForNewUser from "./ProfileMenu/MenuForNewUser";
 import MenuForExistingUser from "./ProfileMenu/MenuForExistingUser";
-import HideDrawer from "./NavWithHiddenDrawer.js/HideDrawer";
+import HideDrawer from "./NavWithHiddenDrawer/HideDrawer";
 import AppNavBar from "./AppBar/AppNavBar";
 import MusicPlayer from "../Common/MusicPlayer/MusicPlayer";
 import Loader from "../Common/Loader";
