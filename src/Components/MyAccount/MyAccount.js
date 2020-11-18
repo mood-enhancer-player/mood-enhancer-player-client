@@ -79,7 +79,6 @@ const MyAccount = () => {
     update(proxy) {
       const myCache = proxy.readQuery({ query: USER_PROFILE_QUERY });
       if (myCache) {
-        console.log(myCache.me);
         proxy.writeQuery({
           query: USER_PROFILE_QUERY,
           data: {
