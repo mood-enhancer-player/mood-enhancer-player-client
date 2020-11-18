@@ -34,7 +34,7 @@ const MenuForExistingUser = ({
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>
-        <Link to="/signup" className={classes.menuItemLink}>
+        <Link to="/myAccount" className={classes.menuItemLink}>
           My Account
           {/* {user} */}
         </Link>
