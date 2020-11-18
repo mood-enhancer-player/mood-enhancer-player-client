@@ -14,6 +14,7 @@ import HideDrawer from "./NavWithHiddenDrawer/HideDrawer";
 import AppNavBar from "./AppBar/AppNavBar";
 import MusicPlayer from "../Common/MusicPlayer/MusicPlayer";
 import Loader from "../Common/Loader";
+import MainAppNavBar from "./MainAppNavBar/MainAppNavBar";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,28 +44,28 @@ const Dashboard = () => {
 
   const getRecentPlay = useQuery(RECENT_PLAYED_QUERY);
 
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  // const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-  const isMenuOpen = Boolean(anchorEl);
+  // const [anchorEl, setAnchorEl] = React.useState(null);
+  // const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  // const isMenuOpen = Boolean(anchorEl);
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
+  // const handleDrawerToggle = () => {
+  //   setMobileOpen(!mobileOpen);
+  // };
 
-  const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+  // const handleProfileMenuOpen = (event) => {
+  //   setAnchorEl(event.currentTarget);
+  // };
 
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
+  // const handleMobileMenuClose = () => {
+  //   setMobileMoreAnchorEl(null);
+  // };
 
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-  };
+  // const handleMenuClose = () => {
+  //   setAnchorEl(null);
+  //   handleMobileMenuClose();
+  // };
 
   // State For Menu Switching
   const [state, setState] = React.useState("Home");
@@ -94,7 +95,14 @@ const Dashboard = () => {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppNavBar
+      <MainAppNavBar
+        state={state}
+        handleSearch={handleSearch}
+        menuId={menuId}
+        selectedMenuItem={selectedMenuItem}
+        privacy={privacy}
+      />
+      {/* <AppNavBar
         menuId={menuId}
         state={state}
         handleDrawerToggle={handleDrawerToggle}
@@ -123,7 +131,7 @@ const Dashboard = () => {
         handleDrawerToggle={handleDrawerToggle}
         selectedMenuItem={selectedMenuItem}
         privacy={privacy}
-      />
+      /> */}
 
       <main className={classes.content}>
         <div className={classes.toolbar} />
