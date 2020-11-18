@@ -51,12 +51,14 @@ const MyAccount = () => {
   const [error, setError] = useState(false);
   const [emailHelperText, setEmailHelperText] = useState("");
   const [usernameHelperText, setUserNameHelperText] = useState("");
+  const [disabledToggler, setDisabledToggler] = useState(true);
   const [values, setValues] = useState({
-    email: "",
     username: "",
+    email: "",
   });
   console.log(error);
   const onChange = (e) => {
+    console.log("target", e.target.value);
     setValues({ ...values, [e.target.name]: e.target.value });
     // onInput change all the erro messages are remove.
     setError(false);
@@ -67,23 +69,26 @@ const MyAccount = () => {
   const { data, loading, error: queryError } = useQuery(USER_PROFILE_QUERY, {
     onCompleted: (data) => {
       console.log(data);
-      setValues({ username: data.me.username, email: data.me.email });
+      setValues({ ...values });
     },
   });
 
   const history = useHistory();
-  // const [loginUser, { loading }] = useMutation(LOGIN_MUTATION, {
-  //   update(_, result) {
-  //     if (result) {
-  //       context.login(result.data.login);
-  //       history.push("/");
-  //     }
-  //   },
-  //   onError(err) {
-  //     //   setErrors(err.graphQLErrors[0].extensions.exception.errors);
-  //   },
-  //   variables: values,
-  // });
+  // Update user profile after mutation
+  const [updateUserInfo] = useMutation(UPDATE_USER_INFO, {
+    update(proxy) {
+      const myCache = proxy.readQuery({ query: USER_PROFILE_QUERY });
+      if (myCache) {
+        console.log(myCache.me);
+        proxy.writeQuery({
+          query: USER_PROFILE_QUERY,
+          data: {
+            me: myCache.me,
+          },
+        });
+      }
+    },
+  });
 
   const formValidation = () => {
     // Email validation
@@ -99,7 +104,7 @@ const MyAccount = () => {
       setError(false);
     }
 
-    // Password validation
+    // Username validation
 
     if (values.username === "" || values.username === null) {
       setError(true);
@@ -115,13 +120,17 @@ const MyAccount = () => {
   const onFormSubmit = (e) => {
     e.preventDefault();
     formValidation();
-    // loginUser();
+    updateUserInfo({ variables: values });
     console.log("form is submited");
   };
 
-  if (data) {
-    console.log(data);
-  }
+  const editBtnHandler = (e) => {
+    console.log("edit btn clicked");
+    setDisabledToggler(false);
+    if (data) {
+      setValues({ username: data.me.username, email: data.me.email });
+    }
+  };
 
   return (
     <div>
@@ -130,7 +139,7 @@ const MyAccount = () => {
         className={classes.root}
         noValidate
         autoComplete="off"
-        onSubmit={onFormSubmit}
+        // onSubmit={onFormSubmit}
       >
         <div className={classes.profileImg}>
           <Profile />
@@ -157,6 +166,7 @@ const MyAccount = () => {
                 size="small"
                 className={classes.textField}
                 defaultValue={data.me.username}
+                disabled={disabledToggler}
               />
             </div>
             <div>
@@ -173,6 +183,7 @@ const MyAccount = () => {
                 size="small"
                 className={classes.textField}
                 defaultValue={data.me.email}
+                disabled={disabledToggler}
               />
             </div>
             <div>
@@ -183,16 +194,30 @@ const MyAccount = () => {
                 New to Mood Enhancer ? <u>Create an account</u>
               </p>
             </div>
-            <div>
-              <Button
-                variant="outlined"
-                color="secondary"
-                type="submit"
-                className={classes.textField}
-              >
-                Update Username or Email
-              </Button>
-            </div>
+            {disabledToggler ? (
+              <div>
+                <Button
+                  variant="outlined"
+                  color="secondary"
+                  // type="button"
+                  className={classes.textField}
+                  onClick={editBtnHandler}
+                >
+                  Edit Username or Email
+                </Button>
+              </div>
+            ) : (
+              <div>
+                <Button
+                  variant="outlined"
+                  color="secondary"
+                  className={classes.textField}
+                  onClick={onFormSubmit}
+                >
+                  Update Profile
+                </Button>
+              </div>
+            )}
           </>
         )}
       </form>
@@ -200,22 +225,18 @@ const MyAccount = () => {
   );
 };
 
-// const LOGIN_MUTATION = gql`
-//   mutation login($email: String!, $password: String!) {
-//     login(email: $email, password: $password) {
-//       id
-//       email
-//       token
-//     }
-//   }
-// `;
-
 const USER_PROFILE_QUERY = gql`
   query {
     me {
       username
       email
     }
+  }
+`;
+
+const UPDATE_USER_INFO = gql`
+  mutation updateProfile($username: String!, $email: String!) {
+    updateUserInfo(updateUserInput: { username: $username, email: $email })
   }
 `;
 
