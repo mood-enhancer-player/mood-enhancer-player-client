@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
       // background: "#2a2b2c",
       transform: "translateY(-5px)",
       transition: "0.4s ease-out",
+      cursor: "pointer",
     },
 
     [theme.breakpoints.down("md")]: {
