@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
   drawerPaper: {
     width: drawerWidth,
     background: theme.palette.primary.light,
+    // background: "red",
     zIndex: "1",
   },
 }));
