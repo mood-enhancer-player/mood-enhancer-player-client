@@ -30,6 +30,9 @@ const useStyles = makeStyles((theme) => ({
       marginTop: "92px",
     },
   },
+  iconColor: {
+    color: theme.palette.primary.contrastText,
+  },
 }));
 
 const SideDrawer = ({ selectedMenuItem, privacy }) => {
@@ -68,7 +71,11 @@ const SideDrawer = ({ selectedMenuItem, privacy }) => {
           const { text, icon, onClick } = item;
           return (
             <ListItem button key={text} onClick={() => selectedMenuItem(text)}>
-              {icon && <ListItemIcon>{icon}</ListItemIcon>}
+              {icon && (
+                <ListItemIcon className={classes.iconColor}>
+                  {icon}
+                </ListItemIcon>
+              )}
               <ListItemText primary={text} />
             </ListItem>
           );
