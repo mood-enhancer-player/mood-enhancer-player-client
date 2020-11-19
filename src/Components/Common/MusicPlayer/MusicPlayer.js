@@ -93,7 +93,10 @@ const MusicPlayer = ({
     )[0];
     musicPlayerAudio.setAttribute("muted", "muted");
   }, []);
-
+  // if not any id match then play 0 index song
+  if (index === -1) {
+    index = 0;
+  }
   return (
     <>
       <ReactJkMusicPlayer
