@@ -87,25 +87,13 @@ const MusicPlayer = ({
       index = 0;
   }
 
-  // if (getSongByIdQuery !== 0) {
-  //   // For browse tab getSongByQuery = 0
-  //   index = musicInfoQuery.getAllSongs.findIndex((oneSong, index) => {
-  //     if (String(oneSong._id) === getSongByIdQuery.getSongById._id) {
-  //       return index;
-  //     }
-  //   });
-  // } else {
-  //   index = musicInfoQuery.getAllSongs.findIndex((oneSong, index) => {
-  //     if (String(oneSong._id) === songIdForBrowseTab) return index;
-  //   });
-  // }
   React.useEffect(() => {
     const musicPlayerAudio = document.getElementsByClassName(
       "music-player-audio"
     )[0];
     musicPlayerAudio.setAttribute("muted", "muted");
   }, []);
-  // .setAttribute("muted", false);
+
   return (
     <>
       <ReactJkMusicPlayer

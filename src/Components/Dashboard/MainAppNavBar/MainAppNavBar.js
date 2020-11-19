@@ -11,6 +11,8 @@ const MainAppNavBar = ({
   menuId,
   selectedMenuItem,
   privacy,
+  themeToggler,
+  themeHandler,
 }) => {
   const { user, logout } = useContext(AuthContext);
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -44,6 +46,8 @@ const MainAppNavBar = ({
         handleDrawerToggle={handleDrawerToggle}
         handleSearch={handleSearch}
         handleProfileMenuOpen={handleProfileMenuOpen}
+        themeHandler={themeHandler}
+        themeToggler={themeToggler}
       />
 
       {user ? (

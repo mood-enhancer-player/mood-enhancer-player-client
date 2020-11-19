@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { darkTheme } from "./theme";
-import { ThemeProvider } from "@material-ui/core/styles";
+// import { darkTheme, lightTheme } from "./theme";
+// import { ThemeProvider } from "@material-ui/core/styles";
 
 import {
   ApolloProvider,
@@ -43,9 +43,9 @@ const client = new ApolloClient({
 ReactDOM.render(
   // <React.StrictMode>
   <ApolloProvider client={client}>
-    <ThemeProvider theme={darkTheme}>
-      <App />
-    </ThemeProvider>
+    {/* <ThemeProvider theme={lightTheme}> */}
+    <App />
+    {/* </ThemeProvider> */}
   </ApolloProvider>,
 
   // </React.StrictMode>,

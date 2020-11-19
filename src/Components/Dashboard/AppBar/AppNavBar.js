@@ -9,12 +9,15 @@ import {
   AlarmOutlined as AlarmIcon,
   AccountCircleOutlined as AccountCircle,
   FavoriteBorderOutlined as FavoriteBorderIcon,
+  Brightness7 as Brightness7Icon,
+  Brightness4 as Brightness4Icon,
 } from "@material-ui/icons";
 
 import { makeStyles, useTheme, fade } from "@material-ui/core/styles";
 import { Link, withRouter } from "react-router-dom";
 import { AuthContext } from "../../../context/auth";
 import PhotoTaker from "../../Common/FaceCapture/PhotoTaker";
+import { ThemeContext } from "../../../App";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -80,6 +83,10 @@ const useStyles = makeStyles((theme) => ({
       display: "flex",
     },
   },
+  brightness: {
+    marginRight: "2rem",
+    cursor: "pointer",
+  },
 }));
 
 const AppNavBar = ({
@@ -88,6 +95,8 @@ const AppNavBar = ({
   handleDrawerToggle,
   handleSearch,
   handleProfileMenuOpen,
+  themeToggler,
+  themeHandler,
 }) => {
   const classes = useStyles();
 
@@ -123,6 +132,17 @@ const AppNavBar = ({
         {/* search end */}
         <PhotoTaker />
         <div className={classes.grow} />
+        {themeToggler ? (
+          <div className={classes.brightness} onClick={themeHandler}>
+            <h1>{themeToggler}</h1>
+            <Brightness7Icon />
+          </div>
+        ) : (
+          <div className={classes.brightness} onClick={themeHandler}>
+            <Brightness4Icon />
+          </div>
+        )}
+
         <div className={classes.sectionDesktop}>
           <IconButton
             edge="end"

@@ -16,10 +16,13 @@ const darkTheme = createMuiTheme({
 
 const lightTheme = createMuiTheme({
   palette: {
-    light: "#212121",
-    main: "#212121",
-    dark: "#212121",
-    contrastText: "#fff",
+    primary: {
+      light: "#abcdef",
+      main: "#000000",
+      dark: "#000000",
+      contrastText: "#fff",
+    },
+    secondary: lightBlue,
   },
 });
 

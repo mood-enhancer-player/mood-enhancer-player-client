@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Dashboard = () => {
+const Dashboard = ({ themeHandler, themeToggler }) => {
   const classes = useStyles();
 
   const { user, logout } = useContext(AuthContext);
@@ -102,6 +102,8 @@ const Dashboard = () => {
         menuId={menuId}
         selectedMenuItem={selectedMenuItem}
         privacy={privacy}
+        themeToggler={themeToggler}
+        themeHandler={themeHandler}
       />
       {/* <AppNavBar
         menuId={menuId}
