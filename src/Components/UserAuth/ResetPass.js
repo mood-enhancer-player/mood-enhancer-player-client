@@ -41,17 +41,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Login = () => {
+const ResetPass = () => {
   document.getElementsByTagName("html")[0].style.background = "black";
   const context = useContext(AuthContext);
 
   const classes = useStyles();
   const [error, setError] = useState(false);
   const [emailHelperText, setEmailHelperText] = useState("");
-  const [passwordHelperText, setPasswordHelperText] = useState("");
   const [values, setValues] = useState({
     email: "",
-    password: "",
   });
   console.log(error);
   const onChange = (e) => {
@@ -59,7 +57,6 @@ const Login = () => {
     // onInput change all the erro messages are remove.
     setError(false);
     setEmailHelperText("");
-    setPasswordHelperText("");
   };
 
   const history = useHistory();
@@ -94,30 +91,18 @@ const Login = () => {
     } else {
       setError(false);
     }
-
-    // Password validation
-
-    if (values.password === "" || values.password === null) {
-      setError(true);
-      setPasswordHelperText("Password must not be empty");
-    } else if (values.password.toString().length < 8) {
-      setError(true);
-      setPasswordHelperText("Password Length atleast 8 characters");
-    } else {
-      setError(false);
-    }
   };
 
   const onFormSubmit = (e) => {
     e.preventDefault();
     formValidation();
-    loginUser();
+    // loginUser();
     console.log("form is submited");
   };
 
   return (
     <div>
-      <h1 className={classes.title}>SIGN IN</h1>
+      <h1 className={classes.title}>RESET PASSWORD</h1>
       <form
         className={classes.root}
         noValidate
@@ -133,7 +118,7 @@ const Login = () => {
         <div>
           <TextField
             id="outlined-flexible"
-            label="Email"
+            label="Enter your email"
             variant="outlined"
             color="secondary"
             type="email"
@@ -146,52 +131,15 @@ const Login = () => {
           />
         </div>
         <div>
-          <TextField
-            id="outlined-flexible"
-            label="Password"
-            variant="outlined"
-            color="secondary"
-            type="password"
-            name="password"
-            onChange={onChange}
-            error={passwordHelperText ? 1 : 0}
-            helperText={passwordHelperText}
-            size="small"
-            className={classes.textField}
-          />
-          <div className={classes.forgotPassLink}>
-            <p
-              style={{ float: "right" }}
-              onClick={() => history.push("/resetPass")}
-            >
-              <u> Forgot password ?</u>
-            </p>
-          </div>
-        </div>
-        <div>
-          <p
-            className={classes.signUpLink}
-            onClick={() => history.push("/signUp")}
-          >
-            New to Mood Enhancer ? <u>Create an account</u>
-          </p>
-        </div>
-        <div>
           <Button
             variant="outlined"
             color="secondary"
             type="submit"
             className={classes.textField}
           >
-            Sign In
+            RESET PASSWORD
           </Button>
         </div>
-        {/* <div style={{ color: "white", background: "red" }}>
-        <div>{values.username}</div>
-        <div>{values.email}</div>
-        <div>{values.password}</div>
-        <div>{values.confirmPassword}</div>
-      </div> */}
       </form>
     </div>
   );
@@ -207,4 +155,4 @@ const LOGIN_MUTATION = gql`
   }
 `;
 
-export default Login;
+export default ResetPass;

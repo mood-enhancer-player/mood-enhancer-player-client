@@ -10,6 +10,7 @@ import { ThemeProvider } from "@material-ui/core/styles";
 
 import { AuthProvider } from "./context/auth";
 import AuthRoute from "./util/AuthRoute";
+import ResetPass from "./Components/UserAuth/ResetPass";
 
 const App = () => {
   const [theme, setTheme] = useState(darkTheme);
@@ -43,6 +44,7 @@ const App = () => {
               />
               <AuthRoute exact path="/signup" component={SignUp} />
               <AuthRoute exact path="/login" component={Login} />
+              <Route exact path="/resetPass" component={ResetPass} />
               <Route exact path="/myAccount" component={MyAccount} />
             </Switch>
           </Router>
