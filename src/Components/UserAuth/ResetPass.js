@@ -1,8 +1,15 @@
 import React, { useState, useContext } from "react";
-import { makeStyles, TextField, Button } from "@material-ui/core";
+import {
+  makeStyles,
+  TextField,
+  Button,
+  CircularProgress,
+} from "@material-ui/core";
 import { gql, useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../../context/auth";
+import passwordSendMessage from "./PasswordSendMessage";
+import Loader from "../Common/Loader";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,13 +32,6 @@ const useStyles = makeStyles((theme) => ({
     margin: "10px",
     width: "500px",
   },
-  signUpLink: {
-    color: "lightblue",
-    width: "500px",
-    // margin: "10px",
-    cursor: "pointer",
-    marginLeft: "20px",
-  },
   forgotPassLink: {
     color: "lightblue",
     width: "500px",
@@ -51,7 +51,9 @@ const ResetPass = () => {
   const [values, setValues] = useState({
     email: "",
   });
-  console.log(error);
+  const [passwordSuccessfullySend, setPasswordSuccessfullySend] = useState(
+    false
+  );
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
     // onInput change all the erro messages are remove.
@@ -60,16 +62,19 @@ const ResetPass = () => {
   };
 
   const history = useHistory();
-  const [loginUser, { loading }] = useMutation(LOGIN_MUTATION, {
-    update(_, result) {
-      if (result) {
-        context.login(result.data.login);
-        history.push("/");
-      }
+  const [resetPassword, { loading, data }] = useMutation(RESET_PASS_MUTATION, {
+    onCompleted: () => {
+      history.push("/passSendMessage");
     },
-    onError(err) {
-      //   setErrors(err.graphQLErrors[0].extensions.exception.errors);
-    },
+    // update(_, result) {
+    //   console.log(result);
+    //   if (result) {
+    //     context.login(result.data.login);
+    //   }
+    // },
+    // onError(err) {
+    //   //   setErrors(err.graphQLErrors[0].extensions.exception.errors);
+    // },
     // variables:{
     //   username:values.username,
     //   email:values.email
@@ -93,65 +98,69 @@ const ResetPass = () => {
     }
   };
 
-  const onFormSubmit = (e) => {
+  const onFormSubmit = async (e) => {
     e.preventDefault();
     formValidation();
-    // loginUser();
-    console.log("form is submited");
+    resetPassword();
+    console.log("form is submited", data);
   };
+
+  // if (data) console.log("data", data.resetPassword, loading);
 
   return (
     <div>
-      <h1 className={classes.title}>RESET PASSWORD</h1>
-      <form
-        className={classes.root}
-        noValidate
-        autoComplete="off"
-        onSubmit={onFormSubmit}
-      >
-        {/* {loading ? (
-          <CircularProgress color="secondary" />
-        ) : (
-          <h1>Hello Data Loaded</h1>
-        )} */}
-
-        <div>
-          <TextField
-            id="outlined-flexible"
-            label="Enter your email"
-            variant="outlined"
-            color="secondary"
-            type="email"
-            name="email"
-            onChange={onChange}
-            error={emailHelperText ? 1 : 0}
-            helperText={emailHelperText}
-            size="small"
-            className={classes.textField}
-          />
-        </div>
-        <div>
-          <Button
-            variant="outlined"
-            color="secondary"
-            type="submit"
-            className={classes.textField}
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <h1 className={classes.title}>RESET PASSWORD</h1>
+          <form
+            className={classes.root}
+            noValidate
+            autoComplete="off"
+            onSubmit={onFormSubmit}
           >
-            RESET PASSWORD
-          </Button>
-        </div>
-      </form>
+            {/* {loading ? (
+           <CircularProgress color="secondary" />
+         ) : (
+           <h1>Hello Data Loaded</h1>
+         )} */}
+
+            <div>
+              <TextField
+                id="outlined-flexible"
+                label="Enter your email"
+                variant="outlined"
+                color="secondary"
+                type="email"
+                name="email"
+                onChange={onChange}
+                error={emailHelperText ? 1 : 0}
+                helperText={emailHelperText}
+                size="small"
+                className={classes.textField}
+              />
+            </div>
+            <div>
+              <Button
+                variant="outlined"
+                color="secondary"
+                type="submit"
+                className={classes.textField}
+              >
+                RESET PASSWORD
+              </Button>
+            </div>
+          </form>
+        </>
+      )}
     </div>
   );
 };
 
-const LOGIN_MUTATION = gql`
-  mutation login($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
-      id
-      email
-      token
-    }
+const RESET_PASS_MUTATION = gql`
+  mutation resetPassword($email: String!) {
+    resetPassword(email: $email)
   }
 `;
 
