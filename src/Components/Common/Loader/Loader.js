@@ -4,7 +4,8 @@ const useStyles = makeStyles({
   loader: {
     marginLeft: "auto",
     marginRight: "auto",
-    marginTop: "280px",
+    marginTop: "22%",
+    marginBottom: "22%",
   },
 });
 const Loader = () => {
