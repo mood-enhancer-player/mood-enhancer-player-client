@@ -1,25 +1,19 @@
+import { CircularProgress, makeStyles } from "@material-ui/core";
 import React from "react";
-import "./Loader.css";
+const useStyles = makeStyles({
+  loader: {
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginTop: "280px",
+  },
+});
 const Loader = () => {
+  const classes = useStyles();
   return (
     <div>
-      <div className="loader-inner">
-        <div className="loader-line-wrap">
-          <div className="loader-line"></div>
-        </div>
-        <div className="loader-line-wrap">
-          <div className="loader-line"></div>
-        </div>
-        <div className="loader-line-wrap">
-          <div className="loader-line"></div>
-        </div>
-        <div className="loader-line-wrap">
-          <div className="loader-line"></div>
-        </div>
-        <div className="loader-line-wrap">
-          <div className="loader-line"></div>
-        </div>
-      </div>
+      <center>
+        <CircularProgress className={classes.loader} color="secondary" />
+      </center>
     </div>
   );
 };
