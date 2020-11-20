@@ -9,7 +9,7 @@ import { gql, useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../../context/auth";
 import passwordSendMessage from "./PasswordSendMessage";
-import Loader from "../Common/Loader";
+import Loader from "../Common/Loader/Loader";
 
 const useStyles = makeStyles((theme) => ({
   root: {

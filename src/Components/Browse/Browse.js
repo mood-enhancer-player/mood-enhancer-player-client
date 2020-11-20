@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Grid, Typography, makeStyles } from "@material-ui/core";
 import MusicCard from "../Common/Card/MusicCard";
-import Loader from "../Common/Loader";
+import Loader from "../Common/Loader/Loader";
 const useStyles = makeStyles({
   root: {
     display: "flex",

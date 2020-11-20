@@ -15,7 +15,7 @@ import {
   CardMedia,
 } from "@material-ui/core";
 import { useQuery, gql } from "@apollo/client";
-import Loader from "../../Common/Loader";
+import Loader from "../../Common/Loader/Loader";
 import ArtistWithSongListTableRow from "./ArtistWithSongListTableRow";
 import MusicPlayer from "../../Common/MusicPlayer/MusicPlayer";
 

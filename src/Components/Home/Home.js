@@ -13,7 +13,7 @@ import nayanne from "../../music/nayanne.mp3";
 import sanamre from "../../music/sanamre.mp3";
 import hasiImag from "../../images/1.png";
 import { useQuery, gql } from "@apollo/client";
-import Loader from "../Common/Loader";
+import Loader from "../Common/Loader/Loader";
 const useStyles = makeStyles({
   root: {
     display: "flex",

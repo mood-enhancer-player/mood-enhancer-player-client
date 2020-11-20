@@ -13,7 +13,7 @@ import MenuForExistingUser from "./ProfileMenu/MenuForExistingUser";
 import HideDrawer from "./NavWithHiddenDrawer/HideDrawer";
 import AppNavBar from "./AppBar/AppNavBar";
 import MusicPlayer from "../Common/MusicPlayer/MusicPlayer";
-import Loader from "../Common/Loader";
+import Loader from "../Common/Loader/Loader";
 import MainAppNavBar from "./MainAppNavBar/MainAppNavBar";
 
 const useStyles = makeStyles((theme) => ({
