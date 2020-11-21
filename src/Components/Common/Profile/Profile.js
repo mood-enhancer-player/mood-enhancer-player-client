@@ -9,12 +9,13 @@ import {
 } from "@material-ui/core";
 import { gql, useQuery, useMutation } from "@apollo/client";
 import Loader from "../Loader/Loader";
+import ProfileSkeleton from "../Skeleton/ProfileSkeleton";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
     height: "190px",
-    marginTop: "20px",
+    // marginTop: "15px",
     alignItems: "center",
     alignSelf: "center",
     justifyContent: "center",
@@ -44,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
     // marginLeft: "40px",
     // marginRight: "40px",
     textAlign: "center",
+    marginBottom: "1rem",
   },
 }));
 
@@ -89,7 +91,7 @@ const Profile = () => {
     <>
       {error && <h1>{`Profile Picture Not Uploaded ! ${error.message}`}</h1>}
       {!data || loading ? (
-        <CircularProgress />
+        <ProfileSkeleton />
       ) : (
         <>
           <div className={classes.root}>

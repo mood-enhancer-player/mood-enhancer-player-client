@@ -119,9 +119,6 @@ const MusicCard = ({ musicData, cardClickHandler }) => {
             <Typography className={classes.cardTitle}>
               {musicData.singer}
             </Typography>
-            {/* <IconButton color="secondary">
-            <PlayCircleFilledWhiteIcon />
-          </IconButton> */}
           </CardContent>
         </Box>
       </Card>
