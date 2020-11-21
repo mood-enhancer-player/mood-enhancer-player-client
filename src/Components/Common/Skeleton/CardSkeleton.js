@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MusicCardSkeleton = () => {
+const CardSkeleton = ({ as }) => {
   const classes = useStyles();
 
   return (
@@ -79,16 +79,26 @@ const MusicCardSkeleton = () => {
         <Box className={classes.box}>
           <Skeleton className={classes.media} />
           <CardContent className={classes.cardContent}>
-            <Skeleton
-              variant="text"
-              className={classes.cardTitle}
-              animation="wave"
-            />
-            <Skeleton
-              variant="text"
-              className={classes.cardTitle}
-              animation="wave"
-            />
+            {as === "musicCard" ? (
+              <>
+                <Skeleton
+                  variant="text"
+                  className={classes.cardTitle}
+                  animation="wave"
+                />
+                <Skeleton
+                  variant="text"
+                  className={classes.cardTitle}
+                  animation="wave"
+                />
+              </>
+            ) : (
+              <Skeleton
+                variant="text"
+                className={classes.cardTitle}
+                animation="wave"
+              />
+            )}
           </CardContent>
         </Box>
       </Card>
@@ -96,4 +106,4 @@ const MusicCardSkeleton = () => {
   );
 };
 
-export default MusicCardSkeleton;
+export default CardSkeleton;

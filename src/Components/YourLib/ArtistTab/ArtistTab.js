@@ -12,11 +12,15 @@ import { useQuery, gql } from "@apollo/client";
 
 import TabCard from "../../Common/Card/TabCard";
 import ArtistWithSongList from "./ArtistWithSongList";
+import CardSkeleton from "../../Common/Skeleton/CardSkeleton";
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.primary.main,
     display: "flex",
     padding: "10px",
+  },
+  skeleton: {
+    display: "flex",
   },
   paper: {
     width: "200px",
@@ -59,11 +63,18 @@ const useStyles = makeStyles((theme) => ({
 const ArtistTab = ({ yourLibCardClickHandler }) => {
   const classes = useStyles();
   const { loading, data, error } = useQuery(GET_ARTISTS_QUERY);
-
+  //array for skeleton display
+  const artistCardSkeleton = new Array(18).fill(0);
   return (
     <>
       {loading || !data ? (
-        <CircularProgress />
+        <div className={classes.skeleton}>
+          <Grid container spacing={2}>
+            {artistCardSkeleton.map(() => (
+              <CardSkeleton />
+            ))}
+          </Grid>
+        </div>
       ) : (
         <div className={classes.root}>
           <Grid container spacing={2}>

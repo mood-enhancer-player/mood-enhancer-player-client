@@ -2,6 +2,7 @@ import React from "react";
 import { CircularProgress, Grid, makeStyles } from "@material-ui/core";
 import TabCard from "../../Common/Card/TabCard";
 import { useQuery, gql } from "@apollo/client";
+import CardSkeleton from "../../Common/Skeleton/CardSkeleton";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,11 +20,19 @@ const useStyles = makeStyles((theme) => ({
 const AlbumTab = () => {
   const classes = useStyles();
   const { loading, data, error } = useQuery(GET_ALBUM_QUERY);
+  //array for skeleton display
+  const albumCardSkeleton = new Array(18).fill(0);
 
   return (
     <>
       {loading || !data ? (
-        <CircularProgress />
+        <div className={classes.skeleton}>
+          <Grid container spacing={2}>
+            {albumCardSkeleton.map(() => (
+              <CardSkeleton />
+            ))}
+          </Grid>
+        </div>
       ) : (
         <div className={classes.root}>
           <Grid container spacing={2}>

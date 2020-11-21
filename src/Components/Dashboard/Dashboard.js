@@ -14,7 +14,7 @@ import AppNavBar from "./AppBar/AppNavBar";
 import MusicPlayer from "../Common/MusicPlayer/MusicPlayer";
 import Loader from "../Common/Loader/Loader";
 import MainAppNavBar from "./MainAppNavBar/MainAppNavBar";
-import MusicCardSkeleton from "../Common/Skeleton/MusicCardSkeleton";
+import CardSkeleton from "../Common/Skeleton/CardSkeleton";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -164,7 +164,7 @@ const Dashboard = ({ themeHandler, themeToggler }) => {
             <div className={classes.root}>
               <Grid container spacing={2}>
                 {musicCardSkeleton.map(() => (
-                  <MusicCardSkeleton />
+                  <CardSkeleton as="musicCard" />
                 ))}
               </Grid>
             </div>

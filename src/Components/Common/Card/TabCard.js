@@ -104,7 +104,6 @@ const TabCard = ({ name, picture, id, yourLibCardClickHandler }) => {
           />
           <CardContent className={classes.cardContent}>
             <Typography className={classes.cardTitle}>{name}</Typography>
-            <Typography className={classes.cardTitle}>Rustom</Typography>
             {/* <IconButton color="secondary">
             <PlayCircleFilledWhiteIcon />
           </IconButton> */}
