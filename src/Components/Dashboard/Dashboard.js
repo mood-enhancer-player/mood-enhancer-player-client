@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
-import { CssBaseline } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { CssBaseline, Grid, makeStyles, Typography } from "@material-ui/core";
 import { AuthContext } from "../../context/auth";
 import { useQuery, gql } from "@apollo/client";
 import Home from "../Home/Home";
@@ -15,6 +14,7 @@ import AppNavBar from "./AppBar/AppNavBar";
 import MusicPlayer from "../Common/MusicPlayer/MusicPlayer";
 import Loader from "../Common/Loader/Loader";
 import MainAppNavBar from "./MainAppNavBar/MainAppNavBar";
+import MusicCardSkeleton from "../Common/Skeleton/MusicCardSkeleton";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,6 +28,11 @@ const useStyles = makeStyles((theme) => ({
     background: theme.palette.primary.main,
     minHeight: "100vh",
     // background: "green",
+  },
+  heading: {
+    marginBottom: "10px",
+    align: "left",
+    fontStyle: "bold",
   },
 }));
 
@@ -94,7 +99,8 @@ const Dashboard = ({ themeHandler, themeToggler }) => {
   };
 
   const menuId = "primary-search-account-menu";
-
+  //array for skeleton display
+  const musicCardSkeleton = new Array(50).fill(0);
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -149,7 +155,20 @@ const Dashboard = ({ themeHandler, themeToggler }) => {
         getSongById.loading ||
         !getRecentPlay.data ||
         getRecentPlay.loading ? (
-          <Loader />
+          // <Loader />
+          <>
+            <Typography variant="h5" className={classes.heading}>
+              Top Trends
+              {/* {songIdState} */}
+            </Typography>
+            <div className={classes.root}>
+              <Grid container spacing={2}>
+                {musicCardSkeleton.map(() => (
+                  <MusicCardSkeleton />
+                ))}
+              </Grid>
+            </div>
+          </>
         ) : (
           <>
             {state === "Home" && (
