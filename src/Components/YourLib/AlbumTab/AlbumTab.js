@@ -1,19 +1,11 @@
 import React from "react";
-import {
-  CardContent,
-  CardMedia,
-  CircularProgress,
-  Grid,
-  makeStyles,
-  Paper,
-  Typography,
-} from "@material-ui/core";
+import { CircularProgress, Grid, makeStyles } from "@material-ui/core";
 import TabCard from "../../Common/Card/TabCard";
 import { useQuery, gql } from "@apollo/client";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: "black",
+    backgroundColor: theme.palette.primary.main,
     display: "flex",
     padding: "10px",
   },
@@ -23,29 +15,6 @@ const useStyles = makeStyles((theme) => ({
     margin: "20px",
   },
 }));
-
-const data = [
-  // {
-  //     id:1,
-  //     name:" Hasi Ban Gaye"
-  // },
-  // {
-  //     id:2,
-  //     name:" Hasi Ban Gaye"
-  // },
-  {
-    id: 3,
-    name: "Rustom",
-  },
-  {
-    id: 4,
-    name: "IPL",
-  },
-  {
-    id: 5,
-    name: "Baghi3",
-  },
-];
 
 const AlbumTab = () => {
   const classes = useStyles();

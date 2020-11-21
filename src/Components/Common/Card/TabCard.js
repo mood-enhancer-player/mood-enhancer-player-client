@@ -13,20 +13,24 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
   },
-  cardBlur: {},
   card: {
     textAlign: "center",
     width: "185px",
     height: "230px",
     borderRadius: "10px",
+    background: theme.palette.grey[50],
+
     // backgroundColor:"#A8CABA",
-    backgroundColor: "#414345",
+    // backgroundColor: "#414345",
     // background: "linear-gradient(to right,#000000, #2c3e50)",
-    boxShadow: "-11px 11px 31px #191919, 11px -11px 31px #292929",
+    // boxShadow: "-11px 11px 31px #191919, 11px -11px 31px #292929",
     "&:hover": {
-      background: "black",
+      // background: "black",
+      background: theme.palette.primary.dark,
+
       transform: "translateY(-5px)",
       transition: "0.4s ease-out",
+      cursor: "pointer",
     },
     [theme.breakpoints.down("md")]: {
       width: "150px",

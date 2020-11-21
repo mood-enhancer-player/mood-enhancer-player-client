@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import PlaylistTab from "./PlayListTab/PlaylistTab";
+import {
+  makeStyles,
+  useTheme,
+  AppBar,
+  Tabs,
+  Tab,
+  Box,
+} from "@material-ui/core";
 import ArtistTab from "./ArtistTab/ArtistTab";
 import AlbumTab from "./AlbumTab/AlbumTab";
 import ArtistWithSongList from "./ArtistTab/ArtistWithSongList";
@@ -47,8 +48,9 @@ const a11yProps = (index) => {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: theme.palette.primary.main,
     width: "100%",
+    height: "100vh",
   },
   // tabview: {
   //     color: "white",

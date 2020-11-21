@@ -14,7 +14,7 @@ import TabCard from "../../Common/Card/TabCard";
 import ArtistWithSongList from "./ArtistWithSongList";
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: "black",
+    backgroundColor: theme.palette.primary.main,
     display: "flex",
     padding: "10px",
   },
