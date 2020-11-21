@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Grid, Typography, makeStyles } from "@material-ui/core";
 import MusicCard from "../Common/Card/MusicCard";
 import Loader from "../Common/Loader/Loader";
+import CardSkeleton from "../Common/Skeleton/CardSkeleton";
+import { Alert } from "@material-ui/lab";
 const useStyles = makeStyles({
   root: {
     display: "flex",
@@ -23,20 +25,32 @@ const useStyles = makeStyles({
 
 const RecentPlayed = ({ cardClickHandler, getRecentPlay }) => {
   const classes = useStyles();
+  //array for skeleton display
+  const RecentPlayedCardSkeleton = new Array(18).fill(0);
 
   return (
     <>
       <div>
         {getRecentPlay.error && (
-          <h1>{`You Broken It ! ${getRecentPlay.error.message}`}</h1>
+          // <h1>{`You Broken It ! ${getRecentPlay.error.message}`}</h1>
+          <Alert severity="error">{getRecentPlay.error.message} </Alert>
         )}
         {!getRecentPlay.data || getRecentPlay.loading ? (
-          <Loader />
-        ) : (
           <>
             <Typography variant="h5" className={classes.heading}>
               Recent Played
+              {/* {songIdState} */}
             </Typography>
+            <div className={classes.root}>
+              <Grid container spacing={2}>
+                {RecentPlayedCardSkeleton.map((_, index) => (
+                  <CardSkeleton as="musicCard" key={index} />
+                ))}
+              </Grid>
+            </div>
+          </>
+        ) : (
+          <>
             <div className={classes.root}>
               <Grid container spacing={2}>
                 {getRecentPlay.data.getRecentPlay.map((song) => {

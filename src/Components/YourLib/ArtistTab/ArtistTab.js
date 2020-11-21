@@ -1,13 +1,5 @@
-import React, { useState } from "react";
-import {
-  CardContent,
-  CardMedia,
-  CircularProgress,
-  Grid,
-  makeStyles,
-  Paper,
-  Typography,
-} from "@material-ui/core";
+import React from "react";
+import { Grid, makeStyles } from "@material-ui/core";
 import { useQuery, gql } from "@apollo/client";
 
 import TabCard from "../../Common/Card/TabCard";
@@ -70,8 +62,8 @@ const ArtistTab = ({ yourLibCardClickHandler }) => {
       {loading || !data ? (
         <div className={classes.skeleton}>
           <Grid container spacing={2}>
-            {artistCardSkeleton.map(() => (
-              <CardSkeleton />
+            {artistCardSkeleton.map((_, index) => (
+              <CardSkeleton key={index} />
             ))}
           </Grid>
         </div>

@@ -42,7 +42,7 @@ const Dashboard = ({ themeHandler, themeToggler }) => {
 
   const { user, logout } = useContext(AuthContext);
 
-  const [songIdState, setSongIdState] = useState("5facdb3c754e8e12fc5a2568");
+  const [songIdState, setSongIdState] = useState("5fb909ec061f072db84bcb5c");
   const musicInfo = useQuery(MUSIC_INFO_QUERY);
 
   const getSongById = useQuery(GET_SONG_BY_ID_QUERY, {
@@ -150,7 +150,7 @@ const Dashboard = ({ themeHandler, themeToggler }) => {
         {musicInfo.error && getRecentPlay.error && (
           <>
             {/* <h1>{`You Broken It ! ${musicInfo.error.message}`}</h1> */}
-            <Alert severity="error">Please Login Or SignUp First </Alert>
+            <Alert severity="error">{musicInfo.error.message} </Alert>
           </>
         )}
         {!musicInfo.data ||
