@@ -28,8 +28,8 @@ const AlbumTab = () => {
       {loading || !data ? (
         <div className={classes.skeleton}>
           <Grid container spacing={2}>
-            {albumCardSkeleton.map(() => (
-              <CardSkeleton />
+            {albumCardSkeleton.map((_, index) => (
+              <CardSkeleton key={index} />
             ))}
           </Grid>
         </div>

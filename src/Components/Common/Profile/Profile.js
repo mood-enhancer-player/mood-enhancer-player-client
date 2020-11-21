@@ -89,7 +89,7 @@ const Profile = () => {
     //   </center>
     // </Box>
     <>
-      {error && <h1>{`Profile Picture Not Uploaded ! ${error.message}`}</h1>}
+      {/* {error && <h1>{`Profile Picture Not Uploaded ! ${error.message}`}</h1>} */}
       {!data || loading ? (
         <ProfileSkeleton />
       ) : (

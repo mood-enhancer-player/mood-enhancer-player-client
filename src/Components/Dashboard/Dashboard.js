@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { CssBaseline, Grid, makeStyles, Typography } from "@material-ui/core";
 import { AuthContext } from "../../context/auth";
 import { useQuery, gql } from "@apollo/client";
+import Alert from "@material-ui/lab/Alert";
 import Home from "../Home/Home";
 import Browse from "../Browse/Browse";
 import YourLib from "../YourLib/YourLib";
@@ -30,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     // background: "green",
   },
   heading: {
-    marginBottom: "10px",
+    margin: "10px",
     align: "left",
     fontStyle: "bold",
   },
@@ -147,7 +148,10 @@ const Dashboard = ({ themeHandler, themeToggler }) => {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         {musicInfo.error && getRecentPlay.error && (
-          <h1>{`You Broken It ! ${musicInfo.error.message}`}</h1>
+          <>
+            {/* <h1>{`You Broken It ! ${musicInfo.error.message}`}</h1> */}
+            <Alert severity="error">Please Login Or SignUp First </Alert>
+          </>
         )}
         {!musicInfo.data ||
         musicInfo.loading ||
@@ -163,8 +167,8 @@ const Dashboard = ({ themeHandler, themeToggler }) => {
             </Typography>
             <div className={classes.root}>
               <Grid container spacing={2}>
-                {musicCardSkeleton.map(() => (
-                  <CardSkeleton as="musicCard" />
+                {musicCardSkeleton.map((_, index) => (
+                  <CardSkeleton as="musicCard" key={index} />
                 ))}
               </Grid>
             </div>
