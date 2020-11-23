@@ -7,7 +7,7 @@ import {
   Fade,
 } from "@material-ui/core";
 import { CameraAltOutlined as CameraAltOutlinedIcon } from "@material-ui/icons";
-import FaceCaptureModal from "./FaceCaptureModal";
+import DragFileModal from "./DragFileModal";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -23,9 +23,10 @@ const useStyles = makeStyles((theme) => ({
     background: "#212121",
 
     // backgroundImage:"linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%)",
-    border: "2px solid #000",
+    border: "1px solid #000",
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
+    // padding: theme.spacing(2, 4, 3),
+    padding: "17px 15px 20px",
     width: "320px",
   },
 
@@ -111,7 +112,7 @@ const PhotoTaker = () => {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <FaceCaptureModal handleClose={handleClose} />
+            <DragFileModal handleClose={handleClose} />
           </div>
         </Fade>
       </Modal>

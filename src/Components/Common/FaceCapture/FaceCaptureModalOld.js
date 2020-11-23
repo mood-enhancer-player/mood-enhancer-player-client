@@ -24,8 +24,8 @@ const useStyles = makeStyles({
 
 const FaceCaptureModal = ({ handleClose }) => {
   const classes = useStyles();
-  const [base64Img, setBase64Img] = React.useState("");
-  // const [proccessImage, { loading }] = useMutation(PROCESS_IMAGE_MUTATION);
+  // const [base64Img, setBase64Img] = React.useState("");
+  const [proccessImage, { loading }] = useMutation(PROCESS_IMAGE_MUTATION);
 
   const tackPhotoHandler = (e) => {
     let canvas = document.querySelector("#photoCanvas");
@@ -40,6 +40,13 @@ const FaceCaptureModal = ({ handleClose }) => {
       video.srcObject = videoStream;
       video.play();
       const img64 = canvas.toDataURL("image/png");
+      console.log("\n\n\n\n\nBase64 bit img", img64);
+
+      // const link = img64.replace(
+      //   /^data:image\/[^;]/,
+      //   "data:application/octet-stream"
+      // );
+      // console.log("link", link);
       // let url = img64.replace(
       //   /^data:image\/png/,
       //   "data:application/octet-stream"
@@ -52,8 +59,9 @@ const FaceCaptureModal = ({ handleClose }) => {
       //   }
       // });
       // console.log(url);
-      setBase64Img(img64);
+      // setBase64Img(img64);
       uploadImageHandler(img64);
+
       // img.src = canvas.toDataURL("image/png");
       // const pic = document.getElementById("myPhoto");
       // pic.src = img64;
@@ -79,11 +87,11 @@ const FaceCaptureModal = ({ handleClose }) => {
 
   const uploadImageHandler = (base64) => {
     // console.log("state", base64Img);
-    // proccessImage({
-    //   variables: {
-    //     base64Image: base64,
-    //   },
-    // });
+    proccessImage({
+      variables: {
+        base64Image: base64,
+      },
+    });
   };
 
   return (
@@ -171,10 +179,12 @@ const FaceCaptureModal = ({ handleClose }) => {
   );
 };
 
-// const PROCESS_IMAGE_MUTATION = gql`
-//   mutation processImage($base64Image: String!) {
-//     processImage(base64Image: $base64Image)
-//   }
-// `;
+const PROCESS_IMAGE_MUTATION = gql`
+  mutation uploadModelInput($base64Image: Upload!) {
+    processImage(base64Image: $base64Image) {
+      url
+    }
+  }
+`;
 
 export default FaceCaptureModal;

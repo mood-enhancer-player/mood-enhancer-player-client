@@ -16,6 +16,7 @@
     "material-ui-audio-player": "^1.4.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-dropzone": "^11.2.4",
     "react-gradient": "^1.0.2",
     "react-jinke-music-player": "^4.19.0",
     "react-router-dom": "^5.2.0",
