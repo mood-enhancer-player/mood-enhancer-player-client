@@ -2,13 +2,9 @@ import React, { useContext, useState } from "react";
 import PropTypes from "prop-types";
 import { AppBar, IconButton, Toolbar, InputBase } from "@material-ui/core";
 import {
-  HomeOutlined as HomeIcon,
   SearchOutlined as SearchIcon,
-  InfoOutlined as InfoIcon,
   MenuOutlined as MenuIcon,
-  AlarmOutlined as AlarmIcon,
   AccountCircleOutlined as AccountCircle,
-  FavoriteBorderOutlined as FavoriteBorderIcon,
   Brightness7 as Brightness7Icon,
   Brightness4 as Brightness4Icon,
 } from "@material-ui/icons";

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   makeStyles,
   CardMedia,
@@ -7,7 +7,9 @@ import {
   Card,
   CardContent,
   Box,
+  IconButton,
 } from "@material-ui/core";
+import PlayCircleFilledWhiteIcon from "@material-ui/icons/PlayCircleFilledWhiteOutlined";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -64,15 +66,15 @@ const useStyles = makeStyles((theme) => ({
       height: "125px",
     },
 
-    "&:hover": {
-      // background: "green",
-      // transform: "translateY(-5px)",
-      // transition: "0.4s ease-out",
-      opacity: 0.6,
-      // transform: "scale(1.2)",
-      // background: "yellow",
-      // zIndex: 100,
-    },
+    // "&:hover": {
+    // background: "green",
+    // transform: "translateY(-5px)",
+    // transition: "0.4s ease-out",
+    // opacity: 0.8,
+    // transform: "scale(1.2)",
+    // background: "yellow",
+    // zIndex: 100,
+    // },
   },
   cardTitle: {
     fontSize: "1rem",
@@ -88,6 +90,23 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const MusicCard = ({ musicData, cardClickHandler }) => {
+  const [cardCover, setCardCover] = useState("");
+
+  const mouseEnterHandler = (songId) => {
+    const target = document.getElementById(songId);
+    setCardCover(target.src);
+    target.src = require("./PlayBtnImg/playBtn.gif");
+    // "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.F96l68IPT9EDibTxgK6bPQHaHS%26pid%3DApi&f=1";
+    // "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.et9mAXq2jiTaYRG08fLjIwHaFj%26pid%3DApi&f=1";
+    // "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.-yLv4C2QuRP3SRELPcPySQAAAA%26pid%3DApi&f=1";
+    // "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.MXBLzWb8ZE_XMRPn_XDtEQHaHa%26pid%3DApi&f=1";
+  };
+
+  const mouseLeaveHandler = (songId) => {
+    const target = document.getElementById(songId);
+    target.src = cardCover;
+  };
+
   const classes = useStyles();
   return (
     <Grid
@@ -104,6 +123,8 @@ const MusicCard = ({ musicData, cardClickHandler }) => {
       <Card
         className={classes.card}
         onClick={() => cardClickHandler(musicData._id)}
+        onMouseEnter={() => mouseEnterHandler(musicData._id)}
+        onMouseLeave={() => mouseLeaveHandler(musicData._id)}
       >
         <Box className={classes.box}>
           <CardMedia
@@ -111,6 +132,7 @@ const MusicCard = ({ musicData, cardClickHandler }) => {
             className={classes.media}
             image={musicData.cover}
             title={musicData.name}
+            id={musicData._id}
           />
           <CardContent className={classes.cardContent}>
             <Typography className={classes.cardTitle}>
