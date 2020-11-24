@@ -10,7 +10,6 @@ import {
   IconButton,
 } from "@material-ui/core";
 import { gql, useMutation } from "@apollo/client";
-import CameraIcon from "@material-ui/icons/Camera";
 import { useDropzone } from "react-dropzone";
 
 const baseStyle = {
@@ -40,32 +39,6 @@ const acceptStyle = {
 const rejectStyle = {
   borderColor: "#ff1744",
 };
-
-// const thumbsContainer = {
-//   display: "flex",
-//   flexDirection: "row",
-//   flexWrap: "wrap",
-//   marginTop: 16,
-// };
-
-// const thumb = {
-//   display: "inline-flex",
-//   borderRadius: 2,
-//   border: "1px solid #eaeaea",
-//   marginBottom: 8,
-//   marginRight: 8,
-//   width: "auto",
-//   height: 200,
-//   padding: 4,
-//   boxSizing: "border-box",
-// };
-
-// const thumbInner = {
-//   display: "flex",
-//   minWidth: 0,
-//   overflow: "hidden",
-// };
-
 const img = {
   display: "block",
   width: "100%",
@@ -74,6 +47,18 @@ const img = {
 
 const DragAndDrop = (props) => {
   const [files, setFiles] = useState([]);
+
+  const [UploadUserMoodImg] = useMutation(UPLOAD_USER_MOOD_IMAGE_MUTATION, {
+    onCompleted: (data) => {
+      console.log(data);
+      // setprofileImgFileState(data.uploadProfile.url);
+    },
+    onError(err) {
+      console.log(err);
+      // setErrors(err.graphQLErrors[0].extensions.exception.errors);
+    },
+  });
+  console.log("Files", files);
   const {
     getRootProps,
     getInputProps,
@@ -128,6 +113,15 @@ const DragAndDrop = (props) => {
     <li key={file.path}>{file.path}</li>
   ));
 
+  const uploadImageHandler = () => {
+    console.log("uploadImageHandler click");
+    UploadUserMoodImg({
+      variables: {
+        userMoodImgFile: files[0],
+      },
+    });
+  };
+
   return (
     <>
       <div className="container">
@@ -150,7 +144,7 @@ const DragAndDrop = (props) => {
             color="secondary"
             size="small"
             id="uploadBtn"
-            // onClick={uploadImageHandler}
+            onClick={uploadImageHandler}
             style={{ margin: "10px", marginBottom: "0px" }}
           >
             Upload
@@ -170,5 +164,13 @@ const DragAndDrop = (props) => {
     </>
   );
 };
+
+const UPLOAD_USER_MOOD_IMAGE_MUTATION = gql`
+  mutation uploadUserMoodImg($userMoodImgFile: Upload!) {
+    uploadUserMoodImg(userMoodImgFile: $userMoodImgFile) {
+      url
+    }
+  }
+`;
 
 export default DragAndDrop;
