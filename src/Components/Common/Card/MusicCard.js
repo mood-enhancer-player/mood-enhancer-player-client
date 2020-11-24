@@ -10,6 +10,8 @@ import {
   IconButton,
 } from "@material-ui/core";
 import PlayCircleFilledWhiteIcon from "@material-ui/icons/PlayCircleFilledWhiteOutlined";
+import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
+import LikeSong from "./LikeSong/LikeSong";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,8 +43,11 @@ const useStyles = makeStyles((theme) => ({
   cardContent: {
     display: "row",
     alignItems: "left",
-    marginTop: "-7px",
-    marginLeft: "-15px",
+    background: "red",
+    // textAlign: "left",
+    // marginTop: "-7px",
+    // marginLeft: "-15px",
+    float: "left",
     // fontSize: "20px"
   },
   box: {
@@ -78,8 +83,20 @@ const useStyles = makeStyles((theme) => ({
   },
   cardTitle: {
     fontSize: "1rem",
-    marginLeft: "auto",
-    marginRight: "auto",
+
+    // marginLeft: "auto",
+    // marginRight: "auto",
+    margin: "10px auto 3px",
+    [theme.breakpoints.between("sm", "md")]: {
+      fontSize: "13px",
+    },
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "12px",
+    },
+  },
+  artistName: {
+    // marginLeft: "auto",
+    // marginRight: "auto",
     [theme.breakpoints.between("sm", "md")]: {
       fontSize: "13px",
     },
@@ -90,11 +107,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const MusicCard = ({ musicData, cardClickHandler }) => {
-  const [cardCover, setCardCover] = useState("");
-
   const mouseEnterHandler = (songId) => {
     const target = document.getElementById(songId);
-    setCardCover(target.src);
     target.src = require("./PlayBtnImg/playBtn.gif");
     // "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.F96l68IPT9EDibTxgK6bPQHaHS%26pid%3DApi&f=1";
     // "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.et9mAXq2jiTaYRG08fLjIwHaFj%26pid%3DApi&f=1";
@@ -104,8 +118,12 @@ const MusicCard = ({ musicData, cardClickHandler }) => {
 
   const mouseLeaveHandler = (songId) => {
     const target = document.getElementById(songId);
-    target.src = cardCover;
+    target.src = musicData.cover;
   };
+
+  // const likeSong = (songId) => {
+  //   console.log("Liked song", songId);
+  // };
 
   const classes = useStyles();
   return (
@@ -134,14 +152,49 @@ const MusicCard = ({ musicData, cardClickHandler }) => {
             title={musicData.name}
             id={musicData._id}
           />
-          <CardContent className={classes.cardContent}>
-            <Typography className={classes.cardTitle}>
-              {musicData.name}
-            </Typography>
-            <Typography className={classes.cardTitle}>
-              {musicData.singer}
-            </Typography>
-          </CardContent>
+          {/* <CardContent className={classes.cardContent}> */}
+          {/* <div className={classes.cardTitle}>
+              {musicData.name.length > 16
+                ? musicData.name.slice(0, 15) + "..."
+                : musicData.name.slice(0, 16)}
+            </div>
+            <div className={classes.cardTitle}>{musicData.singer}</div>
+            <div>
+              <PlayCircleFilledWhiteIcon
+                style={{
+                  float: "right",
+                  marginTop: "3px",
+                  marginLeft: "3px",
+                  background: "black",
+                }}
+              />
+            </div> */}
+          {/* <div>{musicData.name}</div>
+            <div>{musicData.singer}</div>
+            <div style={{ float: "right" }}>
+              <PlayCircleFilledWhiteIcon />
+            </div> */}
+
+          <div className={classes.cardTitle}>
+            {musicData.name.length > 16
+              ? musicData.name.slice(0, 15) + "..."
+              : musicData.name.slice(0, 16)}
+          </div>
+          <div>
+            <p className={classes.artistName}>
+              {musicData.singer.length > 16
+                ? musicData.singer.slice(0, 11) + "..."
+                : musicData.singer.slice(0, 13)}
+            </p>
+          </div>
+          {/* <div
+            style={{ float: "right", cursor: "pointer" }}
+            onClick={() => likeSong(musicData._id)}
+          >
+            <FavoriteBorderOutlinedIcon />
+          </div> */}
+          {/* </CardContent> */}
+          <LikeSong id={musicData._id} />
         </Box>
       </Card>
     </Grid>
