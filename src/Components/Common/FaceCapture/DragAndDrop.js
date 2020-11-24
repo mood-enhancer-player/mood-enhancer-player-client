@@ -1,16 +1,9 @@
 import React, { useMemo, useEffect, useState } from "react";
-import ReactDOM from "react-dom";
 
-import {
-  makeStyles,
-  Grid,
-  Divider,
-  Typography,
-  Button,
-  IconButton,
-} from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import { gql, useMutation } from "@apollo/client";
 import { useDropzone } from "react-dropzone";
+import Loader from "../Loader/Loader";
 
 const baseStyle = {
   flex: 1,
@@ -48,16 +41,20 @@ const img = {
 const DragAndDrop = (props) => {
   const [files, setFiles] = useState([]);
 
-  const [UploadUserMoodImg] = useMutation(UPLOAD_USER_MOOD_IMAGE_MUTATION, {
-    onCompleted: (data) => {
-      console.log(data);
-      // setprofileImgFileState(data.uploadProfile.url);
-    },
-    onError(err) {
-      console.log(err);
-      // setErrors(err.graphQLErrors[0].extensions.exception.errors);
-    },
-  });
+  const [UploadUserMoodImg, { loading }] = useMutation(
+    UPLOAD_USER_MOOD_IMAGE_MUTATION,
+    {
+      onCompleted: (data) => {
+        console.log(data);
+        props.handleClose();
+        // setprofileImgFileState(data.uploadProfile.url);
+      },
+      onError(err) {
+        console.log(err);
+        // setErrors(err.graphQLErrors[0].extensions.exception.errors);
+      },
+    }
+  );
   console.log("Files", files);
   const {
     getRootProps,
@@ -124,43 +121,49 @@ const DragAndDrop = (props) => {
 
   return (
     <>
-      <div className="container">
-        <div {...getRootProps({ style })}>
-          <input {...getInputProps()} />
-          <p>Drag 'n' drop some files here or</p>
-          <button type="button" onClick={open}>
-            Choose File
-          </button>
-        </div>
-        <aside>
-          {thumbs}
-          <p>{filepath}</p>
-        </aside>
-      </div>
-      <div>
-        <center>
-          <Button
-            variant="outlined"
-            color="secondary"
-            size="small"
-            id="uploadBtn"
-            onClick={uploadImageHandler}
-            style={{ margin: "10px", marginBottom: "0px" }}
-          >
-            Upload
-          </Button>
-          <Button
-            variant="outlined"
-            color="secondary"
-            size="small"
-            id="closeBtn"
-            onClick={props.handleClose}
-            style={{ margin: "10px", marginBottom: "0px" }}
-          >
-            Close
-          </Button>
-        </center>
-      </div>
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <div className="container">
+            <div {...getRootProps({ style })}>
+              <input {...getInputProps()} />
+              <p>Drag 'n' drop some files here or</p>
+              <button type="button" onClick={open}>
+                Choose File
+              </button>
+            </div>
+            <aside>
+              {thumbs}
+              <p>{filepath}</p>
+            </aside>
+          </div>
+          <div>
+            <center>
+              <Button
+                variant="outlined"
+                color="secondary"
+                size="small"
+                id="uploadBtn"
+                onClick={uploadImageHandler}
+                style={{ margin: "10px", marginBottom: "0px" }}
+              >
+                Upload
+              </Button>
+              <Button
+                variant="outlined"
+                color="secondary"
+                size="small"
+                id="closeBtn"
+                onClick={props.handleClose}
+                style={{ margin: "10px", marginBottom: "0px" }}
+              >
+                Close
+              </Button>
+            </center>
+          </div>
+        </>
+      )}
     </>
   );
 };
