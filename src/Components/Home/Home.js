@@ -5,7 +5,7 @@ import {
   makeStyles,
   CircularProgress,
 } from "@material-ui/core";
-import MusicCard from "../Common/Card/MusicCard";
+import MusicCard from "../Common/Card/MusicCard/MusicCard";
 import MusicPlayer from "../Common/MusicPlayer/MusicPlayer";
 import hasi from "../../music/hasi.mp3";
 import kabir from "../../music/kabir.mp3";

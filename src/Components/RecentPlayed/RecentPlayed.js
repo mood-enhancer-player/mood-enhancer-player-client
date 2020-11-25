@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Grid, Typography, makeStyles } from "@material-ui/core";
-import MusicCard from "../Common/Card/MusicCard";
+import MusicCard from "../Common/Card/MusicCard/MusicCard";
 import Loader from "../Common/Loader/Loader";
 import CardSkeleton from "../Common/Skeleton/CardSkeleton";
 import { Alert } from "@material-ui/lab";

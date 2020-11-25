@@ -2,7 +2,7 @@ import React from "react";
 import { Grid, makeStyles } from "@material-ui/core";
 import { useQuery, gql } from "@apollo/client";
 
-import TabCard from "../../Common/Card/TabCard";
+import TabCard from "../../Common/Card/TabCard/TabCard";
 import ArtistWithSongList from "./ArtistWithSongList";
 import CardSkeleton from "../../Common/Skeleton/CardSkeleton";
 const useStyles = makeStyles((theme) => ({

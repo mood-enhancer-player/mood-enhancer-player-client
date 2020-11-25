@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import React from "react";
-import TabCard from "../../Common/Card/TabCard";
+import TabCard from "../../Common/Card/TabCard/TabCard";
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: "black",
