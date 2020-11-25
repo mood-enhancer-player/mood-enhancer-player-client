@@ -57,7 +57,7 @@ const SideDrawer = ({ selectedMenuItem, privacy }) => {
       icon: <AlarmIcon />,
     },
     {
-      text: "Likes Songs",
+      text: "Liked Songs",
       icon: <FavoriteBorderIcon />,
     },
   ];

@@ -113,7 +113,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MusicCard = ({ musicData, cardClickHandler }) => {
+const MusicCard = ({ musicData, cardClickHandler, as }) => {
   const mouseEnterHandler = (songId) => {
     const target = document.getElementById(songId);
     target.src = require("./PlayBtnImg/playBtn.gif");
@@ -203,7 +203,8 @@ const MusicCard = ({ musicData, cardClickHandler }) => {
           {/* </CardContent> */}
         </Box>
       </Card>
-      <LikeSong id={musicData._id} />
+
+      {as !== "likeSongTabCard" && <LikeSong id={musicData._id} />}
       {/* <div
         style={{
           zIndex: "1000000",

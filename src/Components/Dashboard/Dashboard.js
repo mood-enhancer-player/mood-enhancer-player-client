@@ -6,6 +6,7 @@ import Alert from "@material-ui/lab/Alert";
 import Home from "../Home/Home";
 import Browse from "../Browse/Browse";
 import YourLib from "../YourLib/YourLib";
+import LikedSongs from "../LikedSongs/LikedSongs";
 import Privacy from "../Common/Privacy";
 import RecentPlayed from "../RecentPlayed/RecentPlayed";
 import MenuForNewUser from "./ProfileMenu/MenuForNewUser";
@@ -52,6 +53,8 @@ const Dashboard = ({ themeHandler, themeToggler }) => {
   });
 
   const getRecentPlay = useQuery(RECENT_PLAYED_QUERY);
+
+  const getLikedSongs = useQuery(GET_LIKED_SONGS_QUERY);
 
   // const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -158,7 +161,9 @@ const Dashboard = ({ themeHandler, themeToggler }) => {
         !getSongById.data ||
         getSongById.loading ||
         !getRecentPlay.data ||
-        getRecentPlay.loading ? (
+        getRecentPlay.loading ||
+        !getLikedSongs.data ||
+        getLikedSongs.loading ? (
           // <Loader />
           <>
             <Typography variant="h5" className={classes.heading}>
@@ -207,6 +212,13 @@ const Dashboard = ({ themeHandler, themeToggler }) => {
                 as={state}
               />
             )}
+
+            {state === "Liked Songs" && (
+              <LikedSongs
+                cardClickHandler={cardClickHandler}
+                getLikedSongs={getLikedSongs}
+              />
+            )}
           </>
         )}
       </main>
@@ -248,6 +260,18 @@ const RECENT_PLAYED_QUERY = gql`
       name
       singer
       musicSrc
+      cover
+    }
+  }
+`;
+
+const GET_LIKED_SONGS_QUERY = gql`
+  query {
+    getLikeSongs {
+      _id
+      name
+      musicSrc
+      singer
       cover
     }
   }

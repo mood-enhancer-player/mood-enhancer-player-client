@@ -24,10 +24,10 @@ const LikeSong = ({ id }) => {
   const classes = useStyles();
   const [like, setLike] = useState(false);
 
-  const { data, loading, error } = useQuery(GET_LIKE_SONGS_QUERY);
-  if (data) {
-    console.log("likeData", data);
-  }
+  // const { data, loading, error } = useQuery(GET_LIKE_SONGS_QUERY);
+  // if (data) {
+  //   console.log("likeData", data);
+  // }
 
   const [addToLikeSong] = useMutation(ADD_TO_LIKE_SONGS_MUTATION, {
     onCompleted: (data) => console.log(data),
