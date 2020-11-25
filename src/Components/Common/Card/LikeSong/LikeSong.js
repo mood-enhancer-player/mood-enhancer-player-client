@@ -1,34 +1,56 @@
 import React, { useState } from "react";
-import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
-import FavoriteOutlinedIcon from "@material-ui/icons/FavoriteOutlined";
-import { gql, useMutation, useQuery } from "@apollo/client";
+import { makeStyles, IconButton } from "@material-ui/core";
+import {
+  FavoriteBorderOutlined as FavoriteBorderOutlinedIcon,
+  FavoriteOutlined as FavoriteOutlinedIcon,
+} from "@material-ui/icons";
+import { gql, useMutation } from "@apollo/client";
+
+const useStyles = makeStyles((theme) => ({
+  likeBtn: {
+    zIndex: "1000000",
+    position: "absolute",
+    marginLeft: "115px", // 106
+    marginTop: "210px", // 175
+    cursor: "pointer",
+  },
+  likeBtnSize: {
+    width: "26px",
+    height: "26px",
+  },
+}));
 
 const LikeSong = ({ id }) => {
-  console.log("render likessong", id);
+  const classes = useStyles();
   const [like, setLike] = useState(false);
-  const [addToLikeSong, { data, loading, error }] = useMutation(
-    ADD_TO_LIKE_SONGS_MUTATION,
-    {
-      onCompleted: (data) => console.log(data),
-    }
-  );
+  const [addToLikeSong] = useMutation(ADD_TO_LIKE_SONGS_MUTATION, {
+    onCompleted: (data) => console.log(data),
+  });
 
   const likeSong = (songId) => {
     console.log("Liked song", songId);
     setLike(!like);
-    // addToLikeSong({
-    //   variables: { songId },
-    // });
+    addToLikeSong({
+      variables: { songId },
+    });
   };
   return (
     <div
-      style={{ float: "right", cursor: "pointer" }}
+      className={classes.likeBtn}
+      onClick={() => console.log("Like runs")}
       onClick={() => likeSong(id)}
     >
       {like ? (
-        <FavoriteOutlinedIcon color="error" />
+        <IconButton>
+          <FavoriteOutlinedIcon color="error" className={classes.likeBtnSize} />
+        </IconButton>
       ) : (
-        <FavoriteBorderOutlinedIcon color="secondary" />
+        <IconButton>
+          <FavoriteBorderOutlinedIcon
+            color="secondary"
+            className={classes.likeBtnSize}
+          />
+        </IconButton>
       )}
     </div>
   );

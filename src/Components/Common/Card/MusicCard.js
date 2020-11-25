@@ -12,6 +12,7 @@ import {
 import PlayCircleFilledWhiteIcon from "@material-ui/icons/PlayCircleFilledWhiteOutlined";
 import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
 import LikeSong from "./LikeSong/LikeSong";
+import FavoriteOutlinedIcon from "@material-ui/icons/FavoriteOutlined";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -104,6 +105,12 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "12px",
     },
   },
+  likeBtn: {
+    position: "absolute",
+    left: "0px",
+    top: "0px",
+    zIndex: "-1",
+  },
 }));
 
 const MusicCard = ({ musicData, cardClickHandler }) => {
@@ -194,9 +201,21 @@ const MusicCard = ({ musicData, cardClickHandler }) => {
             <FavoriteBorderOutlinedIcon />
           </div> */}
           {/* </CardContent> */}
-          <LikeSong id={musicData._id} />
         </Box>
       </Card>
+      <LikeSong id={musicData._id} />
+      {/* <div
+        style={{
+          zIndex: "1000000",
+          position: "absolute",
+          marginLeft: "150px",
+          marginTop: "150px",
+          cursor: "pointer",
+        }}
+        onClick={() => console.log("Like runs")}
+      >
+        <FavoriteOutlinedIcon color="error" />
+      </div> */}
     </Grid>
   );
 };
