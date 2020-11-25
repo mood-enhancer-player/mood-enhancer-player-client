@@ -208,6 +208,9 @@ const Dashboard = ({ themeHandler, themeToggler }) => {
                 // For Recent Played
                 getRecentPlayQuery={getRecentPlay.data}
                 songIdForRecentPlayedTab={songIdState}
+                // For Liked Songs
+                getLikedSongs={getLikedSongs.data}
+                songIdForLikedSongTab={songIdState}
                 // as = {component}
                 as={state}
               />

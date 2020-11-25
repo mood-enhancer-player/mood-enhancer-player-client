@@ -42,6 +42,8 @@ const MusicPlayer = ({
   songIdForRecentPlayedTab = 0,
   songIdForYourLibArtistTab = 0,
   songInfoForYourLibArtist = 0,
+  getLikedSongs = 0,
+  songIdForLikedSongTab = 0,
   as,
 }) => {
   // const [autoPlay, setAutoPlay] = React.useState(false);
@@ -81,6 +83,14 @@ const MusicPlayer = ({
           }
         );
         audioList = songInfoForYourLibArtist.getSongsByArtist;
+      }
+      break;
+    case "Liked Songs":
+      {
+        index = getLikedSongs.getLikeSongs.findIndex((oneSong, index) => {
+          if (String(oneSong._id) === songIdForLikedSongTab) return index;
+        });
+        audioList = getLikedSongs.getLikeSongs;
       }
       break;
     default:
