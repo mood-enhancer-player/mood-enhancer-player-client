@@ -4,7 +4,7 @@ import {
   FavoriteBorderOutlined as FavoriteBorderOutlinedIcon,
   FavoriteOutlined as FavoriteOutlinedIcon,
 } from "@material-ui/icons";
-import { gql, useMutation } from "@apollo/client";
+import { gql, useMutation, useQuery } from "@apollo/client";
 
 const useStyles = makeStyles((theme) => ({
   likeBtn: {
@@ -23,6 +23,12 @@ const useStyles = makeStyles((theme) => ({
 const LikeSong = ({ id }) => {
   const classes = useStyles();
   const [like, setLike] = useState(false);
+
+  const { data, loading, error } = useQuery(GET_LIKE_SONGS_QUERY);
+  if (data) {
+    console.log("likeData", data);
+  }
+
   const [addToLikeSong] = useMutation(ADD_TO_LIKE_SONGS_MUTATION, {
     onCompleted: (data) => console.log(data),
   });
@@ -59,6 +65,16 @@ const LikeSong = ({ id }) => {
 const ADD_TO_LIKE_SONGS_MUTATION = gql`
   mutation addToLikeSongs($songId: ID!) {
     addToLikeSongs(songId: $songId)
+  }
+`;
+
+const GET_LIKE_SONGS_QUERY = gql`
+  query {
+    getLikeSongs {
+      _id
+      name
+      musicSrc
+    }
   }
 `;
 
