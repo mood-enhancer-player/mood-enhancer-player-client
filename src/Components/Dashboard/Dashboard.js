@@ -17,6 +17,7 @@ import MusicPlayer from "../Common/MusicPlayer/MusicPlayer";
 import Loader from "../Common/Loader/Loader";
 import MainAppNavBar from "./MainAppNavBar/MainAppNavBar";
 import CardSkeleton from "../Common/Skeleton/CardSkeleton";
+import PlaylistGenerator from "../Mood Enhancer/PlaylistGenerator";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -55,6 +56,8 @@ const Dashboard = ({ themeHandler, themeToggler }) => {
   const getRecentPlay = useQuery(RECENT_PLAYED_QUERY);
 
   const getLikedSongs = useQuery(GET_LIKED_SONGS_QUERY);
+
+  const getPlayList = useQuery(GET_SONG_PLAYLIST_QUERY);
 
   // const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -163,7 +166,8 @@ const Dashboard = ({ themeHandler, themeToggler }) => {
         !getRecentPlay.data ||
         getRecentPlay.loading ||
         !getLikedSongs.data ||
-        getLikedSongs.loading ? (
+        getLikedSongs.loading ||
+        getPlayList.loading ? (
           // <Loader />
           <>
             <Typography variant="h5" className={classes.heading}>
@@ -190,6 +194,13 @@ const Dashboard = ({ themeHandler, themeToggler }) => {
                 musicInfo={musicInfo}
               />
             )}
+
+            {state === "Mood Enhancer" && (
+              <PlaylistGenerator
+                cardClickHandler={cardClickHandler}
+                getPlayList={getPlayList}
+              />
+            )}
             {state === "Your Library" && <YourLib />}
             {state === "Recent Played" && (
               <RecentPlayed
@@ -211,6 +222,9 @@ const Dashboard = ({ themeHandler, themeToggler }) => {
                 // For Liked Songs
                 getLikedSongs={getLikedSongs.data}
                 songIdForLikedSongTab={songIdState}
+                // For Mood Enhancer
+                getPlayList={getPlayList.data}
+                songIdForgetPlayListSongTab={songIdState}
                 // as = {component}
                 as={state}
               />
@@ -275,6 +289,18 @@ const GET_LIKED_SONGS_QUERY = gql`
       name
       musicSrc
       singer
+      cover
+    }
+  }
+`;
+
+const GET_SONG_PLAYLIST_QUERY = gql`
+  query {
+    getPlayList {
+      _id
+      name
+      singer
+      musicSrc
       cover
     }
   }

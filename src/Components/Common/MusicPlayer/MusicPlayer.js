@@ -44,6 +44,8 @@ const MusicPlayer = ({
   songInfoForYourLibArtist = 0,
   getLikedSongs = 0,
   songIdForLikedSongTab = 0,
+  getPlayList = 0,
+  songIdForgetPlayListSongTab = 0,
   as,
 }) => {
   // const [autoPlay, setAutoPlay] = React.useState(false);
@@ -65,6 +67,14 @@ const MusicPlayer = ({
           if (String(oneSong._id) === songIdForBrowseTab) return index;
         });
         audioList = musicInfoQuery.getAllSongs;
+      }
+      break;
+    case "Mood Enhancer":
+      {
+        index = musicInfoQuery.getAllSongs.findIndex((oneSong, index) => {
+          if (String(oneSong._id) === songIdForgetPlayListSongTab) return index;
+        });
+        audioList = musicInfoQuery.getPlayList;
       }
       break;
     case "Recent Played":

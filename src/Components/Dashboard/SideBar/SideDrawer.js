@@ -49,6 +49,10 @@ const SideDrawer = ({ selectedMenuItem, privacy }) => {
       icon: <SearchIcon />,
     },
     {
+      text: "Mood Enhancer",
+      icon: <FavoriteBorderIcon />,
+    },
+    {
       text: "Your Library",
       icon: <InfoIcon />,
     },

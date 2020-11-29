@@ -41,12 +41,12 @@ const img = {
 const DragAndDrop = (props) => {
   const [files, setFiles] = useState([]);
 
-  const [UploadUserMoodImg, { loading }] = useMutation(
+  const [UploadUserMoodImg, { loading, data }] = useMutation(
     UPLOAD_USER_MOOD_IMAGE_MUTATION,
     {
       onCompleted: (data) => {
         console.log(data);
-        props.handleClose();
+        // props.handleClose();
         // setprofileImgFileState(data.uploadProfile.url);
       },
       onError(err) {
@@ -121,9 +121,7 @@ const DragAndDrop = (props) => {
 
   return (
     <>
-      {loading ? (
-        <Loader />
-      ) : (
+      {!data && (
         <>
           <div className="container">
             <div {...getRootProps({ style })}>
@@ -163,6 +161,14 @@ const DragAndDrop = (props) => {
             </center>
           </div>
         </>
+      )}
+      {loading ? (
+        <>
+          <h4>PlayList Generation is Under Process,Please wait</h4>
+          <Loader />
+        </>
+      ) : (
+        <>{data && <h1>Song</h1>}</>
       )}
     </>
   );
