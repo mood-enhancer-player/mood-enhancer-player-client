@@ -1,14 +1,8 @@
 import React, { useState, useContext } from "react";
-import {
-  makeStyles,
-  TextField,
-  Button,
-  Typography,
-  Link,
-} from "@material-ui/core";
+import { makeStyles, TextField, Button } from "@material-ui/core";
 import { gql, useMutation } from "@apollo/client";
 import Alert from "@material-ui/lab/Alert";
-import { Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { AuthContext } from "../../context/auth";
 
 const useStyles = makeStyles((theme) => ({
@@ -73,7 +67,7 @@ const SignUp = () => {
   };
 
   const history = useHistory();
-  const [signUpUser, { loading }] = useMutation(REGISTER_MUTATION, {
+  const [signUpUser] = useMutation(REGISTER_MUTATION, {
     update(_, result) {
       if (result) {
         context.login(result.data.register);

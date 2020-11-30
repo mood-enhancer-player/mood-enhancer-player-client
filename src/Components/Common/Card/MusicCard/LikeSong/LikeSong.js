@@ -6,7 +6,7 @@ import {
 } from "@material-ui/icons";
 import { gql, useMutation } from "@apollo/client";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   likeBtn: {
     zIndex: "1000000",
     position: "absolute",
@@ -41,11 +41,7 @@ const LikeSong = ({ id }) => {
     });
   };
   return (
-    <div
-      className={classes.likeBtn}
-      onClick={() => console.log("Like runs")}
-      onClick={() => likeSong(id)}
-    >
+    <div className={classes.likeBtn} onClick={() => likeSong(id)}>
       {like ? (
         <IconButton>
           <FavoriteOutlinedIcon color="error" className={classes.likeBtnSize} />
@@ -68,14 +64,14 @@ const ADD_TO_LIKE_SONGS_MUTATION = gql`
   }
 `;
 
-const GET_LIKE_SONGS_QUERY = gql`
-  query {
-    getLikeSongs {
-      _id
-      name
-      musicSrc
-    }
-  }
-`;
+// const GET_LIKE_SONGS_QUERY = gql`
+//   query {
+//     getLikeSongs {
+//       _id
+//       name
+//       musicSrc
+//     }
+//   }
+// `;
 
 export default LikeSong;

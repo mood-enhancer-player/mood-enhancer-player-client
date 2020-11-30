@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { CssBaseline, Grid, makeStyles, Typography } from "@material-ui/core";
-import { AuthContext } from "../../context/auth";
 import { useQuery, gql } from "@apollo/client";
 import Alert from "@material-ui/lab/Alert";
 import Home from "../Home/Home";
@@ -25,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3),
     background: theme.palette.primary.main,
     minHeight: "100vh",
-    // background: "green",
   },
   heading: {
     margin: "10px",
@@ -36,8 +34,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Dashboard = ({ themeHandler, themeToggler }) => {
   const classes = useStyles();
-
-  const { user, logout } = useContext(AuthContext);
 
   const [songIdState, setSongIdState] = useState("5fc3b4bff5b1173d8c41caa1");
   const musicInfo = useQuery(MUSIC_INFO_QUERY);

@@ -7,7 +7,6 @@ import {
 } from "@material-ui/core";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { useHistory } from "react-router-dom";
-import { AuthContext } from "../../context/auth";
 import Profile from "../Common/Profile/Profile";
 
 const useStyles = makeStyles((theme) => ({
@@ -45,7 +44,6 @@ const useStyles = makeStyles((theme) => ({
 
 const MyAccount = () => {
   document.getElementsByTagName("html")[0].style.background = "black";
-  const context = useContext(AuthContext);
 
   const classes = useStyles();
   const [error, setError] = useState(false);

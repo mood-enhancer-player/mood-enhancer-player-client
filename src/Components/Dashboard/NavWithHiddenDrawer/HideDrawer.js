@@ -1,7 +1,7 @@
 import React from "react";
 import { Drawer, Hidden } from "@material-ui/core";
 
-import { makeStyles, useTheme, fade } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { withRouter } from "react-router-dom";
 import SideDrawer from "../SideBar/SideDrawer";
 

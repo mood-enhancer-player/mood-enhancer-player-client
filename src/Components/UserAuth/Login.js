@@ -61,7 +61,7 @@ const Login = () => {
   };
 
   const history = useHistory();
-  const [loginUser, { loading }] = useMutation(LOGIN_MUTATION, {
+  const [loginUser] = useMutation(LOGIN_MUTATION, {
     update(_, result) {
       if (result) {
         context.login(result.data.login);

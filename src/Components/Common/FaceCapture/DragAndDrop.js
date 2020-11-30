@@ -85,14 +85,14 @@ const DragAndDrop = (props) => {
       ...(isDragAccept ? acceptStyle : {}),
       ...(isDragReject ? rejectStyle : {}),
     }),
-    [isDragActive, isDragReject]
+    [isDragActive, isDragReject, isDragAccept]
   );
 
   const thumbs = files.map((file) => (
     <div key={file.name}>
       <p> Preview Image</p>
       <div>
-        <img src={file.preview} style={img} />
+        <img src={file.preview} style={img} alt="Upload Pic" />
       </div>
     </div>
   ));

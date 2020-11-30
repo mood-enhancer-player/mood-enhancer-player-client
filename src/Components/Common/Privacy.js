@@ -14,7 +14,6 @@ const useStyles = makeStyles({
 
 const Privacy = () => {
   const classes = useStyles();
-
   return (
     <div>
       <Container>
@@ -44,10 +43,13 @@ const Privacy = () => {
             “Cookies” are data files that are placed on your device or computer
             and often include an anonymous unique identifier. For more
             information about cookies, and how to disable cookies, visit{" "}
-            <a href="http://www.allaboutcookies.org" target="_blank">
+            <a
+              href="http://www.allaboutcookies.org"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               http://www.allaboutcookies.org
             </a>
-            .
           </li>
 
           <li className={classes.text}>
@@ -86,11 +88,16 @@ const Privacy = () => {
           <a
             href="https://www.google.com/intl/en/policies/privacy/"
             target="_blank"
+            rel="noopener noreferrer"
           >
             https://www.google.com/intl/en/policies/privacy/
           </a>
           . You can also opt-out of Google Analytics here:{" "}
-          <a href="https://tools.google.com/dlpage/gaoptout" target="_blank">
+          <a
+            href="https://tools.google.com/dlpage/gaoptout"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             https://tools.google.com/dlpage/gaoptout
           </a>
           .
@@ -106,10 +113,10 @@ const Privacy = () => {
           <a
             href="https://www.networkadvertising.org/understanding-online-advertising/how-does-it-work"
             target="_blank"
+            rel="noopener noreferrer"
           >
             http://www.networkadvertising.org/understanding-online-advertising/how-does-it-work
           </a>
-          .
         </p>
         <p className={classes.text}>
           You can opt out of targeted advertising by: <br />
@@ -117,6 +124,7 @@ const Privacy = () => {
           <a
             href="https://www.google.com/settings/ads/anonymous"
             target="_blank"
+            rel="noopener noreferrer"
           >
             https://www.google.com/settings/ads/anonymous
           </a>
@@ -124,7 +132,11 @@ const Privacy = () => {
         <p className={classes.text}>
           Additionally, you can opt out of some of these services by visiting
           the Digital Advertising Alliance’s opt-out portal at:{" "}
-          <a href="http://optout.aboutads.info" target="_blank">
+          <a
+            href="http://optout.aboutads.info"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             http://optout.aboutads.info/
           </a>
           .

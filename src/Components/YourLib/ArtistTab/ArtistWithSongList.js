@@ -66,11 +66,11 @@ const useStyles = makeStyles((theme) => ({
     bottom: "8px",
     left: "16px",
   },
-  container: {
-    position: "relative",
-    textAlign: "center",
-    color: "white",
-  },
+  // container: {
+  //   position: "relative",
+  //   textAlign: "center",
+  //   color: "white",
+  // },
   artistImg: {
     width: "100%",
     height: "auto",

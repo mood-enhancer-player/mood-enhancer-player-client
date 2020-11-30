@@ -89,7 +89,6 @@ const MusicPlayer = ({
     <>
       <ReactJkMusicPlayer
         audioLists={audioList}
-        // audioLists={audioLists}
         autoPlay={true}
         showPlayMode={false}
         mode="full"

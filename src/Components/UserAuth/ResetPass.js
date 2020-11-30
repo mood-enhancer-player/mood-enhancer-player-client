@@ -1,10 +1,5 @@
 import React, { useState, useContext } from "react";
-import {
-  makeStyles,
-  TextField,
-  Button,
-  CircularProgress,
-} from "@material-ui/core";
+import { makeStyles, TextField, Button } from "@material-ui/core";
 import { gql, useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../../context/auth";
@@ -34,7 +29,6 @@ const useStyles = makeStyles((theme) => ({
   forgotPassLink: {
     color: "lightblue",
     width: "500px",
-    // margin: "10px",
     cursor: "pointer",
     marginRight: "20px",
   },
@@ -42,17 +36,13 @@ const useStyles = makeStyles((theme) => ({
 
 const ResetPass = () => {
   document.getElementsByTagName("html")[0].style.background = "black";
-  const context = useContext(AuthContext);
-
   const classes = useStyles();
   const [error, setError] = useState(false);
   const [emailHelperText, setEmailHelperText] = useState("");
   const [values, setValues] = useState({
     email: "",
   });
-  const [passwordSuccessfullySend, setPasswordSuccessfullySend] = useState(
-    false
-  );
+
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
     // onInput change all the erro messages are remove.

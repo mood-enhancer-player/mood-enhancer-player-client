@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import {
-  makeStyles,
-  useTheme,
-  AppBar,
-  Tabs,
-  Tab,
-  Box,
-} from "@material-ui/core";
+import { makeStyles, AppBar, Tabs, Tab, Box } from "@material-ui/core";
 import ArtistTab from "./ArtistTab/ArtistTab";
 import AlbumTab from "./AlbumTab/AlbumTab";
 import ArtistWithSongList from "./ArtistTab/ArtistWithSongList";
@@ -51,15 +44,10 @@ const useStyles = makeStyles((theme) => ({
 
 const YourLib = () => {
   const classes = useStyles();
-  const theme = useTheme();
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-  };
-
-  const handleChangeIndex = (index) => {
-    setValue(index);
   };
 
   const [artistIdState, setArtistIdState] = useState("");
