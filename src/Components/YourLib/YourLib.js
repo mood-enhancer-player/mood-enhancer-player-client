@@ -23,12 +23,7 @@ const TabPanel = (props) => {
       aria-labelledby={`full-width-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box p={3}>
-          {/* <Typography>{children}</Typography> */}
-          {children}
-        </Box>
-      )}
+      {value === index && <Box p={3}>{children}</Box>}
     </div>
   );
 };
@@ -89,15 +84,10 @@ const YourLib = () => {
           variant="fullWidth"
           aria-label="full width tabs example"
         >
-          {/* <Tab label="Playlists" {...a11yProps(0)} /> */}
           <Tab label="Artists" {...a11yProps(0)} />
           <Tab label="Albums" {...a11yProps(1)} />
         </Tabs>
       </AppBar>
-
-      {/* <TabPanel value={value} index={0} className={classes.tabview}>
-        <PlaylistTab />
-      </TabPanel> */}
       <TabPanel value={value} index={0} className={classes.tabview}>
         <ArtistTab yourLibCardClickHandler={yourLibCardClickHandler} />
       </TabPanel>

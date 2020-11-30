@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { AuthContext } from "../../../context/auth";
 import AppNavBar from "../AppBar/AppNavBar";
 import HideDrawer from "../NavWithHiddenDrawer/HideDrawer";

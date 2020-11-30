@@ -1,11 +1,5 @@
-import React, { useState } from "react";
-import {
-  makeStyles,
-  TableRow,
-  TableCell,
-  Button,
-  IconButton,
-} from "@material-ui/core";
+import React from "react";
+import { makeStyles, TableRow, TableCell } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,7 +33,6 @@ const useStyles = makeStyles((theme) => ({
   editBtn: {
     backgroundColor: "green",
     marginLeft: "15px",
-    //   color:"green"
   },
   deleteBtn: {
     backgroundColor: "red",
@@ -61,17 +54,7 @@ const ArtistWithSongListTableRow = ({
   album,
 }) => {
   const classes = useStyles();
-  const [playIcon, setPlayIcon] = useState(true);
-  // const { data, loading, error } = useQuery(GET_SONGS_BY_ARTISTS, {
-  //   variables: {
-  //     artistId,
-  //   },
-  // });
 
-  // const iconHandler = (songId) => {
-  //   console.log("icon handle called", songId);
-  //   setPlayIcon(!playIcon);
-  // };
   const iconHandlerOnHover = (songId) => {
     const indexCell = document.getElementById(index);
     indexCell.textContent = "|>";
@@ -106,20 +89,3 @@ const ArtistWithSongListTableRow = ({
 };
 
 export default ArtistWithSongListTableRow;
-
-// {/* <TableCell
-// className={classes.textAlign}
-// onClick={() => iconHandler(songId)}
-// >
-// <IconButton
-//   aria-label="Play"
-//   onClick={() => playButtonHandler(songId)}
-// >
-//   {playIcon ? (
-//     <PlayArrowRoundedIcon />
-//   ) : (
-//     <PauseCircleFilledOutlinedIcon />
-//   )}
-//   {/* <audio src={musicSrc} id={songId} /> */}
-// </IconButton>
-// </TableCell> */}

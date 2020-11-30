@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import { AppBar, IconButton, Toolbar, InputBase } from "@material-ui/core";
 import {
   SearchOutlined as SearchIcon,
@@ -10,10 +9,7 @@ import {
 } from "@material-ui/icons";
 
 import { makeStyles, useTheme, fade } from "@material-ui/core/styles";
-import { Link, withRouter } from "react-router-dom";
-import { AuthContext } from "../../../context/auth";
 import PhotoTaker from "../../Common/FaceCapture/PhotoTaker";
-import { ThemeContext } from "../../../App";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({

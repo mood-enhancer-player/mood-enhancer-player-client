@@ -1,5 +1,5 @@
 import React from "react";
-import { CircularProgress, Grid, makeStyles } from "@material-ui/core";
+import { Grid, makeStyles } from "@material-ui/core";
 import TabCard from "../../Common/Card/TabCard/TabCard";
 import { useQuery, gql } from "@apollo/client";
 import CardSkeleton from "../../Common/Skeleton/CardSkeleton";

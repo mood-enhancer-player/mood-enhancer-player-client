@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  makeStyles,
-  Grid,
-  Divider,
-  Typography,
-  Button,
-  IconButton,
-} from "@material-ui/core";
+import { makeStyles, Grid, Button } from "@material-ui/core";
 import { gql, useMutation } from "@apollo/client";
 import CameraIcon from "@material-ui/icons/Camera";
 const fs = require("fs");
@@ -98,7 +91,6 @@ const FaceCaptureModal = ({ handleClose }) => {
     <div>
       <Grid container direction="row" justify="center" alignItems="center">
         <div>
-          {/* <h2 id="transition-modal-title">Take Image</h2> */}
           <p className={classes.title}>Take Image</p>
           <video
             id="captureVideo"
@@ -136,7 +128,6 @@ const FaceCaptureModal = ({ handleClose }) => {
                 Take Photo
               </Button>
             </center>
-            {/* <Divider className={classes.divider} /> */}
           </div>
         </div>
 

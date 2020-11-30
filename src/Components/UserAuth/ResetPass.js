@@ -8,7 +8,6 @@ import {
 import { gql, useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../../context/auth";
-import passwordSendMessage from "./PasswordSendMessage";
 import Loader from "../Common/Loader/Loader";
 
 const useStyles = makeStyles((theme) => ({
@@ -105,8 +104,6 @@ const ResetPass = () => {
     console.log("form is submited", data);
   };
 
-  // if (data) console.log("data", data.resetPassword, loading);
-
   return (
     <div>
       {loading ? (
@@ -120,12 +117,6 @@ const ResetPass = () => {
             autoComplete="off"
             onSubmit={onFormSubmit}
           >
-            {/* {loading ? (
-           <CircularProgress color="secondary" />
-         ) : (
-           <h1>Hello Data Loaded</h1>
-         )} */}
-
             <div>
               <TextField
                 id="outlined-flexible"

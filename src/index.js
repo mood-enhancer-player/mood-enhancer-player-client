@@ -4,8 +4,6 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { HOST_URL } from "./config";
-// import { darkTheme, lightTheme } from "./theme";
-// import { ThemeProvider } from "@material-ui/core/styles";
 
 import {
   ApolloProvider,
@@ -15,8 +13,6 @@ import {
   from,
 } from "@apollo/client";
 import { createUploadLink } from "apollo-upload-client";
-
-// const httpLink = new HttpLink({ uri: "http://localhost:9090/graphql" });
 
 const httpLink = createUploadLink({
   uri: HOST_URL,
@@ -43,14 +39,12 @@ const client = new ApolloClient({
 });
 
 ReactDOM.render(
-  // <React.StrictMode>
-  <ApolloProvider client={client}>
-    {/* <ThemeProvider theme={lightTheme}> */}
-    <App />
-    {/* </ThemeProvider> */}
-  </ApolloProvider>,
-
-  // </React.StrictMode>,
+  <React.StrictMode>
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
+    ,
+  </React.StrictMode>,
   document.getElementById("root")
 );
 

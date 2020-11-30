@@ -1,7 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core";
 import { Alert, AlertTitle } from "@material-ui/lab";
-import { MailOutlineOutlined } from "@material-ui/icons";
 
 const useStyles = makeStyles(() => ({
   passwordSendMessage: {
@@ -15,9 +14,6 @@ const PasswordSendMessage = () => {
 
   return (
     <div>
-      {/* <h1 className={classes.passwordSendMessage}>
-        New Password is send to your verified email address
-      </h1> */}
       <div className={classes.passwordSendMessage}>
         <Alert severity="success">
           <AlertTitle>Password Reset Successfully</AlertTitle>

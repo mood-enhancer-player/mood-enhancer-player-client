@@ -19,13 +19,7 @@ const useStyles = makeStyles((theme) => ({
     height: "230px",
     borderRadius: "10px",
     background: theme.palette.grey[50],
-
-    // backgroundColor:"#A8CABA",
-    // backgroundColor: "#414345",
-    // background: "linear-gradient(to right,#000000, #2c3e50)",
-    // boxShadow: "-11px 11px 31px #191919, 11px -11px 31px #292929",
     "&:hover": {
-      // background: "black",
       background: theme.palette.primary.dark,
 
       transform: "translateY(-5px)",
@@ -42,22 +36,15 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "left",
     marginTop: "-18px",
     marginLeft: "-15px",
-    // fontSize: "20px"
   },
   box: {
     marginLeft: "10px",
     marginRight: "10px",
-    // [theme.breakpoints.down("md")]: {
-    //   // width: "100%",
-    //   marginLeft: "auto",
-    //   marginRight: "auto"
-    // },
   },
   media: {
     width: "145px",
     height: "145px",
     margin: "17px auto 17px",
-    // padding:"17px",
     borderRadius: "50%",
     [theme.breakpoints.down("md")]: {
       width: "100px",
@@ -104,9 +91,6 @@ const TabCard = ({ name, picture, id, yourLibCardClickHandler }) => {
           />
           <CardContent className={classes.cardContent}>
             <Typography className={classes.cardTitle}>{name}</Typography>
-            {/* <IconButton color="secondary">
-            <PlayCircleFilledWhiteIcon />
-          </IconButton> */}
           </CardContent>
         </Box>
       </Card>

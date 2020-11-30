@@ -4,7 +4,7 @@ import {
   FavoriteBorderOutlined as FavoriteBorderOutlinedIcon,
   FavoriteOutlined as FavoriteOutlinedIcon,
 } from "@material-ui/icons";
-import { gql, useMutation, useQuery } from "@apollo/client";
+import { gql, useMutation } from "@apollo/client";
 
 const useStyles = makeStyles((theme) => ({
   likeBtn: {

@@ -1,8 +1,8 @@
-import React, { useContext, useState } from "react";
-import { MenuItem, Menu, InputBase, Box, Typography } from "@material-ui/core";
+import React from "react";
+import { MenuItem, Menu } from "@material-ui/core";
 
 import { makeStyles, fade } from "@material-ui/core/styles";
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
   menuItemLink: {

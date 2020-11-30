@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React from "react";
 import { Drawer, Hidden } from "@material-ui/core";
 
 import { makeStyles, useTheme, fade } from "@material-ui/core/styles";
@@ -18,7 +18,6 @@ const useStyles = makeStyles((theme) => ({
   drawerPaper: {
     width: drawerWidth,
     background: theme.palette.primary.light,
-    // background: "red",
     zIndex: "1",
   },
 }));

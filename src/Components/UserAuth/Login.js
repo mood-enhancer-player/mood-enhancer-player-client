@@ -28,14 +28,12 @@ const useStyles = makeStyles((theme) => ({
   signUpLink: {
     color: "lightblue",
     width: "500px",
-    // margin: "10px",
     cursor: "pointer",
     marginLeft: "20px",
   },
   forgotPassLink: {
     color: "lightblue",
     width: "500px",
-    // margin: "10px",
     cursor: "pointer",
     marginRight: "20px",
   },
@@ -73,11 +71,6 @@ const Login = () => {
     onError(err) {
       //   setErrors(err.graphQLErrors[0].extensions.exception.errors);
     },
-    // variables:{
-    //   username:values.username,
-    //   email:values.email
-    // }
-    // OR
     variables: values,
   });
 
@@ -124,12 +117,6 @@ const Login = () => {
         autoComplete="off"
         onSubmit={onFormSubmit}
       >
-        {/* {loading ? (
-          <CircularProgress color="secondary" />
-        ) : (
-          <h1>Hello Data Loaded</h1>
-        )} */}
-
         <div>
           <TextField
             id="outlined-flexible"
@@ -186,12 +173,6 @@ const Login = () => {
             Sign In
           </Button>
         </div>
-        {/* <div style={{ color: "white", background: "red" }}>
-        <div>{values.username}</div>
-        <div>{values.email}</div>
-        <div>{values.password}</div>
-        <div>{values.confirmPassword}</div>
-      </div> */}
       </form>
     </div>
   );

@@ -47,7 +47,6 @@ const DragAndDrop = (props) => {
       onCompleted: (data) => {
         console.log(data);
         // props.handleClose();
-        // setprofileImgFileState(data.uploadProfile.url);
       },
       onError(err) {
         console.log(err);

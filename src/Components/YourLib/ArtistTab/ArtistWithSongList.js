@@ -7,11 +7,6 @@ import {
   TableHead,
   TableRow,
   TableCell,
-  TablePagination,
-  CircularProgress,
-  Button,
-  Typography,
-  Paper,
   CardMedia,
 } from "@material-ui/core";
 import { useQuery, gql } from "@apollo/client";
@@ -51,7 +46,6 @@ const useStyles = makeStyles((theme) => ({
   editBtn: {
     backgroundColor: "green",
     marginLeft: "15px",
-    //   color:"green"
   },
   deleteBtn: {
     backgroundColor: "red",
@@ -123,7 +117,6 @@ const ArtistWithSongList = ({ artistId }) => {
       ) : (
         <>
           <TableContainer className={classes.container}>
-            {/* <Paper elevation={3} className={classes.paper}> */}
             <CardMedia
               component="img"
               alt="Contemplative Reptile"
@@ -134,19 +127,7 @@ const ArtistWithSongList = ({ artistId }) => {
               className={classes.card}
             />
             <h1>{data.getArtistById.name}</h1>
-            {/* 
-            <div>
-              <img
-                src={data.getArtistById.singerProfileFile}
-                className={classes.artistImg}
-              />
-              <div className={classes.textPos}>
-                <p>{data.getArtistById.name}</p>
-              </div>
-            </div> */}
-            {/* </img> */}
 
-            {/* </Paper> */}
             <Table className={classes.table}>
               <TableHead>
                 <TableRow>

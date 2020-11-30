@@ -78,17 +78,11 @@ const SignUp = () => {
       if (result) {
         context.login(result.data.register);
         history.push("/");
-        // window.location.reload("/");
       }
     },
     onError(err) {
       // setErrors(err.graphQLErrors[0].extensions.exception.errors);
     },
-    // variables:{
-    //   username:values.username,
-    //   email:values.email
-    // }
-    // OR
     variables: values,
   });
 
@@ -148,7 +142,6 @@ const SignUp = () => {
   return (
     <div>
       <h1 className={classes.title}>SIGN UP</h1>
-      {/* <Divider variant="middle" style={{ margin: "15px" }} /> */}
 
       <form
         className={classes.root}
@@ -167,11 +160,6 @@ const SignUp = () => {
             </Alert>
           </div>
         ) : null}
-        {/* {loading ? (
-          <CircularProgress color="secondary" />
-        ) : (
-          <h1>Hello Data Loaded</h1>
-        )} */}
         <div>
           <TextField
             id="outlined-flexible"
@@ -250,12 +238,6 @@ const SignUp = () => {
             SIGN UP
           </Button>
         </div>
-        {/* <div style={{ color: "white", background: "red" }}>
-        <div>{values.username}</div>
-        <div>{values.email}</div>
-        <div>{values.password}</div>
-        <div>{values.confirmPassword}</div>
-      </div> */}
       </form>
     </div>
   );

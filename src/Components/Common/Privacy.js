@@ -1,10 +1,4 @@
-import {
-  Paper,
-  Container,
-  Typography,
-  makeStyles,
-  Divider,
-} from "@material-ui/core";
+import { Container, makeStyles, Divider } from "@material-ui/core";
 import React from "react";
 
 const useStyles = makeStyles({
@@ -14,7 +8,6 @@ const useStyles = makeStyles({
   },
   text: {
     marginTop: "20px",
-    // marginBottom: "20px",
     textAlign: "justify",
   },
 });

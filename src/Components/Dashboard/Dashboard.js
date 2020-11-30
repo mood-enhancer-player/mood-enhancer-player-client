@@ -9,12 +9,7 @@ import YourLib from "../YourLib/YourLib";
 import LikedSongs from "../LikedSongs/LikedSongs";
 import Privacy from "../Common/Privacy";
 import RecentPlayed from "../RecentPlayed/RecentPlayed";
-import MenuForNewUser from "./ProfileMenu/MenuForNewUser";
-import MenuForExistingUser from "./ProfileMenu/MenuForExistingUser";
-import HideDrawer from "./NavWithHiddenDrawer/HideDrawer";
-import AppNavBar from "./AppBar/AppNavBar";
 import MusicPlayer from "../Common/MusicPlayer/MusicPlayer";
-import Loader from "../Common/Loader/Loader";
 import MainAppNavBar from "./MainAppNavBar/MainAppNavBar";
 import CardSkeleton from "../Common/Skeleton/CardSkeleton";
 import PlaylistGenerator from "../Mood Enhancer/PlaylistGenerator";
@@ -44,7 +39,7 @@ const Dashboard = ({ themeHandler, themeToggler }) => {
 
   const { user, logout } = useContext(AuthContext);
 
-  const [songIdState, setSongIdState] = useState("5fb909ec061f072db84bcb5c");
+  const [songIdState, setSongIdState] = useState("5fc3b4bff5b1173d8c41caa1");
   const musicInfo = useQuery(MUSIC_INFO_QUERY);
 
   const getSongById = useQuery(GET_SONG_BY_ID_QUERY, {
@@ -58,29 +53,6 @@ const Dashboard = ({ themeHandler, themeToggler }) => {
   const getLikedSongs = useQuery(GET_LIKED_SONGS_QUERY);
 
   const getPlayList = useQuery(GET_SONG_PLAYLIST_QUERY);
-
-  // const [mobileOpen, setMobileOpen] = React.useState(false);
-
-  // const [anchorEl, setAnchorEl] = React.useState(null);
-  // const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-  // const isMenuOpen = Boolean(anchorEl);
-
-  // const handleDrawerToggle = () => {
-  //   setMobileOpen(!mobileOpen);
-  // };
-
-  // const handleProfileMenuOpen = (event) => {
-  //   setAnchorEl(event.currentTarget);
-  // };
-
-  // const handleMobileMenuClose = () => {
-  //   setMobileMoreAnchorEl(null);
-  // };
-
-  // const handleMenuClose = () => {
-  //   setAnchorEl(null);
-  //   handleMobileMenuClose();
-  // };
 
   // State For Menu Switching
   const [state, setState] = React.useState("Home");
@@ -120,36 +92,6 @@ const Dashboard = ({ themeHandler, themeToggler }) => {
         themeToggler={themeToggler}
         themeHandler={themeHandler}
       />
-      {/* <AppNavBar
-        menuId={menuId}
-        state={state}
-        handleDrawerToggle={handleDrawerToggle}
-        handleSearch={handleSearch}
-        handleProfileMenuOpen={handleProfileMenuOpen}
-      />
-
-      {user ? (
-        <MenuForExistingUser
-          menuId={menuId}
-          anchorEl={anchorEl}
-          isMenuOpen={isMenuOpen}
-          handleMenuClose={handleMenuClose}
-        />
-      ) : (
-        <MenuForNewUser
-          menuId={menuId}
-          anchorEl={anchorEl}
-          isMenuOpen={isMenuOpen}
-          handleMenuClose={handleMenuClose}
-        />
-      )}
-
-      <HideDrawer
-        mobileOpen={mobileOpen}
-        handleDrawerToggle={handleDrawerToggle}
-        selectedMenuItem={selectedMenuItem}
-        privacy={privacy}
-      /> */}
 
       <main className={classes.content}>
         <div className={classes.toolbar} />

@@ -16,16 +16,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
   },
   paper: {
-    // backgroundColor: "black",
-    // background:"linear-gradient(to bottom, Transparente 0%,Transparente 50%,red 50%,red 100%)",
-    // background: "linear-gradient(to right, #414345, #232526)",
-    // background: "linear-gradient(to right,#434343,#000000)",
     background: "#212121",
 
-    // backgroundImage:"linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%)",
     border: "1px solid #000",
     boxShadow: theme.shadows[5],
-    // padding: theme.spacing(2, 4, 3),
     padding: "17px 15px 20px",
     width: "320px",
   },

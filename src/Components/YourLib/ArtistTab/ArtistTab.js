@@ -3,7 +3,6 @@ import { Grid, makeStyles } from "@material-ui/core";
 import { useQuery, gql } from "@apollo/client";
 
 import TabCard from "../../Common/Card/TabCard/TabCard";
-import ArtistWithSongList from "./ArtistWithSongList";
 import CardSkeleton from "../../Common/Skeleton/CardSkeleton";
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,37 +19,6 @@ const useStyles = makeStyles((theme) => ({
     margin: "20px",
   },
 }));
-
-// const data = [
-// {
-//     id:1,
-//     name:" Hasi Ban Gaye"
-// },
-// {
-//     id:2,
-//     name:" Hasi Ban Gaye"
-// },
-//   {
-//     id: 3,
-//     name: " Arijit Singh",
-//   },
-//   {
-//     id: 4,
-//     name: " Jubin Nautial",
-//   },
-//   {
-//     id: 5,
-//     name: "Justin Bieber",
-//   },
-//   {
-//     id: 6,
-//     name: "Mithoon",
-//   },
-//   {
-//     id: 7,
-//     name: " Neha Kakkar",
-//   },
-// ];
 
 const ArtistTab = ({ yourLibCardClickHandler }) => {
   const classes = useStyles();

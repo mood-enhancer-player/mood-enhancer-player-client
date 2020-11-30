@@ -1,11 +1,4 @@
-import {
-  CardContent,
-  CardMedia,
-  Grid,
-  makeStyles,
-  Paper,
-  Typography,
-} from "@material-ui/core";
+import { Grid, makeStyles } from "@material-ui/core";
 import React from "react";
 import TabCard from "../../Common/Card/TabCard/TabCard";
 const useStyles = makeStyles((theme) => ({
@@ -20,37 +13,6 @@ const useStyles = makeStyles((theme) => ({
     margin: "20px",
   },
 }));
-
-const data = [
-  {
-    id: 1,
-    name: " Hasi Ban Gaye",
-  },
-  {
-    id: 2,
-    name: " Hasi Ban Gaye",
-  },
-  {
-    id: 3,
-    name: " Hasi Ban Gaye",
-  },
-  {
-    id: 4,
-    name: " Hasi Ban Gaye",
-  },
-  {
-    id: 5,
-    name: " Hasi Ban Gaye",
-  },
-  {
-    id: 6,
-    name: " Hasi Ban Gaye",
-  },
-  {
-    id: 7,
-    name: " Hasi Ban Gaye",
-  },
-];
 
 const PlaylistTab = () => {
   const classes = useStyles();
