@@ -6,13 +6,17 @@ import {
 } from "@material-ui/icons";
 import { gql, useMutation } from "@apollo/client";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   likeBtn: {
     zIndex: "1000000",
     position: "absolute",
     marginLeft: "115px", // 106
     marginTop: "210px", // 175
     cursor: "pointer",
+    [theme.breakpoints.down("md")]: {
+      marginTop: "175px",
+      marginRight: "10px",
+    },
   },
   likeBtnSize: {
     width: "26px",
