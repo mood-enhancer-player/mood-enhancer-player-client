@@ -183,14 +183,6 @@ const MyAccount = () => {
                 disabled={disabledToggler}
               />
             </div>
-            <div>
-              <p
-                className={classes.signUpLink}
-                onClick={() => history.push("/signUp")}
-              >
-                New to Mood Enhancer ? <u>Create an account</u>
-              </p>
-            </div>
             {disabledToggler ? (
               <div>
                 <Button
