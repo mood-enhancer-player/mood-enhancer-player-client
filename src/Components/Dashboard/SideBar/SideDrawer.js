@@ -15,6 +15,7 @@ import {
   AlarmOutlined as AlarmIcon,
   AccountCircleOutlined as AccountCircle,
   FavoriteBorderOutlined as FavoriteBorderIcon,
+  Mood as MoodIcon,
 } from "@material-ui/icons";
 
 import { makeStyles, useTheme } from "@material-ui/core/styles";
@@ -50,7 +51,7 @@ const SideDrawer = ({ selectedMenuItem, privacy }) => {
     },
     {
       text: "Mood Enhancer",
-      icon: <FavoriteBorderIcon />,
+      icon: <MoodIcon />,
     },
     {
       text: "Your Library",
