@@ -8,7 +8,7 @@ import { gql, useMutation } from "@apollo/client";
 
 const useStyles = makeStyles((theme) => ({
   likeBtn: {
-    zIndex: "1000000",
+    zIndex: "98",
     position: "absolute",
     marginLeft: "115px", // 106
     marginTop: "210px", // 175
