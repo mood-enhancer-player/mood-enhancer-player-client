@@ -46,12 +46,29 @@ const DragAndDrop = (props) => {
     {
       onCompleted: (data) => {
         console.log(data);
-        // props.handleClose();
+        props.handleClose();
       },
       onError(err) {
         console.log(err);
         // setErrors(err.graphQLErrors[0].extensions.exception.errors);
       },
+      refetchQueries: [
+        {
+          query: gql`
+            query {
+              getPlayList {
+                _id
+                name
+                singer
+                musicSrc
+                cover
+                playCount
+                moodType
+              }
+            }
+          `,
+        },
+      ],
     }
   );
   console.log("Files", files);

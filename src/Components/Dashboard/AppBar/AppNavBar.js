@@ -123,6 +123,7 @@ const AppNavBar = ({
         ) : null}
         {/* search end */}
         <PhotoTaker />
+        {/* {state === "Mood Enhancer" ? <PhotoTaker /> : state} */}
         <div className={classes.grow} />
         {themeToggler ? (
           <div className={classes.brightness} onClick={themeHandler}>

@@ -240,6 +240,8 @@ const GET_SONG_PLAYLIST_QUERY = gql`
       singer
       musicSrc
       cover
+      playCount
+      moodType
     }
   }
 `;
