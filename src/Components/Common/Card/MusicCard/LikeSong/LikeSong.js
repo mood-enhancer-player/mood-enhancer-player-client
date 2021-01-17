@@ -35,6 +35,20 @@ const LikeSong = ({ id }) => {
 
   const [addToLikeSong] = useMutation(ADD_TO_LIKE_SONGS_MUTATION, {
     onCompleted: (data) => console.log(data),
+    refetchQueries: [
+      {
+        query: gql`
+          query {
+            getLikeSongs {
+              _id
+              name
+              musicSrc
+              singer
+            }
+          }
+        `,
+      },
+    ],
   });
 
   const likeSong = (songId) => {
