@@ -104,8 +104,7 @@ const Dashboard = ({ themeHandler, themeToggler }) => {
         !getRecentPlay.data ||
         getRecentPlay.loading ||
         !getLikedSongs.data ||
-        getLikedSongs.loading ||
-        getPlayList.loading ? (
+        getLikedSongs.loading  ? (
           // <Loader />
           <>
             <Typography variant="h5" className={classes.heading}>
