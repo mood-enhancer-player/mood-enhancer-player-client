@@ -1,6 +1,6 @@
-import React from "react";
-import ReactJkMusicPlayer from "react-jinke-music-player";
-import "react-jinke-music-player/assets/index.css";
+import React from 'react';
+import ReactJkMusicPlayer from 'react-jinke-music-player';
+import 'react-jinke-music-player/assets/index.css';
 
 const MusicPlayer = ({
   musicInfoQuery = 0,
@@ -19,7 +19,7 @@ const MusicPlayer = ({
   // const [autoPlay, setAutoPlay] = React.useState(false);
   let index, audioList;
   switch (as) {
-    case "Home":
+    case 'Home':
       {
         index = musicInfoQuery.getAllSongs.findIndex((oneSong, index) => {
           if (String(oneSong._id) === getSongByIdQuery.getSongById._id) {
@@ -29,7 +29,7 @@ const MusicPlayer = ({
         audioList = musicInfoQuery.getAllSongs;
       }
       break;
-    case "Browse":
+    case 'Browse':
       {
         index = musicInfoQuery.getAllSongs.findIndex((oneSong, index) => {
           if (String(oneSong._id) === songIdForBrowseTab) return index;
@@ -37,7 +37,7 @@ const MusicPlayer = ({
         audioList = musicInfoQuery.getAllSongs;
       }
       break;
-    case "Mood Enhancer":
+    case 'Mood Enhancer':
       {
         index = musicInfoQuery.getAllSongs.findIndex((oneSong, index) => {
           if (String(oneSong._id) === songIdForgetPlayListSongTab) return index;
@@ -45,7 +45,7 @@ const MusicPlayer = ({
         audioList = musicInfoQuery.getPlayList;
       }
       break;
-    case "Recent Played":
+    case 'Recent Played':
       {
         index = getRecentPlayQuery.getRecentPlay.findIndex((oneSong, index) => {
           if (String(oneSong._id) === songIdForRecentPlayedTab) return index;
@@ -53,7 +53,7 @@ const MusicPlayer = ({
         audioList = getRecentPlayQuery.getRecentPlay;
       }
       break;
-    case "YourLibArtist":
+    case 'YourLibArtist':
       {
         index = songInfoForYourLibArtist.getSongsByArtist.findIndex(
           (oneSong, index) => {
@@ -63,7 +63,7 @@ const MusicPlayer = ({
         audioList = songInfoForYourLibArtist.getSongsByArtist;
       }
       break;
-    case "Liked Songs":
+    case 'Liked Songs':
       {
         index = getLikedSongs.getLikeSongs.findIndex((oneSong, index) => {
           if (String(oneSong._id) === songIdForLikedSongTab) return index;
@@ -77,9 +77,9 @@ const MusicPlayer = ({
 
   React.useEffect(() => {
     const musicPlayerAudio = document.getElementsByClassName(
-      "music-player-audio"
+      'music-player-audio'
     )[0];
-    musicPlayerAudio.setAttribute("muted", "muted");
+    musicPlayerAudio.setAttribute('muted', 'muted');
   }, []);
   // if not any id match then play 0 index song
   if (index === -1) {
@@ -91,12 +91,11 @@ const MusicPlayer = ({
         audioLists={audioList}
         autoPlay={true}
         showPlayMode={false}
-        mode="full"
+        mode='full'
         showDestroy={false}
         showDownload={false}
         playIndex={index}
         // onAudioEnded={(end) => console.log("audio ended", end)}
-        onPlayIndexChange={(data) => console.log("Index Changed", data)}
       />
     </>
   );

@@ -1,63 +1,62 @@
-import React, { useState, useContext } from "react";
-import { makeStyles, TextField, Button } from "@material-ui/core";
-import { gql, useMutation } from "@apollo/client";
-import { useHistory } from "react-router-dom";
-import { AuthContext } from "../../context/auth";
+import React, { useState, useContext } from 'react';
+import { makeStyles, TextField, Button } from '@material-ui/core';
+import { gql, useMutation } from '@apollo/client';
+import { useHistory } from 'react-router-dom';
+import { AuthContext } from '../../context/auth';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    "& > *": {
+    '& > *': {
       margin: theme.spacing(1),
-      width: "25ch",
+      width: '25ch',
     },
-    background: "black",
-    padding: "20px",
-    width: "600px",
-    margin: "auto",
+    background: 'black',
+    padding: '20px',
+    width: '600px',
+    margin: 'auto',
   },
   title: {
-    color: "#f0db72",
-    textAlign: "center",
-    marginTop: "90px",
-    fontFamily: "fangsong",
+    color: '#f0db72',
+    textAlign: 'center',
+    marginTop: '90px',
+    fontFamily: 'fangsong',
   },
   textField: {
-    margin: "10px",
-    width: "500px",
+    margin: '10px',
+    width: '500px',
   },
   signUpLink: {
-    color: "lightblue",
-    width: "500px",
-    cursor: "pointer",
-    marginLeft: "20px",
+    color: 'lightblue',
+    width: '500px',
+    cursor: 'pointer',
+    marginLeft: '20px',
   },
   forgotPassLink: {
-    color: "lightblue",
-    width: "500px",
-    cursor: "pointer",
-    marginRight: "20px",
+    color: 'lightblue',
+    width: '500px',
+    cursor: 'pointer',
+    marginRight: '20px',
   },
 }));
 
 const Login = () => {
-  document.getElementsByTagName("html")[0].style.background = "black";
+  document.getElementsByTagName('html')[0].style.background = 'black';
   const context = useContext(AuthContext);
 
   const classes = useStyles();
   const [error, setError] = useState(false);
-  const [emailHelperText, setEmailHelperText] = useState("");
-  const [passwordHelperText, setPasswordHelperText] = useState("");
+  const [emailHelperText, setEmailHelperText] = useState('');
+  const [passwordHelperText, setPasswordHelperText] = useState('');
   const [values, setValues] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
-  console.log(error);
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
     // onInput change all the erro messages are remove.
     setError(false);
-    setEmailHelperText("");
-    setPasswordHelperText("");
+    setEmailHelperText('');
+    setPasswordHelperText('');
   };
 
   const history = useHistory();
@@ -65,7 +64,7 @@ const Login = () => {
     update(_, result) {
       if (result) {
         context.login(result.data.login);
-        history.push("/");
+        history.push('/');
       }
     },
     onError(err) {
@@ -78,24 +77,24 @@ const Login = () => {
     // Email validation
     let reg = /^[a-z0-9](\.?[a-z0-9]){5,}@g(oogle)?mail\.com$/;
 
-    if (values.email === "" || values.email === null) {
+    if (values.email === '' || values.email === null) {
       setError(true);
-      setEmailHelperText("Email must not be empty");
+      setEmailHelperText('Email must not be empty');
     } else if (reg.test(values.email) === false) {
       setError(true);
-      setEmailHelperText("Please enter valid email  address");
+      setEmailHelperText('Please enter valid email  address');
     } else {
       setError(false);
     }
 
     // Password validation
 
-    if (values.password === "" || values.password === null) {
+    if (values.password === '' || values.password === null) {
       setError(true);
-      setPasswordHelperText("Password must not be empty");
+      setPasswordHelperText('Password must not be empty');
     } else if (values.password.toString().length < 8) {
       setError(true);
-      setPasswordHelperText("Password Length atleast 8 characters");
+      setPasswordHelperText('Password Length atleast 8 characters');
     } else {
       setError(false);
     }
@@ -105,7 +104,6 @@ const Login = () => {
     e.preventDefault();
     formValidation();
     loginUser();
-    console.log("form is submited");
   };
 
   return (
@@ -114,42 +112,42 @@ const Login = () => {
       <form
         className={classes.root}
         noValidate
-        autoComplete="off"
+        autoComplete='off'
         onSubmit={onFormSubmit}
       >
         <div>
           <TextField
-            id="outlined-flexible"
-            label="Email"
-            variant="outlined"
-            color="secondary"
-            type="email"
-            name="email"
+            id='outlined-flexible'
+            label='Email'
+            variant='outlined'
+            color='secondary'
+            type='email'
+            name='email'
             onChange={onChange}
             error={emailHelperText ? 1 : 0}
             helperText={emailHelperText}
-            size="small"
+            size='small'
             className={classes.textField}
           />
         </div>
         <div>
           <TextField
-            id="outlined-flexible"
-            label="Password"
-            variant="outlined"
-            color="secondary"
-            type="password"
-            name="password"
+            id='outlined-flexible'
+            label='Password'
+            variant='outlined'
+            color='secondary'
+            type='password'
+            name='password'
             onChange={onChange}
             error={passwordHelperText ? 1 : 0}
             helperText={passwordHelperText}
-            size="small"
+            size='small'
             className={classes.textField}
           />
           <div className={classes.forgotPassLink}>
             <p
-              style={{ float: "right" }}
-              onClick={() => history.push("/resetPass")}
+              style={{ float: 'right' }}
+              onClick={() => history.push('/resetPass')}
             >
               <u> Forgot password ?</u>
             </p>
@@ -158,16 +156,16 @@ const Login = () => {
         <div>
           <p
             className={classes.signUpLink}
-            onClick={() => history.push("/signUp")}
+            onClick={() => history.push('/signUp')}
           >
             New to Mood Enhancer ? <u>Create an account</u>
           </p>
         </div>
         <div>
           <Button
-            variant="outlined"
-            color="secondary"
-            type="submit"
+            variant='outlined'
+            color='secondary'
+            type='submit'
             className={classes.textField}
           >
             Sign In

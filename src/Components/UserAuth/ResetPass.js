@@ -1,59 +1,59 @@
-import React, { useState, useContext } from "react";
-import { makeStyles, TextField, Button } from "@material-ui/core";
-import { gql, useMutation } from "@apollo/client";
-import { useHistory } from "react-router-dom";
-import { AuthContext } from "../../context/auth";
-import Loader from "../Common/Loader/Loader";
+import React, { useState, useContext } from 'react';
+import { makeStyles, TextField, Button } from '@material-ui/core';
+import { gql, useMutation } from '@apollo/client';
+import { useHistory } from 'react-router-dom';
+import { AuthContext } from '../../context/auth';
+import Loader from '../Common/Loader/Loader';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    "& > *": {
+    '& > *': {
       margin: theme.spacing(1),
-      width: "25ch",
+      width: '25ch',
     },
-    background: "black",
-    padding: "20px",
-    width: "600px",
-    margin: "auto",
+    background: 'black',
+    padding: '20px',
+    width: '600px',
+    margin: 'auto',
   },
   title: {
-    color: "#f0db72",
-    textAlign: "center",
-    marginTop: "90px",
-    fontFamily: "fangsong",
+    color: '#f0db72',
+    textAlign: 'center',
+    marginTop: '90px',
+    fontFamily: 'fangsong',
   },
   textField: {
-    margin: "10px",
-    width: "500px",
+    margin: '10px',
+    width: '500px',
   },
   forgotPassLink: {
-    color: "lightblue",
-    width: "500px",
-    cursor: "pointer",
-    marginRight: "20px",
+    color: 'lightblue',
+    width: '500px',
+    cursor: 'pointer',
+    marginRight: '20px',
   },
 }));
 
 const ResetPass = () => {
-  document.getElementsByTagName("html")[0].style.background = "black";
+  document.getElementsByTagName('html')[0].style.background = 'black';
   const classes = useStyles();
   const [error, setError] = useState(false);
-  const [emailHelperText, setEmailHelperText] = useState("");
+  const [emailHelperText, setEmailHelperText] = useState('');
   const [values, setValues] = useState({
-    email: "",
+    email: '',
   });
 
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
     // onInput change all the erro messages are remove.
     setError(false);
-    setEmailHelperText("");
+    setEmailHelperText('');
   };
 
   const history = useHistory();
   const [resetPassword, { loading, data }] = useMutation(RESET_PASS_MUTATION, {
     onCompleted: () => {
-      history.push("/passSendMessage");
+      history.push('/passSendMessage');
     },
     // update(_, result) {
     //   console.log(result);
@@ -76,12 +76,12 @@ const ResetPass = () => {
     // Email validation
     let reg = /^[a-z0-9](\.?[a-z0-9]){5,}@g(oogle)?mail\.com$/;
 
-    if (values.email === "" || values.email === null) {
+    if (values.email === '' || values.email === null) {
       setError(true);
-      setEmailHelperText("Email must not be empty");
+      setEmailHelperText('Email must not be empty');
     } else if (reg.test(values.email) === false) {
       setError(true);
-      setEmailHelperText("Please enter valid email  address");
+      setEmailHelperText('Please enter valid email  address');
     } else {
       setError(false);
     }
@@ -91,7 +91,6 @@ const ResetPass = () => {
     e.preventDefault();
     formValidation();
     resetPassword();
-    console.log("form is submited", data);
   };
 
   return (
@@ -104,29 +103,29 @@ const ResetPass = () => {
           <form
             className={classes.root}
             noValidate
-            autoComplete="off"
+            autoComplete='off'
             onSubmit={onFormSubmit}
           >
             <div>
               <TextField
-                id="outlined-flexible"
-                label="Enter your email"
-                variant="outlined"
-                color="secondary"
-                type="email"
-                name="email"
+                id='outlined-flexible'
+                label='Enter your email'
+                variant='outlined'
+                color='secondary'
+                type='email'
+                name='email'
                 onChange={onChange}
                 error={emailHelperText ? 1 : 0}
                 helperText={emailHelperText}
-                size="small"
+                size='small'
                 className={classes.textField}
               />
             </div>
             <div>
               <Button
-                variant="outlined"
-                color="secondary"
-                type="submit"
+                variant='outlined'
+                color='secondary'
+                type='submit'
                 className={classes.textField}
               >
                 RESET PASSWORD

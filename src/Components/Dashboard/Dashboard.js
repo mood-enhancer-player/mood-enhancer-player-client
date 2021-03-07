@@ -1,21 +1,21 @@
-import React, { useContext, useState } from "react";
-import { CssBaseline, Grid, makeStyles, Typography } from "@material-ui/core";
-import { useQuery, gql } from "@apollo/client";
-import Alert from "@material-ui/lab/Alert";
-import Home from "../Home/Home";
-import Browse from "../Browse/Browse";
-import YourLib from "../YourLib/YourLib";
-import LikedSongs from "../LikedSongs/LikedSongs";
-import Privacy from "../Common/Privacy";
-import RecentPlayed from "../RecentPlayed/RecentPlayed";
-import MusicPlayer from "../Common/MusicPlayer/MusicPlayer";
-import MainAppNavBar from "./MainAppNavBar/MainAppNavBar";
-import CardSkeleton from "../Common/Skeleton/CardSkeleton";
-import PlaylistGenerator from "../Mood Enhancer/PlaylistGenerator";
+import React, { useState } from 'react';
+import { CssBaseline, Grid, makeStyles, Typography } from '@material-ui/core';
+import { useQuery, gql } from '@apollo/client';
+import Alert from '@material-ui/lab/Alert';
+import Home from '../Home/Home';
+import Browse from '../Browse/Browse';
+import YourLib from '../YourLib/YourLib';
+import LikedSongs from '../LikedSongs/LikedSongs';
+import Privacy from '../Common/Privacy';
+import RecentPlayed from '../RecentPlayed/RecentPlayed';
+import MusicPlayer from '../Common/MusicPlayer/MusicPlayer';
+import MainAppNavBar from './MainAppNavBar/MainAppNavBar';
+import CardSkeleton from '../Common/Skeleton/CardSkeleton';
+import PlaylistGenerator from '../Mood Enhancer/PlaylistGenerator';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
+    display: 'flex',
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
@@ -23,19 +23,19 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
     background: theme.palette.primary.main,
-    minHeight: "100vh",
+    minHeight: '100vh',
   },
   heading: {
-    margin: "10px",
-    align: "left",
-    fontStyle: "bold",
+    margin: '10px',
+    align: 'left',
+    fontStyle: 'bold',
   },
 }));
 
 const Dashboard = ({ themeHandler, themeToggler }) => {
   const classes = useStyles();
 
-  const [songIdState, setSongIdState] = useState("603b0c961d01a12f0421b347");
+  const [songIdState, setSongIdState] = useState('603b0c961d01a12f0421b347');
   const musicInfo = useQuery(MUSIC_INFO_QUERY);
 
   const getSongById = useQuery(GET_SONG_BY_ID_QUERY, {
@@ -51,7 +51,7 @@ const Dashboard = ({ themeHandler, themeToggler }) => {
   const getPlayList = useQuery(GET_SONG_PLAYLIST_QUERY);
 
   // State For Menu Switching
-  const [state, setState] = React.useState("Home");
+  const [state, setState] = React.useState('Home');
   const selectedMenuItem = (selectedTab) => {
     setState(selectedTab);
   };
@@ -63,17 +63,15 @@ const Dashboard = ({ themeHandler, themeToggler }) => {
   // Song Card Click Handler
   const cardClickHandler = (receiveSongId) => {
     setSongIdState(receiveSongId);
-    console.log("cardhandlercliekd", receiveSongId);
   };
 
   // Search for Browse tab
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   const handleSearch = (e) => {
-    console.log(e.target.value);
     setSearch(e.target.value);
   };
 
-  const menuId = "primary-search-account-menu";
+  const menuId = 'primary-search-account-menu';
   //array for skeleton display
   const musicCardSkeleton = new Array(50).fill(0);
   return (
@@ -94,7 +92,7 @@ const Dashboard = ({ themeHandler, themeToggler }) => {
         {musicInfo.error && getRecentPlay.error && (
           <>
             {/* <h1>{`You Broken It ! ${musicInfo.error.message}`}</h1> */}
-            <Alert severity="error">{musicInfo.error.message} </Alert>
+            <Alert severity='error'>{musicInfo.error.message} </Alert>
           </>
         )}
         {!musicInfo.data ||
@@ -104,27 +102,27 @@ const Dashboard = ({ themeHandler, themeToggler }) => {
         !getRecentPlay.data ||
         getRecentPlay.loading ||
         !getLikedSongs.data ||
-        getLikedSongs.loading  ? (
+        getLikedSongs.loading ? (
           // <Loader />
           <>
-            <Typography variant="h5" className={classes.heading}>
+            <Typography variant='h5' className={classes.heading}>
               Top Trends
               {/* {songIdState} */}
             </Typography>
             <div className={classes.root}>
               <Grid container spacing={2}>
                 {musicCardSkeleton.map((_, index) => (
-                  <CardSkeleton as="musicCard" key={index} />
+                  <CardSkeleton as='musicCard' key={index} />
                 ))}
               </Grid>
             </div>
           </>
         ) : (
           <>
-            {state === "Home" && (
+            {state === 'Home' && (
               <Home cardClickHandler={cardClickHandler} musicInfo={musicInfo} />
             )}
-            {state === "Browse" && (
+            {state === 'Browse' && (
               <Browse
                 search={search}
                 cardClickHandler={cardClickHandler}
@@ -132,21 +130,21 @@ const Dashboard = ({ themeHandler, themeToggler }) => {
               />
             )}
 
-            {state === "Mood Enhancer" && (
+            {state === 'Mood Enhancer' && (
               <PlaylistGenerator
                 cardClickHandler={cardClickHandler}
                 getPlayList={getPlayList}
               />
             )}
-            {state === "Your Library" && <YourLib />}
-            {state === "Recent Played" && (
+            {state === 'Your Library' && <YourLib />}
+            {state === 'Recent Played' && (
               <RecentPlayed
                 cardClickHandler={cardClickHandler}
                 getRecentPlay={getRecentPlay}
               />
             )}
-            {state === "Privacy & Policy" && <Privacy />}
-            {state !== "Your Library" && (
+            {state === 'Privacy & Policy' && <Privacy />}
+            {state !== 'Your Library' && (
               <MusicPlayer
                 // For Home tab
                 musicInfoQuery={musicInfo.data}
@@ -167,7 +165,7 @@ const Dashboard = ({ themeHandler, themeToggler }) => {
               />
             )}
 
-            {state === "Liked Songs" && (
+            {state === 'Liked Songs' && (
               <LikedSongs
                 cardClickHandler={cardClickHandler}
                 getLikedSongs={getLikedSongs}

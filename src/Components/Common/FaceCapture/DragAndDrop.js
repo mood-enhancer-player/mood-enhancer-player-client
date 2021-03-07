@@ -1,41 +1,41 @@
-import React, { useMemo, useEffect, useState } from "react";
+import React, { useMemo, useEffect, useState } from 'react';
 
-import { Button } from "@material-ui/core";
-import { gql, useMutation } from "@apollo/client";
-import { useDropzone } from "react-dropzone";
-import Loader from "../Loader/Loader";
+import { Button } from '@material-ui/core';
+import { gql, useMutation } from '@apollo/client';
+import { useDropzone } from 'react-dropzone';
+import Loader from '../Loader/Loader';
 
 const baseStyle = {
   flex: 1,
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  padding: "30px",
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  padding: '30px',
   borderWidth: 2,
   borderRadius: 2,
-  borderColor: "#000000",
-  borderStyle: "dashed",
-  backgroundColor: "#fafafa",
-  color: "#000000",
-  outline: "none",
-  transition: "border .24s ease-in-out",
+  borderColor: '#000000',
+  borderStyle: 'dashed',
+  backgroundColor: '#fafafa',
+  color: '#000000',
+  outline: 'none',
+  transition: 'border .24s ease-in-out',
 };
 
 const activeStyle = {
-  borderColor: "#2196f3",
+  borderColor: '#2196f3',
 };
 
 const acceptStyle = {
-  borderColor: "#00e676",
+  borderColor: '#00e676',
 };
 
 const rejectStyle = {
-  borderColor: "#ff1744",
+  borderColor: '#ff1744',
 };
 const img = {
-  display: "block",
-  width: "100%",
-  height: "100%",
+  display: 'block',
+  width: '100%',
+  height: '100%',
 };
 
 const DragAndDrop = (props) => {
@@ -45,11 +45,9 @@ const DragAndDrop = (props) => {
     UPLOAD_USER_MOOD_IMAGE_MUTATION,
     {
       onCompleted: (data) => {
-        console.log(data);
         props.handleClose();
       },
       onError(err) {
-        console.log(err);
         // setErrors(err.graphQLErrors[0].extensions.exception.errors);
       },
       refetchQueries: [
@@ -71,7 +69,6 @@ const DragAndDrop = (props) => {
       ],
     }
   );
-  console.log("Files", files);
   const {
     getRootProps,
     getInputProps,
@@ -81,7 +78,7 @@ const DragAndDrop = (props) => {
     acceptedFiles,
     open,
   } = useDropzone({
-    accept: "image/*",
+    accept: 'image/*',
     noClick: true,
     noKeyboard: true,
     onDrop: (acceptedFiles) => {
@@ -109,7 +106,7 @@ const DragAndDrop = (props) => {
     <div key={file.name}>
       <p> Preview Image</p>
       <div>
-        <img src={file.preview} style={img} alt="Upload Pic" />
+        <img src={file.preview} style={img} alt='Upload Pic' />
       </div>
     </div>
   ));
@@ -127,7 +124,6 @@ const DragAndDrop = (props) => {
   ));
 
   const uploadImageHandler = () => {
-    console.log("uploadImageHandler click");
     UploadUserMoodImg({
       variables: {
         userMoodImgFile: files[0],
@@ -139,11 +135,11 @@ const DragAndDrop = (props) => {
     <>
       {!data && (
         <>
-          <div className="container">
+          <div className='container'>
             <div {...getRootProps({ style })}>
               <input {...getInputProps()} />
               <p>Drag 'n' drop some files here or</p>
-              <button type="button" onClick={open}>
+              <button type='button' onClick={open}>
                 Choose File
               </button>
             </div>
@@ -155,22 +151,22 @@ const DragAndDrop = (props) => {
           <div>
             <center>
               <Button
-                variant="outlined"
-                color="secondary"
-                size="small"
-                id="uploadBtn"
+                variant='outlined'
+                color='secondary'
+                size='small'
+                id='uploadBtn'
                 onClick={uploadImageHandler}
-                style={{ margin: "10px", marginBottom: "0px" }}
+                style={{ margin: '10px', marginBottom: '0px' }}
               >
                 Upload
               </Button>
               <Button
-                variant="outlined"
-                color="secondary"
-                size="small"
-                id="closeBtn"
+                variant='outlined'
+                color='secondary'
+                size='small'
+                id='closeBtn'
                 onClick={props.handleClose}
-                style={{ margin: "10px", marginBottom: "0px" }}
+                style={{ margin: '10px', marginBottom: '0px' }}
               >
                 Close
               </Button>

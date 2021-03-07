@@ -1,72 +1,69 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext } from 'react';
 import {
   makeStyles,
   TextField,
   Button,
   CircularProgress,
-} from "@material-ui/core";
-import { gql, useMutation, useQuery } from "@apollo/client";
-import { useHistory } from "react-router-dom";
-import Profile from "../Common/Profile/Profile";
+} from '@material-ui/core';
+import { gql, useMutation, useQuery } from '@apollo/client';
+import { useHistory } from 'react-router-dom';
+import Profile from '../Common/Profile/Profile';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    "& > *": {
+    '& > *': {
       margin: theme.spacing(1),
-      width: "25ch",
+      width: '25ch',
     },
-    background: "black",
-    padding: "20px",
-    width: "600px",
-    margin: "auto",
+    background: 'black',
+    padding: '20px',
+    width: '600px',
+    margin: 'auto',
   },
   title: {
-    color: "#f0db72",
-    textAlign: "center",
-    marginTop: "90px",
-    fontFamily: "fangsong",
+    color: '#f0db72',
+    textAlign: 'center',
+    marginTop: '90px',
+    fontFamily: 'fangsong',
   },
   textField: {
-    margin: "10px",
-    width: "500px",
+    margin: '10px',
+    width: '500px',
   },
   profileImg: {
-    width: "500px",
+    width: '500px',
   },
   signUpLink: {
-    color: "lightblue",
-    width: "500px",
-    margin: "10px",
-    cursor: "pointer",
-    marginLeft: "20px",
+    color: 'lightblue',
+    width: '500px',
+    margin: '10px',
+    cursor: 'pointer',
+    marginLeft: '20px',
   },
 }));
 
 const MyAccount = () => {
-  document.getElementsByTagName("html")[0].style.background = "black";
+  document.getElementsByTagName('html')[0].style.background = 'black';
 
   const classes = useStyles();
   const [error, setError] = useState(false);
-  const [emailHelperText, setEmailHelperText] = useState("");
-  const [usernameHelperText, setUserNameHelperText] = useState("");
+  const [emailHelperText, setEmailHelperText] = useState('');
+  const [usernameHelperText, setUserNameHelperText] = useState('');
   const [disabledToggler, setDisabledToggler] = useState(true);
   const [values, setValues] = useState({
-    username: "",
-    email: "",
+    username: '',
+    email: '',
   });
-  console.log(error);
   const onChange = (e) => {
-    console.log("target", e.target.value);
     setValues({ ...values, [e.target.name]: e.target.value });
     // onInput change all the erro messages are remove.
     setError(false);
-    setEmailHelperText("");
-    setUserNameHelperText("");
+    setEmailHelperText('');
+    setUserNameHelperText('');
   };
 
   const { data, loading, error: queryError } = useQuery(USER_PROFILE_QUERY, {
     onCompleted: (data) => {
-      console.log(data);
       setValues({ ...values });
     },
   });
@@ -91,24 +88,24 @@ const MyAccount = () => {
     // Email validation
     let reg = /^[a-z0-9](\.?[a-z0-9]){5,}@g(oogle)?mail\.com$/;
 
-    if (values.email === "" || values.email === null) {
+    if (values.email === '' || values.email === null) {
       setError(true);
-      setEmailHelperText("Email must not be empty");
+      setEmailHelperText('Email must not be empty');
     } else if (reg.test(values.email) === false) {
       setError(true);
-      setEmailHelperText("Please enter valid email  address");
+      setEmailHelperText('Please enter valid email  address');
     } else {
       setError(false);
     }
 
     // Username validation
 
-    if (values.username === "" || values.username === null) {
+    if (values.username === '' || values.username === null) {
       setError(true);
-      setUserNameHelperText("Username must not be empty");
+      setUserNameHelperText('Username must not be empty');
     } else if (values.username.toString().length < 5) {
       setError(true);
-      setUserNameHelperText("Username Length atleast 5 characters");
+      setUserNameHelperText('Username Length atleast 5 characters');
     } else {
       setError(false);
     }
@@ -118,11 +115,9 @@ const MyAccount = () => {
     e.preventDefault();
     formValidation();
     updateUserInfo({ variables: values });
-    console.log("form is submited");
   };
 
   const editBtnHandler = (e) => {
-    console.log("edit btn clicked");
     setDisabledToggler(false);
     if (data) {
       setValues({ username: data.me.username, email: data.me.email });
@@ -135,7 +130,7 @@ const MyAccount = () => {
       <form
         className={classes.root}
         noValidate
-        autoComplete="off"
+        autoComplete='off'
         // onSubmit={onFormSubmit}
       >
         <div className={classes.profileImg}>
@@ -151,16 +146,16 @@ const MyAccount = () => {
           <>
             <div>
               <TextField
-                id="outlined-flexible"
-                label="Username"
-                variant="outlined"
-                color="secondary"
-                type="text"
-                name="username"
+                id='outlined-flexible'
+                label='Username'
+                variant='outlined'
+                color='secondary'
+                type='text'
+                name='username'
                 onChange={onChange}
                 error={usernameHelperText ? 1 : 0}
                 helperText={usernameHelperText}
-                size="small"
+                size='small'
                 className={classes.textField}
                 defaultValue={data.me.username}
                 disabled={disabledToggler}
@@ -168,16 +163,16 @@ const MyAccount = () => {
             </div>
             <div>
               <TextField
-                id="outlined-flexible"
-                label="Email"
-                variant="outlined"
-                color="secondary"
-                type="email"
-                name="email"
+                id='outlined-flexible'
+                label='Email'
+                variant='outlined'
+                color='secondary'
+                type='email'
+                name='email'
                 onChange={onChange}
                 error={emailHelperText ? 1 : 0}
                 helperText={emailHelperText}
-                size="small"
+                size='small'
                 className={classes.textField}
                 defaultValue={data.me.email}
                 disabled={disabledToggler}
@@ -186,8 +181,8 @@ const MyAccount = () => {
             {disabledToggler ? (
               <div>
                 <Button
-                  variant="outlined"
-                  color="secondary"
+                  variant='outlined'
+                  color='secondary'
                   // type="button"
                   className={classes.textField}
                   onClick={editBtnHandler}
@@ -198,8 +193,8 @@ const MyAccount = () => {
             ) : (
               <div>
                 <Button
-                  variant="outlined"
-                  color="secondary"
+                  variant='outlined'
+                  color='secondary'
                   className={classes.textField}
                   onClick={onFormSubmit}
                 >

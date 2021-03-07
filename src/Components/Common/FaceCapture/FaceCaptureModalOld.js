@@ -1,17 +1,17 @@
-import React from "react";
-import { makeStyles, Grid, Button } from "@material-ui/core";
-import { gql, useMutation } from "@apollo/client";
-import CameraIcon from "@material-ui/icons/Camera";
-const fs = require("fs");
+import React from 'react';
+import { makeStyles, Grid, Button } from '@material-ui/core';
+import { gql, useMutation } from '@apollo/client';
+import CameraIcon from '@material-ui/icons/Camera';
+const fs = require('fs');
 
 const useStyles = makeStyles({
   title: {
-    textAlign: "center",
-    fontSize: "20px",
-    margin: "10px",
+    textAlign: 'center',
+    fontSize: '20px',
+    margin: '10px',
   },
   divider: {
-    margin: "10px",
+    margin: '10px',
   },
 });
 
@@ -21,9 +21,9 @@ const FaceCaptureModal = ({ handleClose }) => {
   const [proccessImage, { loading }] = useMutation(PROCESS_IMAGE_MUTATION);
 
   const tackPhotoHandler = (e) => {
-    let canvas = document.querySelector("#photoCanvas");
-    let context = canvas.getContext("2d");
-    let video = document.querySelector("#captureVideo");
+    let canvas = document.querySelector('#photoCanvas');
+    let context = canvas.getContext('2d');
+    let video = document.querySelector('#captureVideo');
     // let img = document.getElementById("myPhoto");
     // Async task(captureImage)
     const captureImage = async () => {
@@ -32,8 +32,7 @@ const FaceCaptureModal = ({ handleClose }) => {
       });
       video.srcObject = videoStream;
       video.play();
-      const img64 = canvas.toDataURL("image/png");
-      console.log("\n\n\n\n\nBase64 bit img", img64);
+      const img64 = canvas.toDataURL('image/png');
 
       // const link = img64.replace(
       //   /^data:image\/[^;]/,
@@ -59,15 +58,13 @@ const FaceCaptureModal = ({ handleClose }) => {
       // const pic = document.getElementById("myPhoto");
       // pic.src = img64;
 
-      document.getElementById("uploadBtn").addEventListener("click", () => {
-        console.log("upload btn cl icked");
+      document.getElementById('uploadBtn').addEventListener('click', () => {
         videoStream.getTracks().forEach(function (track) {
           track.stop();
         });
         handleClose();
       });
-      document.getElementById("closeBtn").addEventListener("click", () => {
-        console.log("close btn clicked");
+      document.getElementById('closeBtn').addEventListener('click', () => {
         videoStream.getTracks().forEach(function (track) {
           track.stop();
         });
@@ -89,17 +86,17 @@ const FaceCaptureModal = ({ handleClose }) => {
 
   return (
     <div>
-      <Grid container direction="row" justify="center" alignItems="center">
+      <Grid container direction='row' justify='center' alignItems='center'>
         <div>
           <p className={classes.title}>Take Image</p>
           <video
-            id="captureVideo"
-            width="270"
-            height="200"
+            id='captureVideo'
+            width='270'
+            height='200'
             autoPlay
             style={{
-              borderRadius: "7px",
-              backgroundImage: "linear-gradient(to right,#f5f7fa, #c3cfe2)",
+              borderRadius: '7px',
+              backgroundImage: 'linear-gradient(to right,#f5f7fa, #c3cfe2)',
             }}
           ></video>
           <div>
@@ -119,10 +116,10 @@ const FaceCaptureModal = ({ handleClose }) => {
                 <CameraIcon />
               </IconButton> */}
               <Button
-                variant="outlined"
-                color="secondary"
+                variant='outlined'
+                color='secondary'
                 startIcon={<CameraIcon />}
-                size="small"
+                size='small'
                 onClick={tackPhotoHandler}
               >
                 Take Photo
@@ -138,27 +135,27 @@ const FaceCaptureModal = ({ handleClose }) => {
           <p className={classes.title}>Preview Image</p>
 
           <canvas
-            id="photoCanvas"
-            width="270"
-            height="200"
-            style={{ borderRadius: "7px", background: "#0E1111" }}
+            id='photoCanvas'
+            width='270'
+            height='200'
+            style={{ borderRadius: '7px', background: '#0E1111' }}
           ></canvas>
           <center>
             <Button
-              variant="outlined"
-              color="secondary"
-              size="small"
-              id="uploadBtn"
+              variant='outlined'
+              color='secondary'
+              size='small'
+              id='uploadBtn'
               // onClick={uploadImageHandler}
-              style={{ marginRight: "10px" }}
+              style={{ marginRight: '10px' }}
             >
               Upload
             </Button>
             <Button
-              variant="outlined"
-              color="secondary"
-              size="small"
-              id="closeBtn"
+              variant='outlined'
+              color='secondary'
+              size='small'
+              id='closeBtn'
               onClick={handleClose}
             >
               Close

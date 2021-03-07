@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import { makeStyles, AppBar, Tabs, Tab, Box } from "@material-ui/core";
-import ArtistTab from "./ArtistTab/ArtistTab";
-import AlbumTab from "./AlbumTab/AlbumTab";
-import ArtistWithSongList from "./ArtistTab/ArtistWithSongList";
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { makeStyles, AppBar, Tabs, Tab, Box } from '@material-ui/core';
+import ArtistTab from './ArtistTab/ArtistTab';
+import AlbumTab from './AlbumTab/AlbumTab';
+import ArtistWithSongList from './ArtistTab/ArtistWithSongList';
 
 const TabPanel = (props) => {
   const { children, value, index, ...other } = props;
 
   return (
     <div
-      role="tabpanel"
+      role='tabpanel'
       hidden={value !== index}
       id={`full-width-tabpanel-${index}`}
       aria-labelledby={`full-width-tab-${index}`}
@@ -30,15 +30,15 @@ TabPanel.propTypes = {
 const a11yProps = (index) => {
   return {
     id: `full-width-tab-${index}`,
-    "aria-controls": `full-width-tabpanel-${index}`,
+    'aria-controls': `full-width-tabpanel-${index}`,
   };
 };
 
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.primary.main,
-    width: "100%",
-    height: "100vh",
+    width: '100%',
+    height: '100vh',
   },
 }));
 
@@ -50,30 +50,28 @@ const YourLib = () => {
     setValue(newValue);
   };
 
-  const [artistIdState, setArtistIdState] = useState("");
+  const [artistIdState, setArtistIdState] = useState('');
   const [songListAccordingToArtist, setSongListAccordingToArtist] = useState(
     false
   );
   const yourLibCardClickHandler = (data) => {
-    console.log("card click");
-    console.log(data);
     setSongListAccordingToArtist(true);
     setArtistIdState(data);
   };
 
   return !songListAccordingToArtist ? (
     <div className={classes.root}>
-      <AppBar position="static" color="default">
+      <AppBar position='static' color='default'>
         <Tabs
           value={value}
           onChange={handleChange}
-          indicatorColor="primary"
-          textColor="secondary"
-          variant="fullWidth"
-          aria-label="full width tabs example"
+          indicatorColor='primary'
+          textColor='secondary'
+          variant='fullWidth'
+          aria-label='full width tabs example'
         >
-          <Tab label="Artists" {...a11yProps(0)} />
-          <Tab label="Albums" {...a11yProps(1)} />
+          <Tab label='Artists' {...a11yProps(0)} />
+          <Tab label='Albums' {...a11yProps(1)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0} className={classes.tabview}>
