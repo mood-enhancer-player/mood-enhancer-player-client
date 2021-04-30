@@ -35,6 +35,7 @@ For example, If the user is sad the system will recommend and create a playlist 
 - [GraphQL](https://graphql.org)
 - [MongoDB and Mongoose](https://mongoosejs.com/)
 - [Apollo-Server](https://www.apollographql.com/docs/apollo-server/)
+- [Flask](https://flask.palletsprojects.com/en/1.1.x/)
 
 ## Cloud Platform for storage
 
