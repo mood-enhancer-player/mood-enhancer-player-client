@@ -130,12 +130,12 @@ const Dashboard = ({ themeHandler, themeToggler }) => {
               />
             )}
 
-            {state === 'Mood Enhancer' && (
-              <PlaylistGenerator
-                cardClickHandler={cardClickHandler}
-                getPlayList={getPlayList}
-              />
-            )}
+//             {state === 'Mood Enhancer' && (
+//               <PlaylistGenerator
+//                 cardClickHandler={cardClickHandler}
+//                 getPlayList={getPlayList}
+//               />
+//             )}
             {state === 'Your Library' && <YourLib />}
             {state === 'Recent Played' && (
               <RecentPlayed
