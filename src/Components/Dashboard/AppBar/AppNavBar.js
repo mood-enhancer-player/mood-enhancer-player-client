@@ -122,7 +122,7 @@ const AppNavBar = ({
           </div>
         ) : null}
         {/* search end */}
-        <PhotoTaker />
+        {/* <PhotoTaker /> */}
         {/* {state === "Mood Enhancer" ? <PhotoTaker /> : state} */}
         <div className={classes.grow} />
         {themeToggler ? (
