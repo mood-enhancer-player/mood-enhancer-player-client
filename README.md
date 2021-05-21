@@ -14,7 +14,7 @@
 
 <!-- ABOUT THE PROJECT -->
 
-# About The Project
+# Mood Enhancer Player
 
 It is a Full Stack Music player Web App that helps to enhance your mood by playing songs without any ads.
   
