@@ -51,12 +51,14 @@ Password: test@123
 - [React](https://reactjs.org/)
 - [Material-Ui](https://material-ui.com/)
 - [Apollo-Client](https://www.apollographql.com/docs/react)
+- [Charjs](https://www.chartjs.org)
 
 ## Backend
 
 - [GraphQL](https://graphql.org)
 - [MongoDB and Mongoose](https://mongoosejs.com/)
 - [Apollo-Server](https://www.apollographql.com/docs/apollo-server/)
+- [Nodejs](https://nodejs.org/en)
 - [Flask](https://flask.palletsprojects.com/en/1.1.x/)
 
 ## Cloud Platform for storage
